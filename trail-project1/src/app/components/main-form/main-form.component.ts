@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-form.component.css']
 })
 export class MainFormComponent implements OnInit {
-
+  panelOpenState: boolean;
+  checkbox: any;
   constructor() { }
 
   ngOnInit() {
   }
 
+  testing() {
+    console.log(this.checkbox);
+  }
 }

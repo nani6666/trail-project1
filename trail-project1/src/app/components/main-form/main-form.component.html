@@ -1,8 +1,60 @@
 <div class="container-fluid">
-<div class="card">
-  <div class="card-body">
+  <div class="row">
+      <div class="col-md-3">
+          <div class="card">
+              <div class="card-body">
 
+              </div>
+          </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <mat-accordion>
+                        <mat-expansion-panel class="panel1">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                             Hospital Services
+                            </mat-panel-title>
+                          </mat-expansion-panel-header>
+
+                          <mat-form-field>
+                            <input matInput placeholder="First name">
+                          </mat-form-field>
+
+                          <mat-form-field>
+                            <input matInput placeholder="Age">
+                          </mat-form-field>
+                          <mat-slide-toggle [(ngModel)]="checkbox" [ngModelOptions]="{standalone: true}" (change)="testing()">Slide me!</mat-slide-toggle>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel class="panel2">
+                            <mat-expansion-panel-header>
+                              <mat-panel-title>
+                               Primary Eye Care Facility(PECF)
+                              </mat-panel-title>
+                            </mat-expansion-panel-header>
+
+                            <mat-form-field>
+                              <input matInput placeholder="First name">
+                            </mat-form-field>
+
+                            <mat-form-field>
+                              <input matInput placeholder="Age">
+                            </mat-form-field>
+                          </mat-expansion-panel>
+                        <mat-expansion-panel class="panel3" (opened)="panelOpenState = true"
+                                             (closed)="panelOpenState = false">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                             Outreach Activities
+                            </mat-panel-title>
+
+                          </mat-expansion-panel-header>
+                          <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                </div>
+            </div>
+          </div>
   </div>
-
-</div>
 </div>
