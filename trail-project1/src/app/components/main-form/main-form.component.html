@@ -17,15 +17,212 @@
                              Hospital Services
                             </mat-panel-title>
                           </mat-expansion-panel-header>
+                         <div class="row">
+                           <div class="col-md-3">
 
-                          <mat-form-field>
-                            <input matInput placeholder="First name">
-                          </mat-form-field>
+                           </div>
+                           <div class="col-md-9">
+                              <div class="row">
+                                  <div class="col-md-3">
+                                    <mat-slide-toggle class="example-margin">Enable Gender</mat-slide-toggle>
+                                  </div>
+                                  <div class="col-md-3">
+                                     <mat-slide-toggle class="example-margin">Enable Other</mat-slide-toggle>
+                                   </div>
+                                   <div class="col-md-3">
 
-                          <mat-form-field>
-                            <input matInput placeholder="Age">
-                          </mat-form-field>
-                          <mat-slide-toggle [(ngModel)]="checkbox" [ngModelOptions]="{standalone: true}" (change)="testing()">Slide me!</mat-slide-toggle>
+                                       <mat-slide-toggle class="example-margin">Enable Child</mat-slide-toggle>
+                                   </div>
+                                   <div class="col-md-3">
+
+                                       <mat-slide-toggle class="example-margin">Enable Total</mat-slide-toggle>
+                                   </div>
+                                 </div>
+                            </div>
+                         </div>
+                         <section>
+                            <input type="checkbox">
+                            <label class="control-label"><span >Select All</span></label>
+                         <div class="row">
+                           <div class="col-md-3">
+                              <input type="checkbox">
+                              <label class="control-label"><span >New Patients Seen</span></label>
+                           </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-sm-2" >
+                                    <label class="labelCenter control-label">AM</label>
+                                    <input type="text"  class="form-control SmallInput " />
+                                  </div>
+                                 <div class="col-sm-2" >
+                                    <label class="labelCenter control-label">AF</label>
+                                    <input type="text"   class="form-control SmallInput" />
+                                   </div>
+                                   <div class="col-md-2" >
+                                      <label class="labelCenter control-label">OT</label>
+                                      <input type="text"  class="form-control SmallInput" />
+                                     </div>
+                                     <div class="col-md-2" >
+                                        <label class="labelCenter control-label">CM</label>
+                                        <input type="text" class="form-control SmallInput" />
+                                      </div>
+                                      <div class="col-md-2" >
+                                          <label class=" labelCenter control-label">CF</label>
+                                          <input type="text"  class="form-control SmallInput" />
+                                      </div>
+                                      <div class="col-md-2" >
+                                            <label class="labelCenter control-label">Total</label>
+                                            <input type="text"  class="form-control SmallInput" />
+                                      </div>
+                                  </div>
+                            </div>
+                         </div>
+                        </section>
+                        <section>
+                            <div class="row">
+                              <div class="col-md-3">
+                                 <input type="checkbox">
+                                 <label class="control-label"><span >Review Patients</span></label>
+                              </div>
+                           <div class="col-md-9">
+                               <div class="row">
+                                   <div class="col-sm-2" >
+                                       <label class="labelCenter control-label">AM</label>
+                                       <input type="text"  class="form-control SmallInput " />
+                                     </div>
+                                    <div class="col-sm-2" >
+                                       <label class="labelCenter control-label">AF</label>
+                                       <input type="text"   class="form-control SmallInput" />
+                                      </div>
+                                      <div class="col-md-2" >
+                                         <label class="labelCenter control-label">OT</label>
+                                         <input type="text"  class="form-control SmallInput" />
+                                        </div>
+                                        <div class="col-md-2" >
+                                           <label class="labelCenter control-label">CM</label>
+                                           <input type="text" class="form-control SmallInput" />
+                                         </div>
+                                         <div class="col-md-2" >
+                                             <label class=" labelCenter control-label">CF</label>
+                                             <input type="text"  class="form-control SmallInput" />
+                                         </div>
+                                         <div class="col-md-2" >
+                                               <label class="labelCenter control-label">Total</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                         </div>
+                                     </div>
+                               </div>
+                            </div>
+                           </section>
+                           <section>
+                              <div class="row">
+                                <div class="col-md-3">
+                                   <input type="checkbox">
+                                   <label class="control-label"><span >Glasses Prescribed</span></label>
+                                </div>
+                             <div class="col-md-9">
+                                 <div class="row">
+                                     <div class="col-sm-2" >
+                                         <label class="labelCenter control-label">AM</label>
+                                         <input type="text"  class="form-control SmallInput " />
+                                       </div>
+                                      <div class="col-sm-2" >
+                                         <label class="labelCenter control-label">AF</label>
+                                         <input type="text"   class="form-control SmallInput" />
+                                        </div>
+                                        <div class="col-md-2" >
+                                           <label class="labelCenter control-label">OT</label>
+                                           <input type="text"  class="form-control SmallInput" />
+                                          </div>
+                                          <div class="col-md-2" >
+                                             <label class="labelCenter control-label">CM</label>
+                                             <input type="text" class="form-control SmallInput" />
+                                           </div>
+                                           <div class="col-md-2" >
+                                               <label class=" labelCenter control-label">CF</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                           </div>
+                                           <div class="col-md-2" >
+                                                 <label class="labelCenter control-label">Total</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                           </div>
+                                       </div>
+                                 </div>
+                              </div>
+                             </section>
+                             <section>
+                         <div class="row">
+                           <div class="col-md-3">
+                              <input type="checkbox">
+                              <label class="control-label"><span >Glasses Distributed</span></label>
+                           </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-sm-2" >
+                                    <label class="labelCenter control-label">AM</label>
+                                    <input type="text"  class="form-control SmallInput " />
+                                  </div>
+                                 <div class="col-sm-2" >
+                                    <label class="labelCenter control-label">AF</label>
+                                    <input type="text"   class="form-control SmallInput" />
+                                   </div>
+                                   <div class="col-md-2" >
+                                      <label class="labelCenter control-label">OT</label>
+                                      <input type="text"  class="form-control SmallInput" />
+                                     </div>
+                                     <div class="col-md-2" >
+                                        <label class="labelCenter control-label">CM</label>
+                                        <input type="text" class="form-control SmallInput" />
+                                      </div>
+                                      <div class="col-md-2" >
+                                          <label class=" labelCenter control-label">CF</label>
+                                          <input type="text"  class="form-control SmallInput" />
+                                      </div>
+                                      <div class="col-md-2" >
+                                            <label class="labelCenter control-label">Total</label>
+                                            <input type="text"  class="form-control SmallInput" />
+                                      </div>
+                                  </div>
+                            </div>
+                         </div>
+                        </section>
+                        <section>
+                            <div class="row">
+                              <div class="col-md-3">
+                                 <input type="checkbox">
+                                 <label class="control-label"><span >Catracts Advised</span></label>
+                              </div>
+                           <div class="col-md-9">
+                               <div class="row">
+                                   <div class="col-sm-2" >
+                                       <label class="labelCenter control-label">AM</label>
+                                       <input type="text"  class="form-control SmallInput " />
+                                     </div>
+                                    <div class="col-sm-2" >
+                                       <label class="labelCenter control-label">AF</label>
+                                       <input type="text"   class="form-control SmallInput" />
+                                      </div>
+                                      <div class="col-md-2" >
+                                         <label class="labelCenter control-label">OT</label>
+                                         <input type="text"  class="form-control SmallInput" />
+                                        </div>
+                                        <div class="col-md-2" >
+                                           <label class="labelCenter control-label">CM</label>
+                                           <input type="text" class="form-control SmallInput" />
+                                         </div>
+                                         <div class="col-md-2" >
+                                             <label class=" labelCenter control-label">CF</label>
+                                             <input type="text"  class="form-control SmallInput" />
+                                         </div>
+                                         <div class="col-md-2" >
+                                               <label class="labelCenter control-label">Total</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                         </div>
+                                     </div>
+                               </div>
+                            </div>
+                           </section>
+
                         </mat-expansion-panel>
                         <mat-expansion-panel class="panel2">
                             <mat-expansion-panel-header>
@@ -33,14 +230,212 @@
                                Primary Eye Care Facility(PECF)
                               </mat-panel-title>
                             </mat-expansion-panel-header>
+                            <div class="row">
+                                <div class="col-md-3">
 
-                            <mat-form-field>
-                              <input matInput placeholder="First name">
-                            </mat-form-field>
+                                </div>
+                                <div class="col-md-9">
+                                   <div class="row">
+                                       <div class="col-md-3">
+                                         <mat-slide-toggle class="example-margin">Enable Gender</mat-slide-toggle>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <mat-slide-toggle class="example-margin">Enable Other</mat-slide-toggle>
+                                        </div>
+                                        <div class="col-md-3">
 
-                            <mat-form-field>
-                              <input matInput placeholder="Age">
-                            </mat-form-field>
+                                            <mat-slide-toggle class="example-margin">Enable Child</mat-slide-toggle>
+                                        </div>
+                                        <div class="col-md-3">
+
+                                            <mat-slide-toggle class="example-margin">Enable Total</mat-slide-toggle>
+                                        </div>
+                                      </div>
+                                 </div>
+                              </div>
+                              <section>
+                                 <input type="checkbox">
+                                 <label class="control-label"><span >Select All</span></label>
+                              <div class="row">
+                                <div class="col-md-3">
+                                   <input type="checkbox">
+                                   <label class="control-label"><span >New Patients Seen</span></label>
+                                </div>
+                             <div class="col-md-9">
+                                 <div class="row">
+                                     <div class="col-sm-2" >
+                                         <label class="labelCenter control-label">AM</label>
+                                         <input type="text"  class="form-control SmallInput " />
+                                       </div>
+                                      <div class="col-sm-2" >
+                                         <label class="labelCenter control-label">AF</label>
+                                         <input type="text"   class="form-control SmallInput" />
+                                        </div>
+                                        <div class="col-md-2" >
+                                           <label class="labelCenter control-label">OT</label>
+                                           <input type="text"  class="form-control SmallInput" />
+                                          </div>
+                                          <div class="col-md-2" >
+                                             <label class="labelCenter control-label">CM</label>
+                                             <input type="text" class="form-control SmallInput" />
+                                           </div>
+                                           <div class="col-md-2" >
+                                               <label class=" labelCenter control-label">CF</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                           </div>
+                                           <div class="col-md-2" >
+                                                 <label class="labelCenter control-label">Total</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                           </div>
+                                       </div>
+                                 </div>
+                              </div>
+                             </section>
+                             <section>
+                                 <div class="row">
+                                   <div class="col-md-3">
+                                      <input type="checkbox">
+                                      <label class="control-label"><span >Review Patients</span></label>
+                                   </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-sm-2" >
+                                            <label class="labelCenter control-label">AM</label>
+                                            <input type="text"  class="form-control SmallInput " />
+                                          </div>
+                                         <div class="col-sm-2" >
+                                            <label class="labelCenter control-label">AF</label>
+                                            <input type="text"   class="form-control SmallInput" />
+                                           </div>
+                                           <div class="col-md-2" >
+                                              <label class="labelCenter control-label">OT</label>
+                                              <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                <label class="labelCenter control-label">CM</label>
+                                                <input type="text" class="form-control SmallInput" />
+                                              </div>
+                                              <div class="col-md-2" >
+                                                  <label class=" labelCenter control-label">CF</label>
+                                                  <input type="text"  class="form-control SmallInput" />
+                                              </div>
+                                              <div class="col-md-2" >
+                                                    <label class="labelCenter control-label">Total</label>
+                                                    <input type="text"  class="form-control SmallInput" />
+                                              </div>
+                                          </div>
+                                    </div>
+                                 </div>
+                                </section>
+                                <section>
+                                   <div class="row">
+                                     <div class="col-md-3">
+                                        <input type="checkbox">
+                                        <label class="control-label"><span >Glasses Prescribed</span></label>
+                                     </div>
+                                  <div class="col-md-9">
+                                      <div class="row">
+                                          <div class="col-sm-2" >
+                                              <label class="labelCenter control-label">AM</label>
+                                              <input type="text"  class="form-control SmallInput " />
+                                            </div>
+                                           <div class="col-sm-2" >
+                                              <label class="labelCenter control-label">AF</label>
+                                              <input type="text"   class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                <label class="labelCenter control-label">OT</label>
+                                                <input type="text"  class="form-control SmallInput" />
+                                               </div>
+                                               <div class="col-md-2" >
+                                                  <label class="labelCenter control-label">CM</label>
+                                                  <input type="text" class="form-control SmallInput" />
+                                                </div>
+                                                <div class="col-md-2" >
+                                                    <label class=" labelCenter control-label">CF</label>
+                                                    <input type="text"  class="form-control SmallInput" />
+                                                </div>
+                                                <div class="col-md-2" >
+                                                      <label class="labelCenter control-label">Total</label>
+                                                      <input type="text"  class="form-control SmallInput" />
+                                                </div>
+                                            </div>
+                                      </div>
+                                   </div>
+                                  </section>
+                                  <section>
+                              <div class="row">
+                                <div class="col-md-3">
+                                   <input type="checkbox">
+                                   <label class="control-label"><span >Glasses Distributed</span></label>
+                                </div>
+                             <div class="col-md-9">
+                                 <div class="row">
+                                     <div class="col-sm-2" >
+                                         <label class="labelCenter control-label">AM</label>
+                                         <input type="text"  class="form-control SmallInput " />
+                                       </div>
+                                      <div class="col-sm-2" >
+                                         <label class="labelCenter control-label">AF</label>
+                                         <input type="text"   class="form-control SmallInput" />
+                                        </div>
+                                        <div class="col-md-2" >
+                                           <label class="labelCenter control-label">OT</label>
+                                           <input type="text"  class="form-control SmallInput" />
+                                          </div>
+                                          <div class="col-md-2" >
+                                             <label class="labelCenter control-label">CM</label>
+                                             <input type="text" class="form-control SmallInput" />
+                                           </div>
+                                           <div class="col-md-2" >
+                                               <label class=" labelCenter control-label">CF</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                           </div>
+                                           <div class="col-md-2" >
+                                                 <label class="labelCenter control-label">Total</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                           </div>
+                                       </div>
+                                 </div>
+                              </div>
+                             </section>
+                             <section>
+                                 <div class="row">
+                                   <div class="col-md-3">
+                                      <input type="checkbox">
+                                      <label class="control-label"><span >Catracts Advised</span></label>
+                                   </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-sm-2" >
+                                            <label class="labelCenter control-label">AM</label>
+                                            <input type="text"  class="form-control SmallInput " />
+                                          </div>
+                                         <div class="col-sm-2" >
+                                            <label class="labelCenter control-label">AF</label>
+                                            <input type="text"   class="form-control SmallInput" />
+                                           </div>
+                                           <div class="col-md-2" >
+                                              <label class="labelCenter control-label">OT</label>
+                                              <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                <label class="labelCenter control-label">CM</label>
+                                                <input type="text" class="form-control SmallInput" />
+                                              </div>
+                                              <div class="col-md-2" >
+                                                  <label class=" labelCenter control-label">CF</label>
+                                                  <input type="text"  class="form-control SmallInput" />
+                                              </div>
+                                              <div class="col-md-2" >
+                                                    <label class="labelCenter control-label">Total</label>
+                                                    <input type="text"  class="form-control SmallInput" />
+                                              </div>
+                                          </div>
+                                    </div>
+                                 </div>
+                                </section>
+
                           </mat-expansion-panel>
                         <mat-expansion-panel class="panel3" (opened)="panelOpenState = true"
                                              (closed)="panelOpenState = false">
@@ -50,8 +445,639 @@
                             </mat-panel-title>
 
                           </mat-expansion-panel-header>
-                          <p>I'm visible because I am open</p>
+                          <div class="row">
+                              <div class="col-md-3">
+
+                              </div>
+                              <div class="col-md-9">
+                                 <div class="row">
+                                     <div class="col-md-3">
+                                       <mat-slide-toggle class="example-margin">Enable Gender</mat-slide-toggle>
+                                     </div>
+                                     <div class="col-md-3">
+                                        <mat-slide-toggle class="example-margin">Enable Other</mat-slide-toggle>
+                                      </div>
+                                      <div class="col-md-3">
+
+                                          <mat-slide-toggle class="example-margin">Enable Child</mat-slide-toggle>
+                                      </div>
+                                      <div class="col-md-3">
+
+                                          <mat-slide-toggle class="example-margin">Enable Total</mat-slide-toggle>
+                                      </div>
+                                    </div>
+                               </div>
+                            </div>
+                            <section>
+                               <input type="checkbox">
+                               <label class="control-label"><span >Select All</span></label>
+                            <div class="row">
+                              <div class="col-md-3">
+                                 <input type="checkbox">
+                                 <label class="control-label"><span >New Patients Seen</span></label>
+                              </div>
+                           <div class="col-md-9">
+                               <div class="row">
+                                   <div class="col-sm-2" >
+                                       <label class="labelCenter control-label">AM</label>
+                                       <input type="text"  class="form-control SmallInput " />
+                                     </div>
+                                    <div class="col-sm-2" >
+                                       <label class="labelCenter control-label">AF</label>
+                                       <input type="text"   class="form-control SmallInput" />
+                                      </div>
+                                      <div class="col-md-2" >
+                                         <label class="labelCenter control-label">OT</label>
+                                         <input type="text"  class="form-control SmallInput" />
+                                        </div>
+                                        <div class="col-md-2" >
+                                           <label class="labelCenter control-label">CM</label>
+                                           <input type="text" class="form-control SmallInput" />
+                                         </div>
+                                         <div class="col-md-2" >
+                                             <label class=" labelCenter control-label">CF</label>
+                                             <input type="text"  class="form-control SmallInput" />
+                                         </div>
+                                         <div class="col-md-2" >
+                                               <label class="labelCenter control-label">Total</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                         </div>
+                                     </div>
+                               </div>
+                            </div>
+                           </section>
+                           <section>
+                               <div class="row">
+                                 <div class="col-md-3">
+                                    <input type="checkbox">
+                                    <label class="control-label"><span >Review Patients</span></label>
+                                 </div>
+                              <div class="col-md-9">
+                                  <div class="row">
+                                      <div class="col-sm-2" >
+                                          <label class="labelCenter control-label">AM</label>
+                                          <input type="text"  class="form-control SmallInput " />
+                                        </div>
+                                       <div class="col-sm-2" >
+                                          <label class="labelCenter control-label">AF</label>
+                                          <input type="text"   class="form-control SmallInput" />
+                                         </div>
+                                         <div class="col-md-2" >
+                                            <label class="labelCenter control-label">OT</label>
+                                            <input type="text"  class="form-control SmallInput" />
+                                           </div>
+                                           <div class="col-md-2" >
+                                              <label class="labelCenter control-label">CM</label>
+                                              <input type="text" class="form-control SmallInput" />
+                                            </div>
+                                            <div class="col-md-2" >
+                                                <label class=" labelCenter control-label">CF</label>
+                                                <input type="text"  class="form-control SmallInput" />
+                                            </div>
+                                            <div class="col-md-2" >
+                                                  <label class="labelCenter control-label">Total</label>
+                                                  <input type="text"  class="form-control SmallInput" />
+                                            </div>
+                                        </div>
+                                  </div>
+                               </div>
+                              </section>
+                              <section>
+                                 <div class="row">
+                                   <div class="col-md-3">
+                                      <input type="checkbox">
+                                      <label class="control-label"><span >Glasses Prescribed</span></label>
+                                   </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-sm-2" >
+                                            <label class="labelCenter control-label">AM</label>
+                                            <input type="text"  class="form-control SmallInput " />
+                                          </div>
+                                         <div class="col-sm-2" >
+                                            <label class="labelCenter control-label">AF</label>
+                                            <input type="text"   class="form-control SmallInput" />
+                                           </div>
+                                           <div class="col-md-2" >
+                                              <label class="labelCenter control-label">OT</label>
+                                              <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                <label class="labelCenter control-label">CM</label>
+                                                <input type="text" class="form-control SmallInput" />
+                                              </div>
+                                              <div class="col-md-2" >
+                                                  <label class=" labelCenter control-label">CF</label>
+                                                  <input type="text"  class="form-control SmallInput" />
+                                              </div>
+                                              <div class="col-md-2" >
+                                                    <label class="labelCenter control-label">Total</label>
+                                                    <input type="text"  class="form-control SmallInput" />
+                                              </div>
+                                          </div>
+                                    </div>
+                                 </div>
+                                </section>
+                                <section>
+                            <div class="row">
+                              <div class="col-md-3">
+                                 <input type="checkbox">
+                                 <label class="control-label"><span >Glasses Distributed</span></label>
+                              </div>
+                           <div class="col-md-9">
+                               <div class="row">
+                                   <div class="col-sm-2" >
+                                       <label class="labelCenter control-label">AM</label>
+                                       <input type="text"  class="form-control SmallInput " />
+                                     </div>
+                                    <div class="col-sm-2" >
+                                       <label class="labelCenter control-label">AF</label>
+                                       <input type="text"   class="form-control SmallInput" />
+                                      </div>
+                                      <div class="col-md-2" >
+                                         <label class="labelCenter control-label">OT</label>
+                                         <input type="text"  class="form-control SmallInput" />
+                                        </div>
+                                        <div class="col-md-2" >
+                                           <label class="labelCenter control-label">CM</label>
+                                           <input type="text" class="form-control SmallInput" />
+                                         </div>
+                                         <div class="col-md-2" >
+                                             <label class=" labelCenter control-label">CF</label>
+                                             <input type="text"  class="form-control SmallInput" />
+                                         </div>
+                                         <div class="col-md-2" >
+                                               <label class="labelCenter control-label">Total</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                         </div>
+                                     </div>
+                               </div>
+                            </div>
+                           </section>
+                           <section>
+                               <div class="row">
+                                 <div class="col-md-3">
+                                    <input type="checkbox">
+                                    <label class="control-label"><span >Catracts Advised</span></label>
+                                 </div>
+                              <div class="col-md-9">
+                                  <div class="row">
+                                      <div class="col-sm-2" >
+                                          <label class="labelCenter control-label">AM</label>
+                                          <input type="text"  class="form-control SmallInput " />
+                                        </div>
+                                       <div class="col-sm-2" >
+                                          <label class="labelCenter control-label">AF</label>
+                                          <input type="text"   class="form-control SmallInput" />
+                                         </div>
+                                         <div class="col-md-2" >
+                                            <label class="labelCenter control-label">OT</label>
+                                            <input type="text"  class="form-control SmallInput" />
+                                           </div>
+                                           <div class="col-md-2" >
+                                              <label class="labelCenter control-label">CM</label>
+                                              <input type="text" class="form-control SmallInput" />
+                                            </div>
+                                            <div class="col-md-2" >
+                                                <label class=" labelCenter control-label">CF</label>
+                                                <input type="text"  class="form-control SmallInput" />
+                                            </div>
+                                            <div class="col-md-2" >
+                                                  <label class="labelCenter control-label">Total</label>
+                                                  <input type="text"  class="form-control SmallInput" />
+                                            </div>
+                                        </div>
+                                  </div>
+                               </div>
+                              </section>
+
                         </mat-expansion-panel>
+                        <mat-expansion-panel class="panel4">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                Training & Development
+                                </mat-panel-title>
+                              </mat-expansion-panel-header>
+                              <div class="row">
+                                  <div class="col-md-3">
+
+                                  </div>
+                                  <div class="col-md-9">
+                                     <div class="row">
+                                         <div class="col-md-3">
+                                           <mat-slide-toggle class="example-margin">Enable Gender</mat-slide-toggle>
+                                         </div>
+                                         <div class="col-md-3">
+                                            <mat-slide-toggle class="example-margin">Enable Other</mat-slide-toggle>
+                                          </div>
+                                          <div class="col-md-3">
+
+                                              <mat-slide-toggle class="example-margin">Enable Child</mat-slide-toggle>
+                                          </div>
+                                          <div class="col-md-3">
+
+                                              <mat-slide-toggle class="example-margin">Enable Total</mat-slide-toggle>
+                                          </div>
+                                        </div>
+                                   </div>
+                                </div>
+                                <section>
+                                   <input type="checkbox">
+                                   <label class="control-label"><span >Select All</span></label>
+                                <div class="row">
+                                  <div class="col-md-3">
+                                     <input type="checkbox">
+                                     <label class="control-label"><span >New Patients Seen</span></label>
+                                  </div>
+                               <div class="col-md-9">
+                                   <div class="row">
+                                       <div class="col-sm-2" >
+                                           <label class="labelCenter control-label">AM</label>
+                                           <input type="text"  class="form-control SmallInput " />
+                                         </div>
+                                        <div class="col-sm-2" >
+                                           <label class="labelCenter control-label">AF</label>
+                                           <input type="text"   class="form-control SmallInput" />
+                                          </div>
+                                          <div class="col-md-2" >
+                                             <label class="labelCenter control-label">OT</label>
+                                             <input type="text"  class="form-control SmallInput" />
+                                            </div>
+                                            <div class="col-md-2" >
+                                               <label class="labelCenter control-label">CM</label>
+                                               <input type="text" class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                 <label class=" labelCenter control-label">CF</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                   <label class="labelCenter control-label">Total</label>
+                                                   <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                         </div>
+                                   </div>
+                                </div>
+                               </section>
+                               <section>
+                                   <div class="row">
+                                     <div class="col-md-3">
+                                        <input type="checkbox">
+                                        <label class="control-label"><span >Review Patients</span></label>
+                                     </div>
+                                  <div class="col-md-9">
+                                      <div class="row">
+                                          <div class="col-sm-2" >
+                                              <label class="labelCenter control-label">AM</label>
+                                              <input type="text"  class="form-control SmallInput " />
+                                            </div>
+                                           <div class="col-sm-2" >
+                                              <label class="labelCenter control-label">AF</label>
+                                              <input type="text"   class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                <label class="labelCenter control-label">OT</label>
+                                                <input type="text"  class="form-control SmallInput" />
+                                               </div>
+                                               <div class="col-md-2" >
+                                                  <label class="labelCenter control-label">CM</label>
+                                                  <input type="text" class="form-control SmallInput" />
+                                                </div>
+                                                <div class="col-md-2" >
+                                                    <label class=" labelCenter control-label">CF</label>
+                                                    <input type="text"  class="form-control SmallInput" />
+                                                </div>
+                                                <div class="col-md-2" >
+                                                      <label class="labelCenter control-label">Total</label>
+                                                      <input type="text"  class="form-control SmallInput" />
+                                                </div>
+                                            </div>
+                                      </div>
+                                   </div>
+                                  </section>
+                                  <section>
+                                     <div class="row">
+                                       <div class="col-md-3">
+                                          <input type="checkbox">
+                                          <label class="control-label"><span >Glasses Prescribed</span></label>
+                                       </div>
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-sm-2" >
+                                                <label class="labelCenter control-label">AM</label>
+                                                <input type="text"  class="form-control SmallInput " />
+                                              </div>
+                                             <div class="col-sm-2" >
+                                                <label class="labelCenter control-label">AF</label>
+                                                <input type="text"   class="form-control SmallInput" />
+                                               </div>
+                                               <div class="col-md-2" >
+                                                  <label class="labelCenter control-label">OT</label>
+                                                  <input type="text"  class="form-control SmallInput" />
+                                                 </div>
+                                                 <div class="col-md-2" >
+                                                    <label class="labelCenter control-label">CM</label>
+                                                    <input type="text" class="form-control SmallInput" />
+                                                  </div>
+                                                  <div class="col-md-2" >
+                                                      <label class=" labelCenter control-label">CF</label>
+                                                      <input type="text"  class="form-control SmallInput" />
+                                                  </div>
+                                                  <div class="col-md-2" >
+                                                        <label class="labelCenter control-label">Total</label>
+                                                        <input type="text"  class="form-control SmallInput" />
+                                                  </div>
+                                              </div>
+                                        </div>
+                                     </div>
+                                    </section>
+                                    <section>
+                                <div class="row">
+                                  <div class="col-md-3">
+                                     <input type="checkbox">
+                                     <label class="control-label"><span >Glasses Distributed</span></label>
+                                  </div>
+                               <div class="col-md-9">
+                                   <div class="row">
+                                       <div class="col-sm-2" >
+                                           <label class="labelCenter control-label">AM</label>
+                                           <input type="text"  class="form-control SmallInput " />
+                                         </div>
+                                        <div class="col-sm-2" >
+                                           <label class="labelCenter control-label">AF</label>
+                                           <input type="text"   class="form-control SmallInput" />
+                                          </div>
+                                          <div class="col-md-2" >
+                                             <label class="labelCenter control-label">OT</label>
+                                             <input type="text"  class="form-control SmallInput" />
+                                            </div>
+                                            <div class="col-md-2" >
+                                               <label class="labelCenter control-label">CM</label>
+                                               <input type="text" class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                 <label class=" labelCenter control-label">CF</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                   <label class="labelCenter control-label">Total</label>
+                                                   <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                         </div>
+                                   </div>
+                                </div>
+                               </section>
+                               <section>
+                                   <div class="row">
+                                     <div class="col-md-3">
+                                        <input type="checkbox">
+                                        <label class="control-label"><span >Catracts Advised</span></label>
+                                     </div>
+                                  <div class="col-md-9">
+                                      <div class="row">
+                                          <div class="col-sm-2" >
+                                              <label class="labelCenter control-label">AM</label>
+                                              <input type="text"  class="form-control SmallInput " />
+                                            </div>
+                                           <div class="col-sm-2" >
+                                              <label class="labelCenter control-label">AF</label>
+                                              <input type="text"   class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                <label class="labelCenter control-label">OT</label>
+                                                <input type="text"  class="form-control SmallInput" />
+                                               </div>
+                                               <div class="col-md-2" >
+                                                  <label class="labelCenter control-label">CM</label>
+                                                  <input type="text" class="form-control SmallInput" />
+                                                </div>
+                                                <div class="col-md-2" >
+                                                    <label class=" labelCenter control-label">CF</label>
+                                                    <input type="text"  class="form-control SmallInput" />
+                                                </div>
+                                                <div class="col-md-2" >
+                                                      <label class="labelCenter control-label">Total</label>
+                                                      <input type="text"  class="form-control SmallInput" />
+                                                </div>
+                                            </div>
+                                      </div>
+                                   </div>
+                                  </section>
+
+                        </mat-expansion-panel>
+                        <mat-expansion-panel class="panel5">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                Other Services
+                                </mat-panel-title>
+                              </mat-expansion-panel-header>
+                              <div class="row">
+                                  <div class="col-md-3">
+
+                                  </div>
+                                  <div class="col-md-9">
+                                     <div class="row">
+                                         <div class="col-md-3">
+                                           <mat-slide-toggle class="example-margin">Enable Gender</mat-slide-toggle>
+                                         </div>
+                                         <div class="col-md-3">
+                                            <mat-slide-toggle class="example-margin">Enable Other</mat-slide-toggle>
+                                          </div>
+                                          <div class="col-md-3">
+
+                                              <mat-slide-toggle class="example-margin">Enable Child</mat-slide-toggle>
+                                          </div>
+                                          <div class="col-md-3">
+
+                                              <mat-slide-toggle class="example-margin">Enable Total</mat-slide-toggle>
+                                          </div>
+                                        </div>
+                                   </div>
+                                </div>
+                                <section>
+                                   <input type="checkbox">
+                                   <label class="control-label"><span >Select All</span></label>
+                                <div class="row">
+                                  <div class="col-md-3">
+                                     <input type="checkbox">
+                                     <label class="control-label"><span >New Patients Seen</span></label>
+                                  </div>
+                               <div class="col-md-9">
+                                   <div class="row">
+                                       <div class="col-sm-2" >
+                                           <label class="labelCenter control-label">AM</label>
+                                           <input type="text"  class="form-control SmallInput " />
+                                         </div>
+                                        <div class="col-sm-2" >
+                                           <label class="labelCenter control-label">AF</label>
+                                           <input type="text"   class="form-control SmallInput" />
+                                          </div>
+                                          <div class="col-md-2" >
+                                             <label class="labelCenter control-label">OT</label>
+                                             <input type="text"  class="form-control SmallInput" />
+                                            </div>
+                                            <div class="col-md-2" >
+                                               <label class="labelCenter control-label">CM</label>
+                                               <input type="text" class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                 <label class=" labelCenter control-label">CF</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                   <label class="labelCenter control-label">Total</label>
+                                                   <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                         </div>
+                                   </div>
+                                </div>
+                               </section>
+                               <section>
+                                   <div class="row">
+                                     <div class="col-md-3">
+                                        <input type="checkbox">
+                                        <label class="control-label"><span >Review Patients</span></label>
+                                     </div>
+                                  <div class="col-md-9">
+                                      <div class="row">
+                                          <div class="col-sm-2" >
+                                              <label class="labelCenter control-label">AM</label>
+                                              <input type="text"  class="form-control SmallInput " />
+                                            </div>
+                                           <div class="col-sm-2" >
+                                              <label class="labelCenter control-label">AF</label>
+                                              <input type="text"   class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                <label class="labelCenter control-label">OT</label>
+                                                <input type="text"  class="form-control SmallInput" />
+                                               </div>
+                                               <div class="col-md-2" >
+                                                  <label class="labelCenter control-label">CM</label>
+                                                  <input type="text" class="form-control SmallInput" />
+                                                </div>
+                                                <div class="col-md-2" >
+                                                    <label class=" labelCenter control-label">CF</label>
+                                                    <input type="text"  class="form-control SmallInput" />
+                                                </div>
+                                                <div class="col-md-2" >
+                                                      <label class="labelCenter control-label">Total</label>
+                                                      <input type="text"  class="form-control SmallInput" />
+                                                </div>
+                                            </div>
+                                      </div>
+                                   </div>
+                                  </section>
+                                  <section>
+                                     <div class="row">
+                                       <div class="col-md-3">
+                                          <input type="checkbox">
+                                          <label class="control-label"><span >Glasses Prescribed</span></label>
+                                       </div>
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-sm-2" >
+                                                <label class="labelCenter control-label">AM</label>
+                                                <input type="text"  class="form-control SmallInput " />
+                                              </div>
+                                             <div class="col-sm-2" >
+                                                <label class="labelCenter control-label">AF</label>
+                                                <input type="text"   class="form-control SmallInput" />
+                                               </div>
+                                               <div class="col-md-2" >
+                                                  <label class="labelCenter control-label">OT</label>
+                                                  <input type="text"  class="form-control SmallInput" />
+                                                 </div>
+                                                 <div class="col-md-2" >
+                                                    <label class="labelCenter control-label">CM</label>
+                                                    <input type="text" class="form-control SmallInput" />
+                                                  </div>
+                                                  <div class="col-md-2" >
+                                                      <label class=" labelCenter control-label">CF</label>
+                                                      <input type="text"  class="form-control SmallInput" />
+                                                  </div>
+                                                  <div class="col-md-2" >
+                                                        <label class="labelCenter control-label">Total</label>
+                                                        <input type="text"  class="form-control SmallInput" />
+                                                  </div>
+                                              </div>
+                                        </div>
+                                     </div>
+                                    </section>
+                                    <section>
+                                <div class="row">
+                                  <div class="col-md-3">
+                                     <input type="checkbox">
+                                     <label class="control-label"><span >Glasses Distributed</span></label>
+                                  </div>
+                               <div class="col-md-9">
+                                   <div class="row">
+                                       <div class="col-sm-2" >
+                                           <label class="labelCenter control-label">AM</label>
+                                           <input type="text"  class="form-control SmallInput " />
+                                         </div>
+                                        <div class="col-sm-2" >
+                                           <label class="labelCenter control-label">AF</label>
+                                           <input type="text"   class="form-control SmallInput" />
+                                          </div>
+                                          <div class="col-md-2" >
+                                             <label class="labelCenter control-label">OT</label>
+                                             <input type="text"  class="form-control SmallInput" />
+                                            </div>
+                                            <div class="col-md-2" >
+                                               <label class="labelCenter control-label">CM</label>
+                                               <input type="text" class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                 <label class=" labelCenter control-label">CF</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                   <label class="labelCenter control-label">Total</label>
+                                                   <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                         </div>
+                                   </div>
+                                </div>
+                               </section>
+                               <section>
+                                   <div class="row">
+                                     <div class="col-md-3">
+                                        <input type="checkbox">
+                                        <label class="control-label"><span >Catracts Advised</span></label>
+                                     </div>
+                                  <div class="col-md-9">
+                                      <div class="row">
+                                          <div class="col-sm-2" >
+                                              <label class="labelCenter control-label">AM</label>
+                                              <input type="text"  class="form-control SmallInput " />
+                                            </div>
+                                           <div class="col-sm-2" >
+                                              <label class="labelCenter control-label">AF</label>
+                                              <input type="text"   class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2" >
+                                                <label class="labelCenter control-label">OT</label>
+                                                <input type="text"  class="form-control SmallInput" />
+                                               </div>
+                                               <div class="col-md-2" >
+                                                  <label class="labelCenter control-label">CM</label>
+                                                  <input type="text" class="form-control SmallInput" />
+                                                </div>
+                                                <div class="col-md-2" >
+                                                    <label class=" labelCenter control-label">CF</label>
+                                                    <input type="text"  class="form-control SmallInput" />
+                                                </div>
+                                                <div class="col-md-2" >
+                                                      <label class="labelCenter control-label">Total</label>
+                                                      <input type="text"  class="form-control SmallInput" />
+                                                </div>
+                                            </div>
+                                      </div>
+                                   </div>
+                                  </section>
+
+                          </mat-expansion-panel>
                       </mat-accordion>
                 </div>
             </div>

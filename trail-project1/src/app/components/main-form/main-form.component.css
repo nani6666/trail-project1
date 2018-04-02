@@ -16,3 +16,16 @@
 .card{
   background-color: #DDDBD7;
 }
+
+.SmallInput { width: 80px;
+  height: 20px;
+  font-size: 14px !important;
+}
+
+.labelCenter{
+  padding-left: 30px
+  }
+
+  .inputcards{
+    background-color: #D1FCFF
+  }
