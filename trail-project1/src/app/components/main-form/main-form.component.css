@@ -8,24 +8,76 @@
   border-left: 3px solid #A21BE5;
 }
 .panel4{
-  border-left: 3px solid ;
+  border-left: 3px solid #1DE258;
 }
 .panel5{
-  border-left: 3px solid #F4274C;
+  border-left: 3px solid #774D37;
 }
 .card{
   background-color: #DDDBD7;
 }
 
-.SmallInput { width: 80px;
+:host ::ng-deep .SmallInput { width: 80px;
   height: 20px;
-  font-size: 14px !important;
+  font-size: 12px !important;
 }
 
-.labelCenter{
+:host ::ng-deep .labelCenter{
   padding-left: 30px
   }
 
   .inputcards{
     background-color: #D1FCFF
   }
+
+  [type="checkbox"]
+{
+    vertical-align:middle;
+}
+
+:host ::ng-deep .control-label>span{
+padding-left: 5px;
+}
+
+:host ::ng-deep  .row {
+  margin-right: 0px;
+   margin-left: 0px;
+}
+
+::ng-deep .mat-slide-toggle-bar {
+  height: 10px !important;
+  width: 30px !important;
+}
+::ng-deep.mat-slide-toggle-thumb {
+  height: 15px !important;
+  width: 15px !important;
+}
+/* CSS to change Default/'Accent' color */
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: blue; /*replace with your color*/
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: skyblue;  /*replace with your color*/
+}
+
+/* CSS to change 'Primary' color */
+
+::ng-deep .mat-slide-toggle.mat-primary.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: green;
+}
+
+::ng-deep .mat-slide-toggle.mat-primary.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: #ff99ff;
+}
+
+/* CSS to change 'Warn' color */
+
+::ng-deep .mat-slide-toggle.mat-warn.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: red;
+}
+
+::ng-deep .mat-slide-toggle.mat-warn.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: #ffe066;
+}

@@ -18,59 +18,58 @@
                             </mat-panel-title>
                           </mat-expansion-panel-header>
                          <div class="row">
-                           <div class="col-md-3">
+                           <div class="col-md-2">
 
                            </div>
-                           <div class="col-md-9">
+                           <div class="col-md-10">
                               <div class="row">
                                   <div class="col-md-3">
-                                    <mat-slide-toggle class="example-margin">Enable Gender</mat-slide-toggle>
+
+                                    <mat-slide-toggle class="example-margin btn-xs" [(ngModel)]="hospServciesGender" (change)="changetoggles()">Enable Gender </mat-slide-toggle>
                                   </div>
                                   <div class="col-md-3">
-                                     <mat-slide-toggle class="example-margin">Enable Other</mat-slide-toggle>
+                                     <mat-slide-toggle class="example-margin" [(ngModel)]="hospServciesOther" (change)="changetoggles()">Enable Other </mat-slide-toggle>
                                    </div>
                                    <div class="col-md-3">
 
-                                       <mat-slide-toggle class="example-margin">Enable Child</mat-slide-toggle>
+                                       <mat-slide-toggle class="example-margin" [(ngModel)]="hospServicesChild" (change)="changetoggles()">Enable Child </mat-slide-toggle>
                                    </div>
                                    <div class="col-md-3">
 
-                                       <mat-slide-toggle class="example-margin">Enable Total</mat-slide-toggle>
+                                       <mat-slide-toggle class="example-margin" [(ngModel)]="hospServicesTotal" (change)="changetoggles()">Enable Total</mat-slide-toggle>
                                    </div>
                                  </div>
                             </div>
                          </div>
                          <section>
-                            <input type="checkbox">
-                            <label class="control-label"><span >Select All</span></label>
+                            <label class="control-label text-warning" style="padding-left:15px;"> <input type="checkbox" [(ngModel)]="hospSAervicesSelectall" (change)="changetoggles()"><span ><strong>Select All</strong></span></label>
                          <div class="row">
-                           <div class="col-md-3">
-                              <input type="checkbox">
-                              <label class="control-label"><span >New Patients Seen</span></label>
+                           <div class="col-md-3" style="padding-top:18px;">
+                              <label class="control-label checkbox-inline"> <input type="checkbox" [(ngModel)]="hospNewPatient"><span >New Patients Seen</span></label>
                            </div>
                         <div class="col-md-9">
                             <div class="row">
-                                <div class="col-sm-2" >
+                                <div class="col-sm-2" *ngIf="hospgenderFields">
                                     <label class="labelCenter control-label">AM</label>
                                     <input type="text"  class="form-control SmallInput " />
                                   </div>
-                                 <div class="col-sm-2" >
+                                 <div class="col-sm-2"  *ngIf="hospgenderFields">
                                     <label class="labelCenter control-label">AF</label>
                                     <input type="text"   class="form-control SmallInput" />
                                    </div>
-                                   <div class="col-md-2" >
+                                   <div class="col-md-2"   *ngIf="hospotherFields">
                                       <label class="labelCenter control-label">OT</label>
                                       <input type="text"  class="form-control SmallInput" />
                                      </div>
-                                     <div class="col-md-2" >
+                                     <div class="col-md-2"  *ngIf="hospchildFields">
                                         <label class="labelCenter control-label">CM</label>
                                         <input type="text" class="form-control SmallInput" />
                                       </div>
-                                      <div class="col-md-2" >
+                                      <div class="col-md-2"  *ngIf="hospchildFields">
                                           <label class=" labelCenter control-label">CF</label>
                                           <input type="text"  class="form-control SmallInput" />
                                       </div>
-                                      <div class="col-md-2" >
+                                      <div class="col-md-2"  *ngIf="hosptotalFields">
                                             <label class="labelCenter control-label">Total</label>
                                             <input type="text"  class="form-control SmallInput" />
                                       </div>
@@ -80,105 +79,102 @@
                         </section>
                         <section>
                             <div class="row">
-                              <div class="col-md-3">
-                                 <input type="checkbox">
-                                 <label class="control-label"><span >Review Patients</span></label>
+                              <div class="col-md-3" style="padding-top:18px;">
+                                 <label class="control-label">  <input type="checkbox" [(ngModel)]="hospReviewPatients"><span >Review Patients</span></label>
                               </div>
                            <div class="col-md-9">
                                <div class="row">
-                                   <div class="col-sm-2" >
-                                       <label class="labelCenter control-label">AM</label>
-                                       <input type="text"  class="form-control SmallInput " />
+                                  <div class="col-sm-2" *ngIf="hospgenderFields">
+                                      <label class="labelCenter control-label">AM</label>
+                                      <input type="text"  class="form-control SmallInput " />
+                                    </div>
+                                   <div class="col-sm-2"  *ngIf="hospgenderFields">
+                                      <label class="labelCenter control-label">AF</label>
+                                      <input type="text"   class="form-control SmallInput" />
                                      </div>
-                                    <div class="col-sm-2" >
-                                       <label class="labelCenter control-label">AF</label>
-                                       <input type="text"   class="form-control SmallInput" />
-                                      </div>
-                                      <div class="col-md-2" >
-                                         <label class="labelCenter control-label">OT</label>
-                                         <input type="text"  class="form-control SmallInput" />
+                                     <div class="col-md-2"   *ngIf="hospotherFields">
+                                        <label class="labelCenter control-label">OT</label>
+                                        <input type="text"  class="form-control SmallInput" />
+                                       </div>
+                                       <div class="col-md-2"  *ngIf="hospchildFields">
+                                          <label class="labelCenter control-label">CM</label>
+                                          <input type="text" class="form-control SmallInput" />
                                         </div>
-                                        <div class="col-md-2" >
-                                           <label class="labelCenter control-label">CM</label>
-                                           <input type="text" class="form-control SmallInput" />
-                                         </div>
-                                         <div class="col-md-2" >
-                                             <label class=" labelCenter control-label">CF</label>
-                                             <input type="text"  class="form-control SmallInput" />
-                                         </div>
-                                         <div class="col-md-2" >
-                                               <label class="labelCenter control-label">Total</label>
-                                               <input type="text"  class="form-control SmallInput" />
-                                         </div>
+                                        <div class="col-md-2"  *ngIf="hospchildFields">
+                                            <label class=" labelCenter control-label">CF</label>
+                                            <input type="text"  class="form-control SmallInput" />
+                                        </div>
+                                        <div class="col-md-2"  *ngIf="hosptotalFields">
+                                              <label class="labelCenter control-label">Total</label>
+                                              <input type="text"  class="form-control SmallInput" />
+                                        </div>
                                      </div>
                                </div>
                             </div>
                            </section>
                            <section>
                               <div class="row">
-                                <div class="col-md-3">
-                                   <input type="checkbox">
-                                   <label class="control-label"><span >Glasses Prescribed</span></label>
+                                <div class="col-md-3" style="padding-top:18px;">
+                                   <label class="control-label" ><input type="checkbox" [(ngModel)]="hospglassPrescribe"><span >Glasses Prescribed</span></label>
                                 </div>
                              <div class="col-md-9">
                                  <div class="row">
-                                     <div class="col-sm-2" >
-                                         <label class="labelCenter control-label">AM</label>
-                                         <input type="text"  class="form-control SmallInput " />
+                                    <div class="col-sm-2" *ngIf="hospgenderFields">
+                                        <label class="labelCenter control-label">AM</label>
+                                        <input type="text"  class="form-control SmallInput " />
+                                      </div>
+                                     <div class="col-sm-2"  *ngIf="hospgenderFields">
+                                        <label class="labelCenter control-label">AF</label>
+                                        <input type="text"   class="form-control SmallInput" />
                                        </div>
-                                      <div class="col-sm-2" >
-                                         <label class="labelCenter control-label">AF</label>
-                                         <input type="text"   class="form-control SmallInput" />
-                                        </div>
-                                        <div class="col-md-2" >
-                                           <label class="labelCenter control-label">OT</label>
-                                           <input type="text"  class="form-control SmallInput" />
+                                       <div class="col-md-2"   *ngIf="hospotherFields">
+                                          <label class="labelCenter control-label">OT</label>
+                                          <input type="text"  class="form-control SmallInput" />
+                                         </div>
+                                         <div class="col-md-2"  *ngIf="hospchildFields">
+                                            <label class="labelCenter control-label">CM</label>
+                                            <input type="text" class="form-control SmallInput" />
                                           </div>
-                                          <div class="col-md-2" >
-                                             <label class="labelCenter control-label">CM</label>
-                                             <input type="text" class="form-control SmallInput" />
-                                           </div>
-                                           <div class="col-md-2" >
-                                               <label class=" labelCenter control-label">CF</label>
-                                               <input type="text"  class="form-control SmallInput" />
-                                           </div>
-                                           <div class="col-md-2" >
-                                                 <label class="labelCenter control-label">Total</label>
-                                                 <input type="text"  class="form-control SmallInput" />
-                                           </div>
+                                          <div class="col-md-2"  *ngIf="hospchildFields">
+                                              <label class=" labelCenter control-label">CF</label>
+                                              <input type="text"  class="form-control SmallInput" />
+                                          </div>
+                                          <div class="col-md-2"  *ngIf="hosptotalFields">
+                                                <label class="labelCenter control-label">Total</label>
+                                                <input type="text"  class="form-control SmallInput" />
+                                          </div>
                                        </div>
                                  </div>
                               </div>
                              </section>
                              <section>
                          <div class="row">
-                           <div class="col-md-3">
-                              <input type="checkbox">
-                              <label class="control-label"><span >Glasses Distributed</span></label>
+                           <div class="col-md-3" style="padding-top:18px;">
+                              <label class="control-label"> <input type="checkbox" [(ngModel)]="hospglassesDistrbuted"><span >Glasses Distributed</span></label>
                            </div>
                         <div class="col-md-9">
                             <div class="row">
-                                <div class="col-sm-2" >
+                                <div class="col-sm-2" *ngIf="hospgenderFields">
                                     <label class="labelCenter control-label">AM</label>
                                     <input type="text"  class="form-control SmallInput " />
                                   </div>
-                                 <div class="col-sm-2" >
+                                 <div class="col-sm-2"  *ngIf="hospgenderFields">
                                     <label class="labelCenter control-label">AF</label>
                                     <input type="text"   class="form-control SmallInput" />
                                    </div>
-                                   <div class="col-md-2" >
+                                   <div class="col-md-2"   *ngIf="hospotherFields">
                                       <label class="labelCenter control-label">OT</label>
                                       <input type="text"  class="form-control SmallInput" />
                                      </div>
-                                     <div class="col-md-2" >
+                                     <div class="col-md-2"  *ngIf="hospchildFields">
                                         <label class="labelCenter control-label">CM</label>
                                         <input type="text" class="form-control SmallInput" />
                                       </div>
-                                      <div class="col-md-2" >
+                                      <div class="col-md-2"  *ngIf="hospchildFields">
                                           <label class=" labelCenter control-label">CF</label>
                                           <input type="text"  class="form-control SmallInput" />
                                       </div>
-                                      <div class="col-md-2" >
+                                      <div class="col-md-2"  *ngIf="hosptotalFields">
                                             <label class="labelCenter control-label">Total</label>
                                             <input type="text"  class="form-control SmallInput" />
                                       </div>
@@ -188,41 +184,53 @@
                         </section>
                         <section>
                             <div class="row">
-                              <div class="col-md-3">
-                                 <input type="checkbox">
-                                 <label class="control-label"><span >Catracts Advised</span></label>
+                              <div class="col-md-3" style="padding-top:18px;">
+
+                                 <label class="control-label"> <input type="checkbox" [(ngModel)]="hospCatracts"><span >Catracts Advised</span></label>
                               </div>
                            <div class="col-md-9">
                                <div class="row">
-                                   <div class="col-sm-2" >
-                                       <label class="labelCenter control-label">AM</label>
-                                       <input type="text"  class="form-control SmallInput " />
+                                  <div class="col-sm-2" *ngIf="hospgenderFields">
+                                      <label class="labelCenter control-label">AM</label>
+                                      <input type="text"  class="form-control SmallInput " />
+                                    </div>
+                                   <div class="col-sm-2"  *ngIf="hospgenderFields">
+                                      <label class="labelCenter control-label">AF</label>
+                                      <input type="text"   class="form-control SmallInput" />
                                      </div>
-                                    <div class="col-sm-2" >
-                                       <label class="labelCenter control-label">AF</label>
-                                       <input type="text"   class="form-control SmallInput" />
-                                      </div>
-                                      <div class="col-md-2" >
-                                         <label class="labelCenter control-label">OT</label>
-                                         <input type="text"  class="form-control SmallInput" />
+                                     <div class="col-md-2"   *ngIf="hospotherFields">
+                                        <label class="labelCenter control-label">OT</label>
+                                        <input type="text"  class="form-control SmallInput" />
+                                       </div>
+                                       <div class="col-md-2"  *ngIf="hospchildFields">
+                                          <label class="labelCenter control-label">CM</label>
+                                          <input type="text" class="form-control SmallInput" />
                                         </div>
-                                        <div class="col-md-2" >
-                                           <label class="labelCenter control-label">CM</label>
-                                           <input type="text" class="form-control SmallInput" />
-                                         </div>
-                                         <div class="col-md-2" >
-                                             <label class=" labelCenter control-label">CF</label>
-                                             <input type="text"  class="form-control SmallInput" />
-                                         </div>
-                                         <div class="col-md-2" >
-                                               <label class="labelCenter control-label">Total</label>
-                                               <input type="text"  class="form-control SmallInput" />
-                                         </div>
+                                        <div class="col-md-2"  *ngIf="hospchildFields">
+                                            <label class=" labelCenter control-label">CF</label>
+                                            <input type="text"  class="form-control SmallInput" />
+                                        </div>
+                                        <div class="col-md-2"  *ngIf="hosptotalFields">
+                                              <label class="labelCenter control-label">Total</label>
+                                              <input type="text"  class="form-control SmallInput" />
+                                        </div>
                                      </div>
                                </div>
                             </div>
                            </section>
+                           <section>
+                             <div id="clone">
 
+                             </div>
+
+                           </section>
+                            <section>
+                              <div style="padding-top:20px;text-align:center;">
+                                <button class="btn btn-sm btn-primary" (click)="clonerow()" >Clone Row</button>
+                                <button class="btn btn-sm btn-primary">Add Custom Row</button>
+                                <button class="btn btn-sm btn-primary">Save Templete</button>
+                              </div>
+                            </section>
                         </mat-expansion-panel>
                         <mat-expansion-panel class="panel2">
                             <mat-expansion-panel-header>
@@ -231,59 +239,57 @@
                               </mat-panel-title>
                             </mat-expansion-panel-header>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-2">
 
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-10">
                                    <div class="row">
                                        <div class="col-md-3">
-                                         <mat-slide-toggle class="example-margin">Enable Gender</mat-slide-toggle>
+                                         <mat-slide-toggle class="example-margin" [(ngModel)]="pecfServciesGender" (change)="changetoggles()">Enable Gender </mat-slide-toggle>
                                        </div>
                                        <div class="col-md-3">
-                                          <mat-slide-toggle class="example-margin">Enable Other</mat-slide-toggle>
+                                          <mat-slide-toggle class="example-margin" [(ngModel)]="pecfServciesOther" (change)="changetoggles()">Enable Other </mat-slide-toggle>
                                         </div>
                                         <div class="col-md-3">
 
-                                            <mat-slide-toggle class="example-margin">Enable Child</mat-slide-toggle>
+                                            <mat-slide-toggle class="example-margin" [(ngModel)]="pecfServicesChild" (change)="changetoggles()">Enable Child </mat-slide-toggle>
                                         </div>
                                         <div class="col-md-3">
 
-                                            <mat-slide-toggle class="example-margin">Enable Total</mat-slide-toggle>
+                                            <mat-slide-toggle class="example-margin" [(ngModel)]="pecfServicesTotal" (change)="changetoggles()">Enable Total</mat-slide-toggle>
                                         </div>
                                       </div>
                                  </div>
                               </div>
                               <section>
-                                 <input type="checkbox">
-                                 <label class="control-label"><span >Select All</span></label>
+                                 <label class="control-label"  style="padding-left:15px;color:#EF1C8D;"> <input type="checkbox" [(ngModel)]="pecfSAervicesSelectall" (change)="changetoggles()"><span ><strong>Select All</strong></span></label>
                               <div class="row">
-                                <div class="col-md-3">
-                                   <input type="checkbox">
-                                   <label class="control-label"><span >New Patients Seen</span></label>
+                                <div class="col-md-3" style="padding-top:18px;">
+                                   <label class="control-label checkbox-inline"> <input type="checkbox" [(ngModel)]="pecfNewPatient"><span >New Patients Seen</span></label>
                                 </div>
                              <div class="col-md-9">
                                  <div class="row">
-                                     <div class="col-sm-2" >
+                                     <div class="col-sm-2" *ngIf="pecfgenderFields">
                                          <label class="labelCenter control-label">AM</label>
                                          <input type="text"  class="form-control SmallInput " />
                                        </div>
-                                      <div class="col-sm-2" >
+                                      <div class="col-sm-2"  *ngIf="pecfgenderFields">
                                          <label class="labelCenter control-label">AF</label>
                                          <input type="text"   class="form-control SmallInput" />
                                         </div>
-                                        <div class="col-md-2" >
+                                        <div class="col-md-2"   *ngIf="pecfotherFields">
                                            <label class="labelCenter control-label">OT</label>
                                            <input type="text"  class="form-control SmallInput" />
                                           </div>
-                                          <div class="col-md-2" >
+                                          <div class="col-md-2"  *ngIf="pecfchildFields">
                                              <label class="labelCenter control-label">CM</label>
                                              <input type="text" class="form-control SmallInput" />
                                            </div>
-                                           <div class="col-md-2" >
+                                           <div class="col-md-2"  *ngIf="pecfchildFields">
                                                <label class=" labelCenter control-label">CF</label>
                                                <input type="text"  class="form-control SmallInput" />
                                            </div>
-                                           <div class="col-md-2" >
+                                           <div class="col-md-2"  *ngIf="pecftotalFields">
                                                  <label class="labelCenter control-label">Total</label>
                                                  <input type="text"  class="form-control SmallInput" />
                                            </div>
@@ -293,105 +299,102 @@
                              </section>
                              <section>
                                  <div class="row">
-                                   <div class="col-md-3">
-                                      <input type="checkbox">
-                                      <label class="control-label"><span >Review Patients</span></label>
+                                   <div class="col-md-3" style="padding-top:18px;">
+                                      <label class="control-label">  <input type="checkbox" [(ngModel)]="pecfReviewPatients"><span >Review Patients</span></label>
                                    </div>
                                 <div class="col-md-9">
                                     <div class="row">
-                                        <div class="col-sm-2" >
-                                            <label class="labelCenter control-label">AM</label>
-                                            <input type="text"  class="form-control SmallInput " />
+                                       <div class="col-sm-2" *ngIf="pecfgenderFields">
+                                           <label class="labelCenter control-label">AM</label>
+                                           <input type="text"  class="form-control SmallInput " />
+                                         </div>
+                                        <div class="col-sm-2"  *ngIf="pecfgenderFields">
+                                           <label class="labelCenter control-label">AF</label>
+                                           <input type="text"   class="form-control SmallInput" />
                                           </div>
-                                         <div class="col-sm-2" >
-                                            <label class="labelCenter control-label">AF</label>
-                                            <input type="text"   class="form-control SmallInput" />
-                                           </div>
-                                           <div class="col-md-2" >
-                                              <label class="labelCenter control-label">OT</label>
-                                              <input type="text"  class="form-control SmallInput" />
+                                          <div class="col-md-2"   *ngIf="pecfotherFields">
+                                             <label class="labelCenter control-label">OT</label>
+                                             <input type="text"  class="form-control SmallInput" />
+                                            </div>
+                                            <div class="col-md-2"  *ngIf="pecfchildFields">
+                                               <label class="labelCenter control-label">CM</label>
+                                               <input type="text" class="form-control SmallInput" />
                                              </div>
-                                             <div class="col-md-2" >
-                                                <label class="labelCenter control-label">CM</label>
-                                                <input type="text" class="form-control SmallInput" />
-                                              </div>
-                                              <div class="col-md-2" >
-                                                  <label class=" labelCenter control-label">CF</label>
-                                                  <input type="text"  class="form-control SmallInput" />
-                                              </div>
-                                              <div class="col-md-2" >
-                                                    <label class="labelCenter control-label">Total</label>
-                                                    <input type="text"  class="form-control SmallInput" />
-                                              </div>
+                                             <div class="col-md-2"  *ngIf="pecfchildFields">
+                                                 <label class=" labelCenter control-label">CF</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2"  *ngIf="pecftotalFields">
+                                                   <label class="labelCenter control-label">Total</label>
+                                                   <input type="text"  class="form-control SmallInput" />
+                                             </div>
                                           </div>
                                     </div>
                                  </div>
                                 </section>
                                 <section>
                                    <div class="row">
-                                     <div class="col-md-3">
-                                        <input type="checkbox">
-                                        <label class="control-label"><span >Glasses Prescribed</span></label>
+                                     <div class="col-md-3" style="padding-top:18px;">
+                                        <label class="control-label"><input type="checkbox" [(ngModel)]="pecfglassPrescribe"><span >Glasses Prescribed</span></label>
                                      </div>
                                   <div class="col-md-9">
                                       <div class="row">
-                                          <div class="col-sm-2" >
-                                              <label class="labelCenter control-label">AM</label>
-                                              <input type="text"  class="form-control SmallInput " />
+                                         <div class="col-sm-2" *ngIf="pecfgenderFields">
+                                             <label class="labelCenter control-label">AM</label>
+                                             <input type="text"  class="form-control SmallInput " />
+                                           </div>
+                                          <div class="col-sm-2"  *ngIf="pecfgenderFields">
+                                             <label class="labelCenter control-label">AF</label>
+                                             <input type="text"   class="form-control SmallInput" />
                                             </div>
-                                           <div class="col-sm-2" >
-                                              <label class="labelCenter control-label">AF</label>
-                                              <input type="text"   class="form-control SmallInput" />
-                                             </div>
-                                             <div class="col-md-2" >
-                                                <label class="labelCenter control-label">OT</label>
-                                                <input type="text"  class="form-control SmallInput" />
+                                            <div class="col-md-2"   *ngIf="pecfotherFields">
+                                               <label class="labelCenter control-label">OT</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                              </div>
+                                              <div class="col-md-2"  *ngIf="pecfchildFields">
+                                                 <label class="labelCenter control-label">CM</label>
+                                                 <input type="text" class="form-control SmallInput" />
                                                </div>
-                                               <div class="col-md-2" >
-                                                  <label class="labelCenter control-label">CM</label>
-                                                  <input type="text" class="form-control SmallInput" />
-                                                </div>
-                                                <div class="col-md-2" >
-                                                    <label class=" labelCenter control-label">CF</label>
-                                                    <input type="text"  class="form-control SmallInput" />
-                                                </div>
-                                                <div class="col-md-2" >
-                                                      <label class="labelCenter control-label">Total</label>
-                                                      <input type="text"  class="form-control SmallInput" />
-                                                </div>
+                                               <div class="col-md-2"  *ngIf="pecfchildFields">
+                                                   <label class=" labelCenter control-label">CF</label>
+                                                   <input type="text"  class="form-control SmallInput" />
+                                               </div>
+                                               <div class="col-md-2"  *ngIf="pecftotalFields">
+                                                     <label class="labelCenter control-label">Total</label>
+                                                     <input type="text"  class="form-control SmallInput" />
+                                               </div>
                                             </div>
                                       </div>
                                    </div>
                                   </section>
                                   <section>
                               <div class="row">
-                                <div class="col-md-3">
-                                   <input type="checkbox">
-                                   <label class="control-label"><span >Glasses Distributed</span></label>
+                                <div class="col-md-3" style="padding-top:18px;">
+                                   <label class="control-label"> <input type="checkbox" [(ngModel)]="pecfglassesDistrbuted"><span >Glasses Distributed</span></label>
                                 </div>
                              <div class="col-md-9">
                                  <div class="row">
-                                     <div class="col-sm-2" >
+                                     <div class="col-sm-2" *ngIf="pecfgenderFields">
                                          <label class="labelCenter control-label">AM</label>
                                          <input type="text"  class="form-control SmallInput " />
                                        </div>
-                                      <div class="col-sm-2" >
+                                      <div class="col-sm-2"  *ngIf="pecfgenderFields">
                                          <label class="labelCenter control-label">AF</label>
                                          <input type="text"   class="form-control SmallInput" />
                                         </div>
-                                        <div class="col-md-2" >
+                                        <div class="col-md-2"   *ngIf="pecfotherFields">
                                            <label class="labelCenter control-label">OT</label>
                                            <input type="text"  class="form-control SmallInput" />
                                           </div>
-                                          <div class="col-md-2" >
+                                          <div class="col-md-2"  *ngIf="pecfchildFields">
                                              <label class="labelCenter control-label">CM</label>
                                              <input type="text" class="form-control SmallInput" />
                                            </div>
-                                           <div class="col-md-2" >
+                                           <div class="col-md-2"  *ngIf="pecfchildFields">
                                                <label class=" labelCenter control-label">CF</label>
                                                <input type="text"  class="form-control SmallInput" />
                                            </div>
-                                           <div class="col-md-2" >
+                                           <div class="col-md-2"  *ngIf="pecftotalFields">
                                                  <label class="labelCenter control-label">Total</label>
                                                  <input type="text"  class="form-control SmallInput" />
                                            </div>
@@ -401,41 +404,47 @@
                              </section>
                              <section>
                                  <div class="row">
-                                   <div class="col-md-3">
-                                      <input type="checkbox">
-                                      <label class="control-label"><span >Catracts Advised</span></label>
+                                   <div class="col-md-3" style="padding-top:18px;">
+
+                                      <label class="control-label"> <input type="checkbox" [(ngModel)]="pecfCatracts"><span >Catracts Advised</span></label>
                                    </div>
                                 <div class="col-md-9">
                                     <div class="row">
-                                        <div class="col-sm-2" >
-                                            <label class="labelCenter control-label">AM</label>
-                                            <input type="text"  class="form-control SmallInput " />
+                                       <div class="col-sm-2" *ngIf="pecfgenderFields">
+                                           <label class="labelCenter control-label">AM</label>
+                                           <input type="text"  class="form-control SmallInput " />
+                                         </div>
+                                        <div class="col-sm-2"  *ngIf="pecfgenderFields">
+                                           <label class="labelCenter control-label">AF</label>
+                                           <input type="text"   class="form-control SmallInput" />
                                           </div>
-                                         <div class="col-sm-2" >
-                                            <label class="labelCenter control-label">AF</label>
-                                            <input type="text"   class="form-control SmallInput" />
-                                           </div>
-                                           <div class="col-md-2" >
-                                              <label class="labelCenter control-label">OT</label>
-                                              <input type="text"  class="form-control SmallInput" />
+                                          <div class="col-md-2"   *ngIf="pecfotherFields">
+                                             <label class="labelCenter control-label">OT</label>
+                                             <input type="text"  class="form-control SmallInput" />
+                                            </div>
+                                            <div class="col-md-2"  *ngIf="pecfchildFields">
+                                               <label class="labelCenter control-label">CM</label>
+                                               <input type="text" class="form-control SmallInput" />
                                              </div>
-                                             <div class="col-md-2" >
-                                                <label class="labelCenter control-label">CM</label>
-                                                <input type="text" class="form-control SmallInput" />
-                                              </div>
-                                              <div class="col-md-2" >
-                                                  <label class=" labelCenter control-label">CF</label>
-                                                  <input type="text"  class="form-control SmallInput" />
-                                              </div>
-                                              <div class="col-md-2" >
-                                                    <label class="labelCenter control-label">Total</label>
-                                                    <input type="text"  class="form-control SmallInput" />
-                                              </div>
+                                             <div class="col-md-2"  *ngIf="pecfchildFields">
+                                                 <label class=" labelCenter control-label">CF</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2"  *ngIf="pecftotalFields">
+                                                   <label class="labelCenter control-label">Total</label>
+                                                   <input type="text"  class="form-control SmallInput" />
+                                             </div>
                                           </div>
                                     </div>
                                  </div>
                                 </section>
-
+                                 <section>
+                                    <div style="padding-top:20px;text-align:center;">
+                                        <button class="btn btn-sm btn-primary">Clone Row</button>
+                                        <button class="btn btn-sm btn-primary">Add Custom Row</button>
+                                        <button class="btn btn-sm btn-primary">Save Templete</button>
+                                      </div>
+                                 </section>
                           </mat-expansion-panel>
                         <mat-expansion-panel class="panel3" (opened)="panelOpenState = true"
                                              (closed)="panelOpenState = false">
@@ -446,59 +455,57 @@
 
                           </mat-expansion-panel-header>
                           <div class="row">
-                              <div class="col-md-3">
+                              <div class="col-md-2">
 
                               </div>
-                              <div class="col-md-9">
+                              <div class="col-md-10">
                                  <div class="row">
                                      <div class="col-md-3">
-                                       <mat-slide-toggle class="example-margin">Enable Gender</mat-slide-toggle>
+                                       <mat-slide-toggle class="example-margin" [(ngModel)]="outReachServciesGender" (change)="changetoggles()">Enable Gender </mat-slide-toggle>
                                      </div>
                                      <div class="col-md-3">
-                                        <mat-slide-toggle class="example-margin">Enable Other</mat-slide-toggle>
+                                        <mat-slide-toggle class="example-margin" [(ngModel)]="outReachServciesOther" (change)="changetoggles()">Enable Other </mat-slide-toggle>
                                       </div>
                                       <div class="col-md-3">
 
-                                          <mat-slide-toggle class="example-margin">Enable Child</mat-slide-toggle>
+                                          <mat-slide-toggle class="example-margin" [(ngModel)]="outReachServicesChild" (change)="changetoggles()">Enable Child </mat-slide-toggle>
                                       </div>
                                       <div class="col-md-3">
 
-                                          <mat-slide-toggle class="example-margin">Enable Total</mat-slide-toggle>
+                                          <mat-slide-toggle class="example-margin" [(ngModel)]="outReachServicesTotal" (change)="changetoggles()">Enable Total</mat-slide-toggle>
                                       </div>
                                     </div>
                                </div>
                             </div>
                             <section>
-                               <input type="checkbox">
-                               <label class="control-label"><span >Select All</span></label>
+                               <label class="control-label" style="padding-left:15px;color:#A21BE5;"> <input type="checkbox" [(ngModel)]="outReachSAervicesSelectall" (change)="changetoggles()"><span ><strong>Select All</strong></span></label>
                             <div class="row">
-                              <div class="col-md-3">
-                                 <input type="checkbox">
-                                 <label class="control-label"><span >New Patients Seen</span></label>
+                              <div class="col-md-3" style="padding-top:18px;">
+                                 <label class="control-label checkbox-inline"> <input type="checkbox" [(ngModel)]="outReachNewPatient"><span >New Patients Seen</span></label>
                               </div>
                            <div class="col-md-9">
                                <div class="row">
-                                   <div class="col-sm-2" >
+                                   <div class="col-sm-2" *ngIf="outReachgenderFields">
                                        <label class="labelCenter control-label">AM</label>
                                        <input type="text"  class="form-control SmallInput " />
                                      </div>
-                                    <div class="col-sm-2" >
+                                    <div class="col-sm-2"  *ngIf="outReachgenderFields">
                                        <label class="labelCenter control-label">AF</label>
                                        <input type="text"   class="form-control SmallInput" />
                                       </div>
-                                      <div class="col-md-2" >
+                                      <div class="col-md-2"   *ngIf="outReachotherFields">
                                          <label class="labelCenter control-label">OT</label>
                                          <input type="text"  class="form-control SmallInput" />
                                         </div>
-                                        <div class="col-md-2" >
+                                        <div class="col-md-2"  *ngIf="outReachchildFields">
                                            <label class="labelCenter control-label">CM</label>
                                            <input type="text" class="form-control SmallInput" />
                                          </div>
-                                         <div class="col-md-2" >
+                                         <div class="col-md-2"  *ngIf="outReachchildFields">
                                              <label class=" labelCenter control-label">CF</label>
                                              <input type="text"  class="form-control SmallInput" />
                                          </div>
-                                         <div class="col-md-2" >
+                                         <div class="col-md-2"  *ngIf="outReachtotalFields">
                                                <label class="labelCenter control-label">Total</label>
                                                <input type="text"  class="form-control SmallInput" />
                                          </div>
@@ -508,105 +515,102 @@
                            </section>
                            <section>
                                <div class="row">
-                                 <div class="col-md-3">
-                                    <input type="checkbox">
-                                    <label class="control-label"><span >Review Patients</span></label>
+                                 <div class="col-md-3" style="padding-top:18px;">
+                                    <label class="control-label">  <input type="checkbox" [(ngModel)]="outReachReviewPatients"><span >Review Patients</span></label>
                                  </div>
                               <div class="col-md-9">
                                   <div class="row">
-                                      <div class="col-sm-2" >
-                                          <label class="labelCenter control-label">AM</label>
-                                          <input type="text"  class="form-control SmallInput " />
+                                     <div class="col-sm-2" *ngIf="outReachgenderFields">
+                                         <label class="labelCenter control-label">AM</label>
+                                         <input type="text"  class="form-control SmallInput " />
+                                       </div>
+                                      <div class="col-sm-2"  *ngIf="outReachgenderFields">
+                                         <label class="labelCenter control-label">AF</label>
+                                         <input type="text"   class="form-control SmallInput" />
                                         </div>
-                                       <div class="col-sm-2" >
-                                          <label class="labelCenter control-label">AF</label>
-                                          <input type="text"   class="form-control SmallInput" />
-                                         </div>
-                                         <div class="col-md-2" >
-                                            <label class="labelCenter control-label">OT</label>
-                                            <input type="text"  class="form-control SmallInput" />
+                                        <div class="col-md-2"   *ngIf="outReachotherFields">
+                                           <label class="labelCenter control-label">OT</label>
+                                           <input type="text"  class="form-control SmallInput" />
+                                          </div>
+                                          <div class="col-md-2"  *ngIf="outReachchildFields">
+                                             <label class="labelCenter control-label">CM</label>
+                                             <input type="text" class="form-control SmallInput" />
                                            </div>
-                                           <div class="col-md-2" >
-                                              <label class="labelCenter control-label">CM</label>
-                                              <input type="text" class="form-control SmallInput" />
-                                            </div>
-                                            <div class="col-md-2" >
-                                                <label class=" labelCenter control-label">CF</label>
-                                                <input type="text"  class="form-control SmallInput" />
-                                            </div>
-                                            <div class="col-md-2" >
-                                                  <label class="labelCenter control-label">Total</label>
-                                                  <input type="text"  class="form-control SmallInput" />
-                                            </div>
+                                           <div class="col-md-2"  *ngIf="outReachchildFields">
+                                               <label class=" labelCenter control-label">CF</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                           </div>
+                                           <div class="col-md-2"  *ngIf="outReachtotalFields">
+                                                 <label class="labelCenter control-label">Total</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                           </div>
                                         </div>
                                   </div>
                                </div>
                               </section>
                               <section>
                                  <div class="row">
-                                   <div class="col-md-3">
-                                      <input type="checkbox">
-                                      <label class="control-label"><span >Glasses Prescribed</span></label>
+                                   <div class="col-md-3" style="padding-top:18px;">
+                                      <label class="control-label"><input type="checkbox" [(ngModel)]="outReachglassPrescribe"><span >Glasses Prescribed</span></label>
                                    </div>
                                 <div class="col-md-9">
                                     <div class="row">
-                                        <div class="col-sm-2" >
-                                            <label class="labelCenter control-label">AM</label>
-                                            <input type="text"  class="form-control SmallInput " />
+                                       <div class="col-sm-2" *ngIf="outReachgenderFields">
+                                           <label class="labelCenter control-label">AM</label>
+                                           <input type="text"  class="form-control SmallInput " />
+                                         </div>
+                                        <div class="col-sm-2"  *ngIf="outReachgenderFields">
+                                           <label class="labelCenter control-label">AF</label>
+                                           <input type="text"   class="form-control SmallInput" />
                                           </div>
-                                         <div class="col-sm-2" >
-                                            <label class="labelCenter control-label">AF</label>
-                                            <input type="text"   class="form-control SmallInput" />
-                                           </div>
-                                           <div class="col-md-2" >
-                                              <label class="labelCenter control-label">OT</label>
-                                              <input type="text"  class="form-control SmallInput" />
+                                          <div class="col-md-2"   *ngIf="outReachotherFields">
+                                             <label class="labelCenter control-label">OT</label>
+                                             <input type="text"  class="form-control SmallInput" />
+                                            </div>
+                                            <div class="col-md-2"  *ngIf="outReachchildFields">
+                                               <label class="labelCenter control-label">CM</label>
+                                               <input type="text" class="form-control SmallInput" />
                                              </div>
-                                             <div class="col-md-2" >
-                                                <label class="labelCenter control-label">CM</label>
-                                                <input type="text" class="form-control SmallInput" />
-                                              </div>
-                                              <div class="col-md-2" >
-                                                  <label class=" labelCenter control-label">CF</label>
-                                                  <input type="text"  class="form-control SmallInput" />
-                                              </div>
-                                              <div class="col-md-2" >
-                                                    <label class="labelCenter control-label">Total</label>
-                                                    <input type="text"  class="form-control SmallInput" />
-                                              </div>
+                                             <div class="col-md-2"  *ngIf="outReachchildFields">
+                                                 <label class=" labelCenter control-label">CF</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                             </div>
+                                             <div class="col-md-2"  *ngIf="outReachtotalFields">
+                                                   <label class="labelCenter control-label">Total</label>
+                                                   <input type="text"  class="form-control SmallInput" />
+                                             </div>
                                           </div>
                                     </div>
                                  </div>
                                 </section>
                                 <section>
                             <div class="row">
-                              <div class="col-md-3">
-                                 <input type="checkbox">
-                                 <label class="control-label"><span >Glasses Distributed</span></label>
+                              <div class="col-md-3" style="padding-top:18px;">
+                                 <label class="control-label"> <input type="checkbox" [(ngModel)]="outReachglassesDistrbuted"><span >Glasses Distributed</span></label>
                               </div>
                            <div class="col-md-9">
                                <div class="row">
-                                   <div class="col-sm-2" >
+                                   <div class="col-sm-2" *ngIf="outReachgenderFields">
                                        <label class="labelCenter control-label">AM</label>
                                        <input type="text"  class="form-control SmallInput " />
                                      </div>
-                                    <div class="col-sm-2" >
+                                    <div class="col-sm-2"  *ngIf="outReachgenderFields">
                                        <label class="labelCenter control-label">AF</label>
                                        <input type="text"   class="form-control SmallInput" />
                                       </div>
-                                      <div class="col-md-2" >
+                                      <div class="col-md-2"   *ngIf="outReachotherFields">
                                          <label class="labelCenter control-label">OT</label>
                                          <input type="text"  class="form-control SmallInput" />
                                         </div>
-                                        <div class="col-md-2" >
+                                        <div class="col-md-2"  *ngIf="outReachchildFields">
                                            <label class="labelCenter control-label">CM</label>
                                            <input type="text" class="form-control SmallInput" />
                                          </div>
-                                         <div class="col-md-2" >
+                                         <div class="col-md-2"  *ngIf="outReachchildFields">
                                              <label class=" labelCenter control-label">CF</label>
                                              <input type="text"  class="form-control SmallInput" />
                                          </div>
-                                         <div class="col-md-2" >
+                                         <div class="col-md-2"  *ngIf="outReachtotalFields">
                                                <label class="labelCenter control-label">Total</label>
                                                <input type="text"  class="form-control SmallInput" />
                                          </div>
@@ -616,40 +620,47 @@
                            </section>
                            <section>
                                <div class="row">
-                                 <div class="col-md-3">
-                                    <input type="checkbox">
-                                    <label class="control-label"><span >Catracts Advised</span></label>
+                                 <div class="col-md-3" style="padding-top:18px;">
+
+                                    <label class="control-label"> <input type="checkbox" [(ngModel)]="outReachCatracts"><span >Catracts Advised</span></label>
                                  </div>
                               <div class="col-md-9">
                                   <div class="row">
-                                      <div class="col-sm-2" >
-                                          <label class="labelCenter control-label">AM</label>
-                                          <input type="text"  class="form-control SmallInput " />
+                                     <div class="col-sm-2" *ngIf="outReachgenderFields">
+                                         <label class="labelCenter control-label">AM</label>
+                                         <input type="text"  class="form-control SmallInput " />
+                                       </div>
+                                      <div class="col-sm-2"  *ngIf="outReachgenderFields">
+                                         <label class="labelCenter control-label">AF</label>
+                                         <input type="text"   class="form-control SmallInput" />
                                         </div>
-                                       <div class="col-sm-2" >
-                                          <label class="labelCenter control-label">AF</label>
-                                          <input type="text"   class="form-control SmallInput" />
-                                         </div>
-                                         <div class="col-md-2" >
-                                            <label class="labelCenter control-label">OT</label>
-                                            <input type="text"  class="form-control SmallInput" />
+                                        <div class="col-md-2"   *ngIf="outReachotherFields">
+                                           <label class="labelCenter control-label">OT</label>
+                                           <input type="text"  class="form-control SmallInput" />
+                                          </div>
+                                          <div class="col-md-2"  *ngIf="outReachchildFields">
+                                             <label class="labelCenter control-label">CM</label>
+                                             <input type="text" class="form-control SmallInput" />
                                            </div>
-                                           <div class="col-md-2" >
-                                              <label class="labelCenter control-label">CM</label>
-                                              <input type="text" class="form-control SmallInput" />
-                                            </div>
-                                            <div class="col-md-2" >
-                                                <label class=" labelCenter control-label">CF</label>
-                                                <input type="text"  class="form-control SmallInput" />
-                                            </div>
-                                            <div class="col-md-2" >
-                                                  <label class="labelCenter control-label">Total</label>
-                                                  <input type="text"  class="form-control SmallInput" />
-                                            </div>
+                                           <div class="col-md-2"  *ngIf="outReachchildFields">
+                                               <label class=" labelCenter control-label">CF</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                           </div>
+                                           <div class="col-md-2"  *ngIf="outReachtotalFields">
+                                                 <label class="labelCenter control-label">Total</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                           </div>
                                         </div>
                                   </div>
                                </div>
                               </section>
+                               <section>
+                                  <div style="padding-top:20px;text-align:center;">
+                                      <button class="btn btn-sm btn-primary">Clone Row</button>
+                                      <button class="btn btn-sm btn-primary">Add Custom Row</button>
+                                      <button class="btn btn-sm btn-primary">Save Templete</button>
+                                    </div>
+                               </section>
 
                         </mat-expansion-panel>
                         <mat-expansion-panel class="panel4">
@@ -659,59 +670,57 @@
                                 </mat-panel-title>
                               </mat-expansion-panel-header>
                               <div class="row">
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
 
                                   </div>
-                                  <div class="col-md-9">
+                                  <div class="col-md-10">
                                      <div class="row">
                                          <div class="col-md-3">
-                                           <mat-slide-toggle class="example-margin">Enable Gender</mat-slide-toggle>
+                                           <mat-slide-toggle class="example-margin" [(ngModel)]="trainServciesGender" (change)="changetoggles()">Enable Gender </mat-slide-toggle>
                                          </div>
                                          <div class="col-md-3">
-                                            <mat-slide-toggle class="example-margin">Enable Other</mat-slide-toggle>
+                                            <mat-slide-toggle class="example-margin" [(ngModel)]="trainServciesOther" (change)="changetoggles()">Enable Other </mat-slide-toggle>
                                           </div>
                                           <div class="col-md-3">
 
-                                              <mat-slide-toggle class="example-margin">Enable Child</mat-slide-toggle>
+                                              <mat-slide-toggle class="example-margin" [(ngModel)]="trainServicesChild" (change)="changetoggles()">Enable Child </mat-slide-toggle>
                                           </div>
                                           <div class="col-md-3">
 
-                                              <mat-slide-toggle class="example-margin">Enable Total</mat-slide-toggle>
+                                              <mat-slide-toggle class="example-margin" [(ngModel)]="trainServicesTotal" (change)="changetoggles()">Enable Total</mat-slide-toggle>
                                           </div>
                                         </div>
                                    </div>
                                 </div>
                                 <section>
-                                   <input type="checkbox">
-                                   <label class="control-label"><span >Select All</span></label>
+                                   <label class="control-label" style="padding-left:15px;color:#1DE258;"> <input type="checkbox" [(ngModel)]="trainSAervicesSelectall" (change)="changetoggles()"><span ><strong>Select All</strong></span></label>
                                 <div class="row">
-                                  <div class="col-md-3">
-                                     <input type="checkbox">
-                                     <label class="control-label"><span >New Patients Seen</span></label>
+                                  <div class="col-md-3" style="padding-top:18px;">
+                                     <label class="control-label checkbox-inline"> <input type="checkbox" [(ngModel)]="trainNewPatient"><span >New Patients Seen</span></label>
                                   </div>
                                <div class="col-md-9">
                                    <div class="row">
-                                       <div class="col-sm-2" >
+                                       <div class="col-sm-2" *ngIf="traingenderFields">
                                            <label class="labelCenter control-label">AM</label>
                                            <input type="text"  class="form-control SmallInput " />
                                          </div>
-                                        <div class="col-sm-2" >
+                                        <div class="col-sm-2"  *ngIf="traingenderFields">
                                            <label class="labelCenter control-label">AF</label>
                                            <input type="text"   class="form-control SmallInput" />
                                           </div>
-                                          <div class="col-md-2" >
+                                          <div class="col-md-2"   *ngIf="trainotherFields">
                                              <label class="labelCenter control-label">OT</label>
                                              <input type="text"  class="form-control SmallInput" />
                                             </div>
-                                            <div class="col-md-2" >
+                                            <div class="col-md-2"  *ngIf="trainchildFields">
                                                <label class="labelCenter control-label">CM</label>
                                                <input type="text" class="form-control SmallInput" />
                                              </div>
-                                             <div class="col-md-2" >
+                                             <div class="col-md-2"  *ngIf="trainchildFields">
                                                  <label class=" labelCenter control-label">CF</label>
                                                  <input type="text"  class="form-control SmallInput" />
                                              </div>
-                                             <div class="col-md-2" >
+                                             <div class="col-md-2"  *ngIf="traintotalFields">
                                                    <label class="labelCenter control-label">Total</label>
                                                    <input type="text"  class="form-control SmallInput" />
                                              </div>
@@ -721,105 +730,102 @@
                                </section>
                                <section>
                                    <div class="row">
-                                     <div class="col-md-3">
-                                        <input type="checkbox">
-                                        <label class="control-label"><span >Review Patients</span></label>
+                                     <div class="col-md-3" style="padding-top:18px;">
+                                        <label class="control-label">  <input type="checkbox" [(ngModel)]="trainReviewPatients"><span >Review Patients</span></label>
                                      </div>
                                   <div class="col-md-9">
                                       <div class="row">
-                                          <div class="col-sm-2" >
-                                              <label class="labelCenter control-label">AM</label>
-                                              <input type="text"  class="form-control SmallInput " />
+                                         <div class="col-sm-2" *ngIf="traingenderFields">
+                                             <label class="labelCenter control-label">AM</label>
+                                             <input type="text"  class="form-control SmallInput " />
+                                           </div>
+                                          <div class="col-sm-2"  *ngIf="traingenderFields">
+                                             <label class="labelCenter control-label">AF</label>
+                                             <input type="text"   class="form-control SmallInput" />
                                             </div>
-                                           <div class="col-sm-2" >
-                                              <label class="labelCenter control-label">AF</label>
-                                              <input type="text"   class="form-control SmallInput" />
-                                             </div>
-                                             <div class="col-md-2" >
-                                                <label class="labelCenter control-label">OT</label>
-                                                <input type="text"  class="form-control SmallInput" />
+                                            <div class="col-md-2"   *ngIf="trainotherFields">
+                                               <label class="labelCenter control-label">OT</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                              </div>
+                                              <div class="col-md-2"  *ngIf="trainchildFields">
+                                                 <label class="labelCenter control-label">CM</label>
+                                                 <input type="text" class="form-control SmallInput" />
                                                </div>
-                                               <div class="col-md-2" >
-                                                  <label class="labelCenter control-label">CM</label>
-                                                  <input type="text" class="form-control SmallInput" />
-                                                </div>
-                                                <div class="col-md-2" >
-                                                    <label class=" labelCenter control-label">CF</label>
-                                                    <input type="text"  class="form-control SmallInput" />
-                                                </div>
-                                                <div class="col-md-2" >
-                                                      <label class="labelCenter control-label">Total</label>
-                                                      <input type="text"  class="form-control SmallInput" />
-                                                </div>
+                                               <div class="col-md-2"  *ngIf="trainchildFields">
+                                                   <label class=" labelCenter control-label">CF</label>
+                                                   <input type="text"  class="form-control SmallInput" />
+                                               </div>
+                                               <div class="col-md-2"  *ngIf="traintotalFields">
+                                                     <label class="labelCenter control-label">Total</label>
+                                                     <input type="text"  class="form-control SmallInput" />
+                                               </div>
                                             </div>
                                       </div>
                                    </div>
                                   </section>
                                   <section>
                                      <div class="row">
-                                       <div class="col-md-3">
-                                          <input type="checkbox">
-                                          <label class="control-label"><span >Glasses Prescribed</span></label>
+                                       <div class="col-md-3" style="padding-top:18px;">
+                                          <label class="control-label"><input type="checkbox" [(ngModel)]="trainglassPrescribe"><span >Glasses Prescribed</span></label>
                                        </div>
                                     <div class="col-md-9">
                                         <div class="row">
-                                            <div class="col-sm-2" >
-                                                <label class="labelCenter control-label">AM</label>
-                                                <input type="text"  class="form-control SmallInput " />
+                                           <div class="col-sm-2" *ngIf="traingenderFields">
+                                               <label class="labelCenter control-label">AM</label>
+                                               <input type="text"  class="form-control SmallInput " />
+                                             </div>
+                                            <div class="col-sm-2"  *ngIf="traingenderFields">
+                                               <label class="labelCenter control-label">AF</label>
+                                               <input type="text"   class="form-control SmallInput" />
                                               </div>
-                                             <div class="col-sm-2" >
-                                                <label class="labelCenter control-label">AF</label>
-                                                <input type="text"   class="form-control SmallInput" />
-                                               </div>
-                                               <div class="col-md-2" >
-                                                  <label class="labelCenter control-label">OT</label>
-                                                  <input type="text"  class="form-control SmallInput" />
+                                              <div class="col-md-2"   *ngIf="trainotherFields">
+                                                 <label class="labelCenter control-label">OT</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                                </div>
+                                                <div class="col-md-2"  *ngIf="trainchildFields">
+                                                   <label class="labelCenter control-label">CM</label>
+                                                   <input type="text" class="form-control SmallInput" />
                                                  </div>
-                                                 <div class="col-md-2" >
-                                                    <label class="labelCenter control-label">CM</label>
-                                                    <input type="text" class="form-control SmallInput" />
-                                                  </div>
-                                                  <div class="col-md-2" >
-                                                      <label class=" labelCenter control-label">CF</label>
-                                                      <input type="text"  class="form-control SmallInput" />
-                                                  </div>
-                                                  <div class="col-md-2" >
-                                                        <label class="labelCenter control-label">Total</label>
-                                                        <input type="text"  class="form-control SmallInput" />
-                                                  </div>
+                                                 <div class="col-md-2"  *ngIf="trainchildFields">
+                                                     <label class=" labelCenter control-label">CF</label>
+                                                     <input type="text"  class="form-control SmallInput" />
+                                                 </div>
+                                                 <div class="col-md-2"  *ngIf="traintotalFields">
+                                                       <label class="labelCenter control-label">Total</label>
+                                                       <input type="text"  class="form-control SmallInput" />
+                                                 </div>
                                               </div>
                                         </div>
                                      </div>
                                     </section>
                                     <section>
                                 <div class="row">
-                                  <div class="col-md-3">
-                                     <input type="checkbox">
-                                     <label class="control-label"><span >Glasses Distributed</span></label>
+                                  <div class="col-md-3" style="padding-top:18px;">
+                                     <label class="control-label"> <input type="checkbox" [(ngModel)]="trainglassesDistrbuted"><span >Glasses Distributed</span></label>
                                   </div>
                                <div class="col-md-9">
                                    <div class="row">
-                                       <div class="col-sm-2" >
+                                       <div class="col-sm-2" *ngIf="traingenderFields">
                                            <label class="labelCenter control-label">AM</label>
                                            <input type="text"  class="form-control SmallInput " />
                                          </div>
-                                        <div class="col-sm-2" >
+                                        <div class="col-sm-2"  *ngIf="traingenderFields">
                                            <label class="labelCenter control-label">AF</label>
                                            <input type="text"   class="form-control SmallInput" />
                                           </div>
-                                          <div class="col-md-2" >
+                                          <div class="col-md-2"   *ngIf="trainotherFields">
                                              <label class="labelCenter control-label">OT</label>
                                              <input type="text"  class="form-control SmallInput" />
                                             </div>
-                                            <div class="col-md-2" >
+                                            <div class="col-md-2"  *ngIf="trainchildFields">
                                                <label class="labelCenter control-label">CM</label>
                                                <input type="text" class="form-control SmallInput" />
                                              </div>
-                                             <div class="col-md-2" >
+                                             <div class="col-md-2"  *ngIf="trainchildFields">
                                                  <label class=" labelCenter control-label">CF</label>
                                                  <input type="text"  class="form-control SmallInput" />
                                              </div>
-                                             <div class="col-md-2" >
+                                             <div class="col-md-2"  *ngIf="traintotalFields">
                                                    <label class="labelCenter control-label">Total</label>
                                                    <input type="text"  class="form-control SmallInput" />
                                              </div>
@@ -829,41 +835,47 @@
                                </section>
                                <section>
                                    <div class="row">
-                                     <div class="col-md-3">
-                                        <input type="checkbox">
-                                        <label class="control-label"><span >Catracts Advised</span></label>
+                                     <div class="col-md-3" style="padding-top:18px;">
+
+                                        <label class="control-label"> <input type="checkbox" [(ngModel)]="trainCatracts"><span >Catracts Advised</span></label>
                                      </div>
                                   <div class="col-md-9">
                                       <div class="row">
-                                          <div class="col-sm-2" >
-                                              <label class="labelCenter control-label">AM</label>
-                                              <input type="text"  class="form-control SmallInput " />
+                                         <div class="col-sm-2" *ngIf="traingenderFields">
+                                             <label class="labelCenter control-label">AM</label>
+                                             <input type="text"  class="form-control SmallInput " />
+                                           </div>
+                                          <div class="col-sm-2"  *ngIf="traingenderFields">
+                                             <label class="labelCenter control-label">AF</label>
+                                             <input type="text"   class="form-control SmallInput" />
                                             </div>
-                                           <div class="col-sm-2" >
-                                              <label class="labelCenter control-label">AF</label>
-                                              <input type="text"   class="form-control SmallInput" />
-                                             </div>
-                                             <div class="col-md-2" >
-                                                <label class="labelCenter control-label">OT</label>
-                                                <input type="text"  class="form-control SmallInput" />
+                                            <div class="col-md-2"   *ngIf="trainotherFields">
+                                               <label class="labelCenter control-label">OT</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                              </div>
+                                              <div class="col-md-2"  *ngIf="trainchildFields">
+                                                 <label class="labelCenter control-label">CM</label>
+                                                 <input type="text" class="form-control SmallInput" />
                                                </div>
-                                               <div class="col-md-2" >
-                                                  <label class="labelCenter control-label">CM</label>
-                                                  <input type="text" class="form-control SmallInput" />
-                                                </div>
-                                                <div class="col-md-2" >
-                                                    <label class=" labelCenter control-label">CF</label>
-                                                    <input type="text"  class="form-control SmallInput" />
-                                                </div>
-                                                <div class="col-md-2" >
-                                                      <label class="labelCenter control-label">Total</label>
-                                                      <input type="text"  class="form-control SmallInput" />
-                                                </div>
+                                               <div class="col-md-2"  *ngIf="trainchildFields">
+                                                   <label class=" labelCenter control-label">CF</label>
+                                                   <input type="text"  class="form-control SmallInput" />
+                                               </div>
+                                               <div class="col-md-2"  *ngIf="traintotalFields">
+                                                     <label class="labelCenter control-label">Total</label>
+                                                     <input type="text"  class="form-control SmallInput" />
+                                               </div>
                                             </div>
                                       </div>
                                    </div>
                                   </section>
-
+                                   <section>
+                                      <div style="padding-top:20px;text-align:center;">
+                                          <button class="btn btn-sm btn-primary">Clone Row</button>
+                                          <button class="btn btn-sm btn-primary">Add Custom Row</button>
+                                          <button class="btn btn-sm btn-primary">Save Templete</button>
+                                        </div>
+                                   </section>
                         </mat-expansion-panel>
                         <mat-expansion-panel class="panel5">
                             <mat-expansion-panel-header>
@@ -872,59 +884,57 @@
                                 </mat-panel-title>
                               </mat-expansion-panel-header>
                               <div class="row">
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
 
                                   </div>
-                                  <div class="col-md-9">
+                                  <div class="col-md-10">
                                      <div class="row">
                                          <div class="col-md-3">
-                                           <mat-slide-toggle class="example-margin">Enable Gender</mat-slide-toggle>
+                                           <mat-slide-toggle class="example-margin" [(ngModel)]="otherServciesGender" (change)="changetoggles()">Enable Gender </mat-slide-toggle>
                                          </div>
                                          <div class="col-md-3">
-                                            <mat-slide-toggle class="example-margin">Enable Other</mat-slide-toggle>
+                                            <mat-slide-toggle class="example-margin" [(ngModel)]="otherServciesOther" (change)="changetoggles()">Enable Other </mat-slide-toggle>
                                           </div>
                                           <div class="col-md-3">
 
-                                              <mat-slide-toggle class="example-margin">Enable Child</mat-slide-toggle>
+                                              <mat-slide-toggle class="example-margin" [(ngModel)]="otherServicesChild" (change)="changetoggles()">Enable Child </mat-slide-toggle>
                                           </div>
                                           <div class="col-md-3">
 
-                                              <mat-slide-toggle class="example-margin">Enable Total</mat-slide-toggle>
+                                              <mat-slide-toggle class="example-margin" [(ngModel)]="otherServicesTotal" (change)="changetoggles()">Enable Total</mat-slide-toggle>
                                           </div>
                                         </div>
                                    </div>
                                 </div>
                                 <section>
-                                   <input type="checkbox">
-                                   <label class="control-label"><span >Select All</span></label>
+                                   <label class="control-label" style="padding-left:15px;color:#774D37;"> <input type="checkbox" [(ngModel)]="otherSAervicesSelectall" (change)="changetoggles()"><span ><strong>Select All</strong></span></label>
                                 <div class="row">
-                                  <div class="col-md-3">
-                                     <input type="checkbox">
-                                     <label class="control-label"><span >New Patients Seen</span></label>
+                                  <div class="col-md-3" style="padding-top:18px;">
+                                     <label class="control-label checkbox-inline"> <input type="checkbox" [(ngModel)]="otherNewPatient"><span >New Patients Seen</span></label>
                                   </div>
                                <div class="col-md-9">
                                    <div class="row">
-                                       <div class="col-sm-2" >
+                                       <div class="col-sm-2" *ngIf="othergenderFields">
                                            <label class="labelCenter control-label">AM</label>
                                            <input type="text"  class="form-control SmallInput " />
                                          </div>
-                                        <div class="col-sm-2" >
+                                        <div class="col-sm-2"  *ngIf="othergenderFields">
                                            <label class="labelCenter control-label">AF</label>
                                            <input type="text"   class="form-control SmallInput" />
                                           </div>
-                                          <div class="col-md-2" >
+                                          <div class="col-md-2"   *ngIf="otherotherFields">
                                              <label class="labelCenter control-label">OT</label>
                                              <input type="text"  class="form-control SmallInput" />
                                             </div>
-                                            <div class="col-md-2" >
+                                            <div class="col-md-2"  *ngIf="otherchildFields">
                                                <label class="labelCenter control-label">CM</label>
                                                <input type="text" class="form-control SmallInput" />
                                              </div>
-                                             <div class="col-md-2" >
+                                             <div class="col-md-2"  *ngIf="otherchildFields">
                                                  <label class=" labelCenter control-label">CF</label>
                                                  <input type="text"  class="form-control SmallInput" />
                                              </div>
-                                             <div class="col-md-2" >
+                                             <div class="col-md-2"  *ngIf="othertotalFields">
                                                    <label class="labelCenter control-label">Total</label>
                                                    <input type="text"  class="form-control SmallInput" />
                                              </div>
@@ -934,105 +944,102 @@
                                </section>
                                <section>
                                    <div class="row">
-                                     <div class="col-md-3">
-                                        <input type="checkbox">
-                                        <label class="control-label"><span >Review Patients</span></label>
+                                     <div class="col-md-3" style="padding-top:18px;">
+                                        <label class="control-label">  <input type="checkbox" [(ngModel)]="otherReviewPatients"><span >Review Patients</span></label>
                                      </div>
                                   <div class="col-md-9">
                                       <div class="row">
-                                          <div class="col-sm-2" >
-                                              <label class="labelCenter control-label">AM</label>
-                                              <input type="text"  class="form-control SmallInput " />
+                                         <div class="col-sm-2" *ngIf="othergenderFields">
+                                             <label class="labelCenter control-label">AM</label>
+                                             <input type="text"  class="form-control SmallInput " />
+                                           </div>
+                                          <div class="col-sm-2"  *ngIf="othergenderFields">
+                                             <label class="labelCenter control-label">AF</label>
+                                             <input type="text"   class="form-control SmallInput" />
                                             </div>
-                                           <div class="col-sm-2" >
-                                              <label class="labelCenter control-label">AF</label>
-                                              <input type="text"   class="form-control SmallInput" />
-                                             </div>
-                                             <div class="col-md-2" >
-                                                <label class="labelCenter control-label">OT</label>
-                                                <input type="text"  class="form-control SmallInput" />
+                                            <div class="col-md-2"   *ngIf="otherotherFields">
+                                               <label class="labelCenter control-label">OT</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                              </div>
+                                              <div class="col-md-2"  *ngIf="otherchildFields">
+                                                 <label class="labelCenter control-label">CM</label>
+                                                 <input type="text" class="form-control SmallInput" />
                                                </div>
-                                               <div class="col-md-2" >
-                                                  <label class="labelCenter control-label">CM</label>
-                                                  <input type="text" class="form-control SmallInput" />
-                                                </div>
-                                                <div class="col-md-2" >
-                                                    <label class=" labelCenter control-label">CF</label>
-                                                    <input type="text"  class="form-control SmallInput" />
-                                                </div>
-                                                <div class="col-md-2" >
-                                                      <label class="labelCenter control-label">Total</label>
-                                                      <input type="text"  class="form-control SmallInput" />
-                                                </div>
+                                               <div class="col-md-2"  *ngIf="otherchildFields">
+                                                   <label class=" labelCenter control-label">CF</label>
+                                                   <input type="text"  class="form-control SmallInput" />
+                                               </div>
+                                               <div class="col-md-2"  *ngIf="othertotalFields">
+                                                     <label class="labelCenter control-label">Total</label>
+                                                     <input type="text"  class="form-control SmallInput" />
+                                               </div>
                                             </div>
                                       </div>
                                    </div>
                                   </section>
                                   <section>
                                      <div class="row">
-                                       <div class="col-md-3">
-                                          <input type="checkbox">
-                                          <label class="control-label"><span >Glasses Prescribed</span></label>
+                                       <div class="col-md-3" style="padding-top:18px;">
+                                          <label class="control-label"><input type="checkbox" [(ngModel)]="otherglassPrescribe"><span >Glasses Prescribed</span></label>
                                        </div>
                                     <div class="col-md-9">
                                         <div class="row">
-                                            <div class="col-sm-2" >
-                                                <label class="labelCenter control-label">AM</label>
-                                                <input type="text"  class="form-control SmallInput " />
+                                           <div class="col-sm-2" *ngIf="othergenderFields">
+                                               <label class="labelCenter control-label">AM</label>
+                                               <input type="text"  class="form-control SmallInput " />
+                                             </div>
+                                            <div class="col-sm-2"  *ngIf="othergenderFields">
+                                               <label class="labelCenter control-label">AF</label>
+                                               <input type="text"   class="form-control SmallInput" />
                                               </div>
-                                             <div class="col-sm-2" >
-                                                <label class="labelCenter control-label">AF</label>
-                                                <input type="text"   class="form-control SmallInput" />
-                                               </div>
-                                               <div class="col-md-2" >
-                                                  <label class="labelCenter control-label">OT</label>
-                                                  <input type="text"  class="form-control SmallInput" />
+                                              <div class="col-md-2"   *ngIf="otherotherFields">
+                                                 <label class="labelCenter control-label">OT</label>
+                                                 <input type="text"  class="form-control SmallInput" />
+                                                </div>
+                                                <div class="col-md-2"  *ngIf="otherchildFields">
+                                                   <label class="labelCenter control-label">CM</label>
+                                                   <input type="text" class="form-control SmallInput" />
                                                  </div>
-                                                 <div class="col-md-2" >
-                                                    <label class="labelCenter control-label">CM</label>
-                                                    <input type="text" class="form-control SmallInput" />
-                                                  </div>
-                                                  <div class="col-md-2" >
-                                                      <label class=" labelCenter control-label">CF</label>
-                                                      <input type="text"  class="form-control SmallInput" />
-                                                  </div>
-                                                  <div class="col-md-2" >
-                                                        <label class="labelCenter control-label">Total</label>
-                                                        <input type="text"  class="form-control SmallInput" />
-                                                  </div>
+                                                 <div class="col-md-2"  *ngIf="otherchildFields">
+                                                     <label class=" labelCenter control-label">CF</label>
+                                                     <input type="text"  class="form-control SmallInput" />
+                                                 </div>
+                                                 <div class="col-md-2"  *ngIf="othertotalFields">
+                                                       <label class="labelCenter control-label">Total</label>
+                                                       <input type="text"  class="form-control SmallInput" />
+                                                 </div>
                                               </div>
                                         </div>
                                      </div>
                                     </section>
                                     <section>
                                 <div class="row">
-                                  <div class="col-md-3">
-                                     <input type="checkbox">
-                                     <label class="control-label"><span >Glasses Distributed</span></label>
+                                  <div class="col-md-3" style="padding-top:18px;">
+                                     <label class="control-label"> <input type="checkbox" [(ngModel)]="otherglassesDistrbuted"><span >Glasses Distributed</span></label>
                                   </div>
                                <div class="col-md-9">
                                    <div class="row">
-                                       <div class="col-sm-2" >
+                                       <div class="col-sm-2" *ngIf="othergenderFields">
                                            <label class="labelCenter control-label">AM</label>
                                            <input type="text"  class="form-control SmallInput " />
                                          </div>
-                                        <div class="col-sm-2" >
+                                        <div class="col-sm-2"  *ngIf="othergenderFields">
                                            <label class="labelCenter control-label">AF</label>
                                            <input type="text"   class="form-control SmallInput" />
                                           </div>
-                                          <div class="col-md-2" >
+                                          <div class="col-md-2"   *ngIf="otherotherFields">
                                              <label class="labelCenter control-label">OT</label>
                                              <input type="text"  class="form-control SmallInput" />
                                             </div>
-                                            <div class="col-md-2" >
+                                            <div class="col-md-2"  *ngIf="otherchildFields">
                                                <label class="labelCenter control-label">CM</label>
                                                <input type="text" class="form-control SmallInput" />
                                              </div>
-                                             <div class="col-md-2" >
+                                             <div class="col-md-2"  *ngIf="otherchildFields">
                                                  <label class=" labelCenter control-label">CF</label>
                                                  <input type="text"  class="form-control SmallInput" />
                                              </div>
-                                             <div class="col-md-2" >
+                                             <div class="col-md-2"  *ngIf="othertotalFields">
                                                    <label class="labelCenter control-label">Total</label>
                                                    <input type="text"  class="form-control SmallInput" />
                                              </div>
@@ -1042,41 +1049,47 @@
                                </section>
                                <section>
                                    <div class="row">
-                                     <div class="col-md-3">
-                                        <input type="checkbox">
-                                        <label class="control-label"><span >Catracts Advised</span></label>
+                                     <div class="col-md-3" style="padding-top:18px;">
+
+                                        <label class="control-label"> <input type="checkbox" [(ngModel)]="otherCatracts"><span >Catracts Advised</span></label>
                                      </div>
                                   <div class="col-md-9">
                                       <div class="row">
-                                          <div class="col-sm-2" >
-                                              <label class="labelCenter control-label">AM</label>
-                                              <input type="text"  class="form-control SmallInput " />
+                                         <div class="col-sm-2" *ngIf="othergenderFields">
+                                             <label class="labelCenter control-label">AM</label>
+                                             <input type="text"  class="form-control SmallInput " />
+                                           </div>
+                                          <div class="col-sm-2"  *ngIf="othergenderFields">
+                                             <label class="labelCenter control-label">AF</label>
+                                             <input type="text"   class="form-control SmallInput" />
                                             </div>
-                                           <div class="col-sm-2" >
-                                              <label class="labelCenter control-label">AF</label>
-                                              <input type="text"   class="form-control SmallInput" />
-                                             </div>
-                                             <div class="col-md-2" >
-                                                <label class="labelCenter control-label">OT</label>
-                                                <input type="text"  class="form-control SmallInput" />
+                                            <div class="col-md-2"   *ngIf="otherotherFields">
+                                               <label class="labelCenter control-label">OT</label>
+                                               <input type="text"  class="form-control SmallInput" />
+                                              </div>
+                                              <div class="col-md-2"  *ngIf="otherchildFields">
+                                                 <label class="labelCenter control-label">CM</label>
+                                                 <input type="text" class="form-control SmallInput" />
                                                </div>
-                                               <div class="col-md-2" >
-                                                  <label class="labelCenter control-label">CM</label>
-                                                  <input type="text" class="form-control SmallInput" />
-                                                </div>
-                                                <div class="col-md-2" >
-                                                    <label class=" labelCenter control-label">CF</label>
-                                                    <input type="text"  class="form-control SmallInput" />
-                                                </div>
-                                                <div class="col-md-2" >
-                                                      <label class="labelCenter control-label">Total</label>
-                                                      <input type="text"  class="form-control SmallInput" />
-                                                </div>
+                                               <div class="col-md-2"  *ngIf="otherchildFields">
+                                                   <label class=" labelCenter control-label">CF</label>
+                                                   <input type="text"  class="form-control SmallInput" />
+                                               </div>
+                                               <div class="col-md-2"  *ngIf="othertotalFields">
+                                                     <label class="labelCenter control-label">Total</label>
+                                                     <input type="text"  class="form-control SmallInput" />
+                                               </div>
                                             </div>
                                       </div>
                                    </div>
                                   </section>
-
+                                   <section>
+                                      <div style="padding-top:20px;text-align:center;">
+                                          <button class="btn btn-sm btn-primary">Clone Row</button>
+                                          <button class="btn btn-sm btn-primary">Add Custom Row</button>
+                                          <button class="btn btn-sm btn-primary">Save Templete</button>
+                                        </div>
+                                   </section>
                           </mat-expansion-panel>
                       </mat-accordion>
                 </div>
@@ -1084,3 +1097,5 @@
           </div>
   </div>
 </div>
+
+
