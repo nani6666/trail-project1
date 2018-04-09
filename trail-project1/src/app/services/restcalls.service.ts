@@ -10,4 +10,9 @@ export class RestcallsService {
 
   constructor(private _http: Http) { }
 
+  getAllCurrencies(): Observable<any> {
+    return this._http.get('./assets/json/currency.json')
+      .map((res: Response) => res)
+      .catch((error: any) => error);
+  }
 }

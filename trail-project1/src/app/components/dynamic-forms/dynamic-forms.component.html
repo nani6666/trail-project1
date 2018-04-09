@@ -1,0 +1,82 @@
+<form novalidate>
+    <!-- <div class="row">
+      <div class="horizontal-group">
+         <div class="col-md-4">
+             <input type="text"
+                    placeholder="Language"
+                    class="form-control">
+         </div>
+         <div class="col-md-2">
+             <input type="text"
+                    placeholder="Years"
+                    class="form-control" >
+         </div>
+         <div class="col-md-6">
+             <button type="submit" class="btn btn-primary"
+                   (click)="save()" > Save</button>
+             <button type="button" class="btn btn-default"
+                   (click)="removeObject()" > Remove</button>
+         </div>
+      </div>
+    </div> -->
+    <div class="row">
+        <div class="col-md-3" style="padding-top:18px;">
+            <label class="control-label">
+               {{labelval}}
+               </label>
+          </div>
+     <div class="col-md-9">
+
+       <div  class="input-group">
+         <div class="row">
+             <div class="col-sm-2" >
+                 <label class="labelCenter control-label">AM</label>
+                 <input type="text"  class="form-control SmallInput " />
+               </div>
+              <div class="col-sm-2" >
+                 <label class="labelCenter control-label">AF</label>
+                 <input type="text"   class="form-control SmallInput" />
+                </div>
+                <div class="col-md-2"  >
+                   <label class="labelCenter control-label">OT</label>
+                   <input type="text"  class="form-control SmallInput" />
+                  </div>
+                  <div class="col-md-2" >
+                     <label class="labelCenter control-label">CM</label>
+                     <input type="text" class="form-control SmallInput" />
+                   </div>
+                   <div class="col-md-2" >
+                       <label class=" labelCenter control-label">CF</label>
+                       <input type="text"  class="form-control SmallInput" />
+                   </div>
+                   <div class="col-md-2">
+                         <label class="labelCenter control-label">Total</label>
+                         <input type="text"  class="form-control SmallInput" />
+                   </div>
+                  </div>
+                  <span class="input-group-addon" style="padding-top:30px;">
+                      <a  class="text-danger"
+                      (click)="removeObject()" > <i class="fa fa-trash"></i></a>
+                         </span>
+                  </div>
+
+         </div>
+
+      </div>
+ </form>
+ <button style="display:none;" id="labelid" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#finalModal">Open Small Modal</button>
+ <div class="modal fade" id="finalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true "
+ data-backdrop="static" data-keyboard="false">
+ <div class="modal-dialog " role="document " style="width:320px">
+   <div class="modal-content ">
+     <div class="modal-header ">
+        <mat-form-field class="example-full-width">
+            <input type="text" matInput placeholder="Label of Input"  (input)="onlabel($event.target.value)" >
+          </mat-form-field>
+     </div>
+     <div class="modal-footer ">
+       <button type="button " class="btn btn-primary common_btn addbtn" data-dismiss="modal">OK</button>
+     </div>
+   </div>
+ </div>
+</div>

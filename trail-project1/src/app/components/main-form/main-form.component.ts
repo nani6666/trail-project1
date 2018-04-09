@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { RestcallsService } from './../../services/restcalls.service';
+import { DynamicFormsComponent } from './../dynamic-forms/dynamic-forms.component';
+import { Component,
+  OnInit,
+  ViewChild,
+  ComponentFactoryResolver,
+  ViewContainerRef, ElementRef ,Renderer2} from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 @Component({
@@ -7,6 +13,12 @@ import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./main-form.component.css']
 })
 export class MainFormComponent implements OnInit {
+  @ViewChild('parent', { read: ViewContainerRef }) container: ViewContainerRef;
+  @ViewChild('parent1', { read: ViewContainerRef }) container1: ViewContainerRef;
+  @ViewChild('parent2', { read: ViewContainerRef }) container2: ViewContainerRef;
+  @ViewChild('parent3', { read: ViewContainerRef }) container3: ViewContainerRef;
+  @ViewChild('parent4', { read: ViewContainerRef }) container4: ViewContainerRef;
+  @ViewChild('divdata') data1: ElementRef;
 
   panelOpenState: boolean;
   checkbox: any;
@@ -81,8 +93,15 @@ export class MainFormComponent implements OnInit {
   otherReviewPatients: boolean ;
   otherNewPatient: boolean ;
   countervaluehosp: number ;
+  customlabel: any;
+  customElement: any ;
+  labelVal: any ;
+  deletecustomelement: any;
+  currencyData: any ;
    public invoiceForm: FormGroup;
-  constructor(private _fb: FormBuilder) { }
+
+  constructor(private _fb: FormBuilder , private _cfr: ComponentFactoryResolver,
+       private renderer: Renderer2 , private serviceCall: RestcallsService ) { }
 
   ngOnInit() {
     this.hospServicesTotal = true ;
@@ -92,11 +111,81 @@ export class MainFormComponent implements OnInit {
     this.otherServicesTotal = true ;
     this.changetoggles();
     this.countervaluehosp = 0 ;
-    this.invoiceForm = this._fb.group({
-      itemRows: this._fb.array([this.initItemRows()])
-    });
+    this.currencyApi();
   }
 
+  addCustomField() {
+    document.getElementById('customdata').click();
+  }
+
+  removeObject() {
+    alert('sdfvb');
+    delete this.deletecustomelement;
+ }
+
+ custommodal() {
+   console.log(this.customElement);
+   if (this.customElement == 'Text') {
+    this.data1.nativeElement.insertAdjacentHTML('beforeend',
+    '<div class="form-group"><div class="row"><div class="col-md-6"><label class="control-label">' + this.labelVal
+    + ' </label><input type="text" class="form-control"/><a (click)="removeObject()"><i class="fa fa-trash"></i></a></div></div></div>');
+   } else if (this.customElement == 'Number') {
+    this.data1.nativeElement.insertAdjacentHTML('beforeend',
+    '<div class="form-group"><div class="row"><div class="col-md-6"><label class="control-label">' + this.labelVal
+    + ' </label><input type="number" class="form-control"/><a (click)="removeObject()"><i class="fa fa-trash"></i></a></div></div></div>');
+   } else if (this.customElement == 'Date') {
+    this.data1.nativeElement.insertAdjacentHTML('beforeend',
+    '<div class="form-group"><div class="row"><div class="col-md-6"><label class="control-label">' + this.labelVal
+    + ' </label><input type="date" class="form-control"/><a (click)="removeObject()"><i class="fa fa-trash"></i></a></div></div></div>');
+   } else if (this.customElement == 'textarea') {
+    this.data1.nativeElement.insertAdjacentHTML('beforeend',
+    '<div class="form-group"><div class="row"><div class="col-md-6"><label class="control-label">' + this.labelVal
+    + ' </label><textarea rows="10" class="form-control"/></textarea><a (click)="removeObject()">'
+    + ' <i class="fa fa-trash"></i></a></div></div></div>');
+   } else if (this.customElement == 'currency') {
+    this.data1.nativeElement.insertAdjacentHTML('beforeend',
+    '<div class="form-group"><div class="row"><div class="col-md-6"><label class="control-label">' + this.labelVal
+    + '</label><select class="form-control" ><option *ngFor="let data of currencyData" value="'+ data.name + '">'
+    + data.symbol + data.name + '>' +
+     '</option></select><a (click)="removeObject()"><i class="fa fa-trash"></i></a></div></div></div>');
+   }
+
+
+ }
+
+  // api for currencies
+  currencyApi() {
+    this.serviceCall.getAllCurrencies().subscribe(data => {
+      this.currencyData = JSON.parse((<any>data)._body);
+      // console.log( this.currencyData);
+     });
+  }
+ onlabel(labelvalue: any) {
+  console.log(labelvalue);
+  this.labelVal = labelvalue ;
+ }
+  addComponent(val) {
+    document.getElementById('labelid').click();
+    const comp = this._cfr.resolveComponentFactory(DynamicFormsComponent);
+    if (val == 'hosp') {
+      const expComponent = this.container.createComponent(comp);
+      expComponent.instance._ref = expComponent;
+    } else if (val == 'pecf' ) {
+      const expComponent = this.container1.createComponent(comp);
+      expComponent.instance._ref = expComponent;
+    } else if (val == 'outreach' ) {
+      const expComponent = this.container2.createComponent(comp);
+      expComponent.instance._ref = expComponent;
+    }  else if (val == 'train' ) {
+      const expComponent = this.container3.createComponent(comp);
+      expComponent.instance._ref = expComponent;
+    } else if (val == 'other' ) {
+      const expComponent = this.container4.createComponent(comp);
+      expComponent.instance._ref = expComponent;
+    }
+
+
+}
 
   changetoggles() {
    /* hospital services section starts*/
@@ -279,48 +368,11 @@ export class MainFormComponent implements OnInit {
   clonerow() {
     this.countervaluehosp++;
      console.log(this.countervaluehosp);
-    let ServerResponseHtml = ` <div class="row">
-    <div class="col-md-3" style="padding-top:18px;">
-       <label class="control-label checkbox-inline">
-       <input type="checkbox" [(ngModel)]="otherNewPatient"><span >New Patients Seen</span></label>
-    </div>
- <div class="col-md-9">
-     <div class="row">
-         <div class="col-sm-2" *ngIf="othergenderFields">
-             <label class="labelCenter control-label">AM</label>
-             <input type="text"  class="form-control SmallInput " />
-           </div>
-          <div class="col-sm-2"  *ngIf="othergenderFields">
-             <label class="labelCenter control-label">AF</label>
-             <input type="text"   class="form-control SmallInput" />
-            </div>
-            <div class="col-md-2"   *ngIf="otherotherFields">
-               <label class="labelCenter control-label">OT</label>
-               <input type="text"  class="form-control SmallInput" />
-              </div>
-              <div class="col-md-2"  *ngIf="otherchildFields">
-                 <label class="labelCenter control-label">CM</label>
-                 <input type="text" class="form-control SmallInput" />
-               </div>
-               <div class="col-md-2"  *ngIf="otherchildFields">
-                   <label class=" labelCenter control-label">CF</label>
-                   <input type="text"  class="form-control SmallInput" />
-               </div>
-               <div class="col-md-2"  *ngIf="othertotalFields">
-                     <label class="labelCenter control-label">Total</label>
-                     <input type="text"  class="form-control SmallInput" />
-               </div>
-           </div>
-     </div>
-  </div>`;
-    document.getElementById('clone').appendChild('') ;
+    let ServerResponseHtml = '';
+   //  document.getElementById('clone').appendChild('') ;
   }
 
-  addNewRow() {
-    // console.log(this._fb.array);
-     const control = <FormArray>this.invoiceForm.controls['itemRows'];
-     control.push(this.initItemRows());
-  }
+
 
 
   initItemRows() {

@@ -43,10 +43,12 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
+import { DynamicFormsComponent } from './components/dynamic-forms/dynamic-forms.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MainFormComponent
+    MainFormComponent,
+    DynamicFormsComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +88,9 @@ import {
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
+  ],
+  entryComponents: [
+    DynamicFormsComponent
   ],
   providers: [RestcallsService],
   bootstrap: [AppComponent]
