@@ -119,37 +119,52 @@ export class MainFormComponent implements OnInit {
   }
 
   removeObject() {
-    alert('sdfvb');
-    delete this.deletecustomelement;
+    if (document.getElementById('rmvclass')) {
+      const child = document.getElementById('rmvclass');
+      const parent = document.getElementById('mainParent');
+      parent.removeChild(child);
+ }
  }
 
- custommodal() {
-   console.log(this.customElement);
-   if (this.customElement == 'Text') {
-    this.data1.nativeElement.insertAdjacentHTML('beforeend',
-    '<div class="form-group"><div class="row"><div class="col-md-6"><label class="control-label">' + this.labelVal
-    + ' </label><input type="text" class="form-control"/><a (click)="removeObject()"><i class="fa fa-trash"></i></a></div></div></div>');
-   } else if (this.customElement == 'Number') {
-    this.data1.nativeElement.insertAdjacentHTML('beforeend',
-    '<div class="form-group"><div class="row"><div class="col-md-6"><label class="control-label">' + this.labelVal
-    + ' </label><input type="number" class="form-control"/><a (click)="removeObject()"><i class="fa fa-trash"></i></a></div></div></div>');
-   } else if (this.customElement == 'Date') {
-    this.data1.nativeElement.insertAdjacentHTML('beforeend',
-    '<div class="form-group"><div class="row"><div class="col-md-6"><label class="control-label">' + this.labelVal
-    + ' </label><input type="date" class="form-control"/><a (click)="removeObject()"><i class="fa fa-trash"></i></a></div></div></div>');
-   } else if (this.customElement == 'textarea') {
-    this.data1.nativeElement.insertAdjacentHTML('beforeend',
-    '<div class="form-group"><div class="row"><div class="col-md-6"><label class="control-label">' + this.labelVal
-    + ' </label><textarea rows="10" class="form-control"/></textarea><a (click)="removeObject()">'
+ custommodal(val) {
+  // console.log(this.customElement);
+   if (val == 'Text') {
+    this.deletecustomelement = this.data1.nativeElement.insertAdjacentHTML('beforeend',
+    '<div class="form-group " id="rmvclass"><div class="row "><div class="input-group">'
+    + '<div class="col-md-6"><label class="control-label">' + this.labelVal
+    + '</label><input type="text" class="form-control SmallInput"/>' +
+    '<span class="input-group-text"><span class="input-group-append">' +
+    '<a class="mylink" style="color:red;"><span class="fa fa-trash"></span></a></span>' +
+    '</div></div></div></div>');
+   } else if (val == 'Number') {
+    this.deletecustomelement =  this.data1.nativeElement.insertAdjacentHTML('beforeend',
+    '<div class="form-group " id="rmvclass"><div class="row "><div class="col-md-6"><label class="control-label">' + this.labelVal
+    + ' </label><input type="number" class="form-control SmallInput"/><a class="mylink"><i class="fa fa-trash"></i></a></div></div></div>');
+   } else if (val == 'Date') {
+    this.deletecustomelement =  this.data1.nativeElement.insertAdjacentHTML('beforeend',
+    '<div class="form-group rmvclass" id="rmvclass"><div class="row "><div class="col-md-6"><label class="control-label">' + this.labelVal
+    + ' </label><input type="date" class="form-control "/><a class="mylink"><i class="fa fa-trash"></i></a></div></div></div>');
+   } else if (val == 'textarea') {
+    this.deletecustomelement =  this.data1.nativeElement.insertAdjacentHTML('beforeend',
+    '<div class="form-group rmvclass" id="rmvclass"><div class="row "><div class="col-md-6"><label class="control-label">' + this.labelVal
+    + ' </label><textarea rows="10" class="form-control"/></textarea><a class="mylink">'
     + ' <i class="fa fa-trash"></i></a></div></div></div>');
-   } else if (this.customElement == 'currency') {
-    this.data1.nativeElement.insertAdjacentHTML('beforeend',
-    '<div class="form-group"><div class="row"><div class="col-md-6"><label class="control-label">' + this.labelVal
-    + '</label><select class="form-control" ><option *ngFor="let data of currencyData" value="'+ data.name + '">'
-    + data.symbol + data.name + '>' +
-     '</option></select><a (click)="removeObject()"><i class="fa fa-trash"></i></a></div></div></div>');
    }
+  //  } else if (this.customElement == 'currency') {
+  //   this.data1.nativeElement.insertAdjacentHTML('beforeend',
+  //   '<div class="form-group"><div class="row"><div class="col-md-6"><label class="control-label">' + this.labelVal
+  //   + '</label><select class="form-control" ><option *ngFor="let data of currencyData" value="'+  + '">'
+  //   + data.symbol + data.name + '>' +
+  //    '</option></select><a (click)="removeObject()"><i class="fa fa-trash"></i></a></div></div></div>');
+  //  }
 
+     let children = document.getElementsByClassName('mylink');
+     for (let i = 0; i < children.length; i++) {
+     children[i].addEventListener('click', (event: Event) => {
+       this.removeObject();
+
+      });
+  }
 
  }
 
@@ -160,6 +175,7 @@ export class MainFormComponent implements OnInit {
       // console.log( this.currencyData);
      });
   }
+
  onlabel(labelvalue: any) {
   console.log(labelvalue);
   this.labelVal = labelvalue ;

@@ -223,9 +223,10 @@
 
 
                               </div>
-                              <div #divdata>
+                              <div #divdata id="mainParent">
 
                               </div>
+
                            </section>
                             <section>
                               <div style="padding-top:20px;text-align:center;">
@@ -1161,19 +1162,44 @@
               </mat-form-field>
         </div>
         <div class="form-group" >
-           <select class="form-control" [(ngModel)]="customElement">
+           <!-- <select class="form-control" [(ngModel)]="customElement" matTooltip="Textfiled">
              <option value="Text">Text</option>
              <option value="Number">Number </option >
               <option value="textarea">Text Area </option >
               <option value="currency">Currency </option>
               <option  value="Location">Location </option>
               <option value="Date">Date </option>
-           </select>
+           </select> -->
+           <div class="row">
+             <div class="col-sm-3">
+               <a matTooltip="Textfiled" (click)="custommodal('Text')" data-dismiss="modal"><span  ><i  class="fa fa-lg" aria-hidden="true" >ABC</i>
+               </span></a>
+             </div>
+             <div class="col-sm-3">
+               <a matTooltip="Number" (click)="custommodal('Number')" data-dismiss="modal"><span ><i class="fa fa-lg" aria-hidden="true">123</i>
+               </span></a>
+
+             </div>
+             <div class="col-sm-3">
+               <a matTooltip="Date" (click)="custommodal('Date')" data-dismiss="modal"><span ><i class="fa fa-calendar fa-lg" aria-hidden="true"></i>
+               </span></a>
+
+             </div>
+             <div class="col-sm-3">
+               <a matTooltip="Textarea" (click)="custommodal('textarea')"  data-dismiss="modal">
+                  <span >
+                      <i class="fa fa-lg" aria-hidden="true">&para;</i>
+                  </span>
+               </a>
+
+             </div>
+
+           </div>
         </div>
      </div>
-     <div class="modal-footer ">
+     <!-- <div class="modal-footer ">
        <button type="button " class="btn btn-primary common_btn addbtn" (click)="custommodal()" data-dismiss="modal">OK</button>
-     </div>
+     </div> -->
    </div>
  </div>
 </div>

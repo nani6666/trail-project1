@@ -17,6 +17,9 @@
   background-color: #DDDBD7;
 }
 
+a {
+  cursor: pointer;
+}
 :host ::ng-deep .SmallInput { width: 80px;
   height: 20px;
   font-size: 12px !important;
