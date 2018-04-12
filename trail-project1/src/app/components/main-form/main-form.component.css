@@ -17,9 +17,15 @@
   background-color: #DDDBD7;
 }
 
-a {
+
+a , .btn {
   cursor: pointer;
 }
+.close{
+  outline: none;
+  cursor: pointer;
+}
+
 :host ::ng-deep .SmallInput { width: 80px;
   height: 20px;
   font-size: 12px !important;
@@ -54,6 +60,11 @@ padding-left: 5px;
 ::ng-deep.mat-slide-toggle-thumb {
   height: 15px !important;
   width: 15px !important;
+}
+
+
+::ng-deep .mat-slider-min-value.mat-slider-thumb-label-showing .mat-slider-thumb, .mat-slider-min-value.mat-slider-thumb-label-showing .mat-slider-thumb-label {
+  background-color: rgba(13, 69, 223, 0.87) ;
 }
 /* CSS to change Default/'Accent' color */
 

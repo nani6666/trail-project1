@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DynamicFormsComponent implements OnInit {
   _ref: any;
   labelval: any;
+  labelvalappend: any;
   constructor() { }
 
   ngOnInit() {

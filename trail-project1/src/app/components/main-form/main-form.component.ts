@@ -1,18 +1,20 @@
+import { element } from 'protractor';
 import { RestcallsService } from './../../services/restcalls.service';
 import { DynamicFormsComponent } from './../dynamic-forms/dynamic-forms.component';
 import { Component,
-  OnInit,
+  OnInit, AfterViewInit ,
   ViewChild,
   ComponentFactoryResolver,
-  ViewContainerRef, ElementRef ,Renderer2} from '@angular/core';
+  ViewContainerRef, ElementRef , Renderer2} from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+declare const jQuery: any;
 @Component({
   selector: 'app-main-form',
   templateUrl: './main-form.component.html',
   styleUrls: ['./main-form.component.css']
 })
-export class MainFormComponent implements OnInit {
+export class MainFormComponent implements OnInit , AfterViewInit{
   @ViewChild('parent', { read: ViewContainerRef }) container: ViewContainerRef;
   @ViewChild('parent1', { read: ViewContainerRef }) container1: ViewContainerRef;
   @ViewChild('parent2', { read: ViewContainerRef }) container2: ViewContainerRef;
@@ -22,6 +24,7 @@ export class MainFormComponent implements OnInit {
 
   panelOpenState: boolean;
   checkbox: any;
+  countVal = 0;
   hospServciesGender: any;
   hospServciesOther: any;
   hospServicesChild: any;
@@ -53,6 +56,7 @@ export class MainFormComponent implements OnInit {
   outReachServciesGender: any;
   outReachServciesOther: any;
   outReachServicesChild: any;
+  formElement: any;
   outReachServicesTotal: any;
   outReachgenderFields: boolean;
   outReachchildFields: boolean;
@@ -95,16 +99,26 @@ export class MainFormComponent implements OnInit {
   countervaluehosp: number ;
   customlabel: any;
   customElement: any ;
+  currencysymbol: any ;
   labelVal: any ;
   deletecustomelement: any;
   currencyData: any ;
+  lengthChars: any;
+  presentdate: Date;
    public invoiceForm: FormGroup;
 
   constructor(private _fb: FormBuilder , private _cfr: ComponentFactoryResolver,
        private renderer: Renderer2 , private serviceCall: RestcallsService ) { }
-
+       ngAfterViewInit() {
+        console.log(this.data1.nativeElement);
+      }
   ngOnInit() {
+    this.presentdate = new Date();
+    // this.startTime();
     this.hospServicesTotal = true ;
+    this.hospServciesGender = true ;
+    this.hospServciesOther = true ;
+    this.hospServicesChild  = true ;
     this.pecfServicesTotal = true ;
     this.outReachServicesTotal = true ;
     this.trainServicesTotal = true ;
@@ -118,74 +132,107 @@ export class MainFormComponent implements OnInit {
     document.getElementById('customdata').click();
   }
 
-  removeObject() {
-    if (document.getElementById('rmvclass')) {
-      const child = document.getElementById('rmvclass');
-      const parent = document.getElementById('mainParent');
-      parent.removeChild(child);
- }
- }
+  startTime() {
+    const today = new Date();
+    const h = today.getHours();
+    const m = today.getMinutes();
+    const s = today.getSeconds();
+    m = this.checkTime(m);
+    s = this.checkTime(s);
+    document.getElementById('txt').innerHTML =
+    h + ':' + m + ':' + s;
+    const t = setTimeout(this.startTime, 500);
+}
 
- custommodal(val) {
-  // console.log(this.customElement);
-   if (val == 'Text') {
+checkTime(i) {
+  if (i < 10) {i = '0' + i } ;  // add zero in front of numbers < 10
+  return i;
+}
+  gettingFormElements(val) {
+    console.log(val);
+    this.customElement = val;
+  }
+
+
+ custommodal() {
+ console.log();
+ if (this.customElement === undefined) {
+    alert('PLease Choose one of element');
+ } else {
+   this.countVal++ ;
+  console.log(this.customElement);
+   if (this.customElement == 'Text') {
     this.deletecustomelement = this.data1.nativeElement.insertAdjacentHTML('beforeend',
-    '<div class="form-group " id="rmvclass"><div class="row "><div class="input-group">'
-    + '<div class="col-md-6"><label class="control-label">' + this.labelVal
-    + '</label><input type="text" class="form-control SmallInput"/>' +
-    '<span class="input-group-text"><span class="input-group-append">' +
-    '<a class="mylink" style="color:red;"><span class="fa fa-trash"></span></a></span>' +
-    '</div></div></div></div>');
-   } else if (val == 'Number') {
+    '<div class="form-group " id="textfield_' + this.countVal + '"><div class="row"><div class="col-md-6">'
+    + '<label class="control-label">' + this.labelVal
+    + '</label><input type="text" class="form-control form-control-sm "/>' +
+    '</div><div class="col-sm-2">' +
+    '<a class="mylink"  id="textfieldClick_' + this.countVal + '" style="color:red;"><span class="fa fa-trash"></span></a>' +
+    '</div></div></div>');
+   } else if (this.customElement == 'Number') {
     this.deletecustomelement =  this.data1.nativeElement.insertAdjacentHTML('beforeend',
-    '<div class="form-group " id="rmvclass"><div class="row "><div class="col-md-6"><label class="control-label">' + this.labelVal
+    '<div class="form-group " id="rmvclass2"><div class="row "><div class="col-md-6"><label class="control-label">' + this.labelVal
     + ' </label><input type="number" class="form-control SmallInput"/><a class="mylink"><i class="fa fa-trash"></i></a></div></div></div>');
-   } else if (val == 'Date') {
+   } else if (this.customElement == 'Date') {
     this.deletecustomelement =  this.data1.nativeElement.insertAdjacentHTML('beforeend',
-    '<div class="form-group rmvclass" id="rmvclass"><div class="row "><div class="col-md-6"><label class="control-label">' + this.labelVal
+     '<div class="form-group " id="rmvclass3"><div class="row "><div class="col-md-4"><label class="control-label">' + this.labelVal
     + ' </label><input type="date" class="form-control "/><a class="mylink"><i class="fa fa-trash"></i></a></div></div></div>');
-   } else if (val == 'textarea') {
+   } else if (this.customElement == 'textarea') {
     this.deletecustomelement =  this.data1.nativeElement.insertAdjacentHTML('beforeend',
-    '<div class="form-group rmvclass" id="rmvclass"><div class="row "><div class="col-md-6"><label class="control-label">' + this.labelVal
-    + ' </label><textarea rows="10" class="form-control"/></textarea><a class="mylink">'
+    '<div class="form-group " id="rmvclass4"><div class="row "><div class="col-md-7"><label class="control-label">' + this.labelVal
+    + ' </label><textarea rows="10" class="form-control"/></textarea><a id="something" class="mylink">'
     + ' <i class="fa fa-trash"></i></a></div></div></div>');
+   } else if (this.customElement == 'currency') {
+    this.data1.nativeElement.insertAdjacentHTML('beforeend',
+    '<div class="form-group"><div class="row"><div class="col-md-5"><div class="input-group"><label class="control-label">'
+    + this.labelVal + '</label><select class="form-control" id="currencyId">' +
+    '</select><span class="group-btn"><a class="mylink"><i class="fa fa-trash"></i></a></span></div></div></div></div>');
+    const sel = document.getElementById('currencyId');
+    this.currencysymbol.forEach(ele => {
+      const opt = document.createElement('option');
+      opt.appendChild(document.createTextNode(ele));
+      opt.value = ele;
+      sel.appendChild(opt);
+    });
    }
-  //  } else if (this.customElement == 'currency') {
-  //   this.data1.nativeElement.insertAdjacentHTML('beforeend',
-  //   '<div class="form-group"><div class="row"><div class="col-md-6"><label class="control-label">' + this.labelVal
-  //   + '</label><select class="form-control" ><option *ngFor="let data of currencyData" value="'+  + '">'
-  //   + data.symbol + data.name + '>' +
-  //    '</option></select><a (click)="removeObject()"><i class="fa fa-trash"></i></a></div></div></div>');
-  //  }
-
+}
      let children = document.getElementsByClassName('mylink');
      for (let i = 0; i < children.length; i++) {
      children[i].addEventListener('click', (event: Event) => {
-       this.removeObject();
-
-      });
+      //  console.log((<any>event).target);
+      //  console.log((<any>event).target.closest('div .form-group')) ;
+       const delobj = (<any>event).target.closest('div .form-group') ;
+       delobj.remove();
+      // this.removeObject();
+    });
   }
 
  }
 
   // api for currencies
   currencyApi() {
+    this.currencysymbol = [];
     this.serviceCall.getAllCurrencies().subscribe(data => {
       this.currencyData = JSON.parse((<any>data)._body);
-      // console.log( this.currencyData);
+       this.currencyData.forEach(ele => {
+         this.currencysymbol.push(ele.name + '  -  ' + ele.symbol );
+        // console.log( this.currencysymbol);
+       });
      });
+    // return this.currencysymbol ;
   }
 
  onlabel(labelvalue: any) {
-  console.log(labelvalue);
+  // console.log(labelvalue);
   this.labelVal = labelvalue ;
  }
   addComponent(val) {
-    document.getElementById('labelid').click();
+    // document.getElementById('labelid').click();
     const comp = this._cfr.resolveComponentFactory(DynamicFormsComponent);
     if (val == 'hosp') {
       const expComponent = this.container.createComponent(comp);
       expComponent.instance._ref = expComponent;
+      expComponent.instance.modal();
     } else if (val == 'pecf' ) {
       const expComponent = this.container1.createComponent(comp);
       expComponent.instance._ref = expComponent;
@@ -388,18 +435,4 @@ export class MainFormComponent implements OnInit {
    //  document.getElementById('clone').appendChild('') ;
   }
 
-
-
-
-  initItemRows() {
-    return this._fb.group({
-        maleinputval: [''],
-        femaleinputval:  [''],
-        othersinputval: [''],
-        cminputval: [''],
-        cfinputval: [''],
-        totalinputval: [''],
-
-    });
-}
 }
