@@ -1,10 +1,10 @@
-<div class="container-fluid">
+<div class="container-fluid" style="padding-top:50px;">
   <div class="row">
       <div class="col-md-3">
           <div class="card">
               <div class="card-body">
-                  <!-- <div id="txt"></div> -->
-                  <strong>{{presentdate  | date :'mediumDate'}}</strong>
+                  <div id="txt"></div>
+                  <strong>{{presentdate  | date :'fullDate'}}</strong>
               </div>
           </div>
         </div>
@@ -1121,33 +1121,8 @@
             </div>
           </div>
   </div>
-</div>
-
-<button style="display:none;" id="labelid" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#finalModal">Open Small Modal</button>
- <div class="modal fade" id="finalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true "
- data-backdrop="static" data-keyboard="false">
- <div class="modal-dialog " role="document " style="width:320px">
-   <div class="modal-content ">
-     <div class="modal-header ">
-        <!-- <mat-form-field class="example-full-width">
-            <input type="text" matInput placeholder="Label of Input"  (input)="onlabel($event.target.value)" >
-          </mat-form-field> -->
-          <div class="col-md-6">
-              <mat-form-field class="example-full-width">
-                  <input type="text" matInput placeholder="Label of Input"  (input)="onlabel($event.target.value)" >
-                </mat-form-field>
-          </div>
-     </div>
-     <div class="modal-footer ">
-       <button type="button " class="btn btn-primary common_btn addbtn" data-dismiss="modal">OK</button>
-     </div>
-   </div>
- </div>
-</div>
-
-<button style="display:none;" id="customdata" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#customModal">Open Small Modal</button>
- <div class="modal fade" id="customModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true "
- data-backdrop="static" data-keyboard="false">
+  <button style="display:none;" id="customdata" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#customModal" >Open Small Modal</button>
+ <div class="modal fade" id="customModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true "  data-keyboard="false">
  <div class="modal-dialog " role="document ">
     <div class="modal-header ">
         <!-- <mat-form-field class="example-full-width">
@@ -1204,7 +1179,7 @@
                 </div> -->
            </div>
         </div>
-        <div class="form-group col-sm-8">
+        <div class="form-group col-sm-8" *ngIf="sizeoffield">
             <select class="form-control">
             <option value="">Choose Size</option>
             <option value="small">Small</option>
@@ -1212,14 +1187,31 @@
             <option value="Large">Large</option>
             </select>
          </div>
-         <div class="form-group">
+         <div class="form-group" *ngIf="textfieldattr" >
             <label class="control-label">Length of  Charaters</label>
-             <mat-slider   min="1" max="20" step="1" value="9" thumbLabel tickInterval="auto" [(ngModel)]="lengthChars"></mat-slider>
+             <mat-slider   min="1" max="20" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="lengthChars"></mat-slider>
           </div>
+          <div class="form-group" *ngIf="numberfieldattr">
+              <label class="control-label">Min</label>
+               <mat-slider   min="-10" max="100" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="lengthChars"></mat-slider>
+            </div>
+            <div class="form-group" *ngIf="numberfieldattr" >
+                <label class="control-label">Max</label>
+                 <mat-slider   min="1" max="1000" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="lengthChars"></mat-slider>
+              </div>
+              <div class="form-group" *ngIf="datefieldattr">
+                  <label class="control-label">Min Date</label>
+                  <input type="date" class="form-control" id="datepicker1" width="276" />
+              </div>
+              <div class="form-group" *ngIf="datefieldattr">
+                  <label class="control-label">Max Date</label>
+                  <input type="date" class="form-control" id="datepicker2" width="276" />
+              </div>
      </div>
 
      <div class="modal-footer">
-        <button type="button " class="btn btn-primary btn-xs" data-dismiss="modal" (click)="custommodal()" >OK</button>
+        <button class="btn btn-primary btn-sm mr-auto" data-dismiss="modal"  >CLOSE</button>
+        <button class="btn btn-primary btn-sm" id="okbtn" (click)="custommodal()">OK</button>
       </div>
      <!-- <div class="modal-footer ">
 
@@ -1227,3 +1219,9 @@
    </div>
  </div>
 </div>
+</div>
+
+
+
+
+

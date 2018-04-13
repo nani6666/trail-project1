@@ -3,7 +3,7 @@ import { RestcallsService } from './../../services/restcalls.service';
 import { DynamicFormsComponent } from './../dynamic-forms/dynamic-forms.component';
 import { Component,
   OnInit, AfterViewInit ,
-  ViewChild,
+  ViewChild, OnDestroy ,
   ComponentFactoryResolver,
   ViewContainerRef, ElementRef , Renderer2} from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -14,7 +14,7 @@ declare const jQuery: any;
   templateUrl: './main-form.component.html',
   styleUrls: ['./main-form.component.css']
 })
-export class MainFormComponent implements OnInit , AfterViewInit{
+export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy{
   @ViewChild('parent', { read: ViewContainerRef }) container: ViewContainerRef;
   @ViewChild('parent1', { read: ViewContainerRef }) container1: ViewContainerRef;
   @ViewChild('parent2', { read: ViewContainerRef }) container2: ViewContainerRef;
@@ -105,16 +105,29 @@ export class MainFormComponent implements OnInit , AfterViewInit{
   currencyData: any ;
   lengthChars: any;
   presentdate: Date;
-   public invoiceForm: FormGroup;
-
+  id: any ;
+  public invoiceForm: FormGroup;
+   /* fields properties  Starts */
+   sizeoffield: boolean ;
+   /* text field properties  Starts */
+  textfieldattr: boolean ;
+/* text field properties  Ends */
+ /* number field properties  Starts */
+ numberfieldattr: boolean ;
+ /* number field properties  Ends */
+ datefieldattr:boolean ;
+/* fields properties  Ends */
   constructor(private _fb: FormBuilder , private _cfr: ComponentFactoryResolver,
        private renderer: Renderer2 , private serviceCall: RestcallsService ) { }
        ngAfterViewInit() {
         console.log(this.data1.nativeElement);
       }
   ngOnInit() {
+    this.startTime();
+  this.id = setInterval(() => {
+    this.startTime();
+  }, 500);
     this.presentdate = new Date();
-    // this.startTime();
     this.hospServicesTotal = true ;
     this.hospServciesGender = true ;
     this.hospServciesOther = true ;
@@ -128,28 +141,71 @@ export class MainFormComponent implements OnInit , AfterViewInit{
     this.currencyApi();
   }
 
+  ngOnDestroy() {
+    if (this.id) {
+      clearInterval(this.id);
+    }
+  }
+
   addCustomField() {
+   // jQuery('#myModal').modal({backdrop: true});
     document.getElementById('customdata').click();
   }
 
   startTime() {
     const today = new Date();
-    const h = today.getHours();
-    const m = today.getMinutes();
-    const s = today.getSeconds();
-    m = this.checkTime(m);
-    s = this.checkTime(s);
+    let h = today.getHours();
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12;
+    h = h ? h : 12;
+    let m = today.getMinutes();
+    m = m < 10 ? 0 + m : m;
+    let s = today.getSeconds();
+    // m = this.checkTime(m);
+    // s = this.checkTime(s);
     document.getElementById('txt').innerHTML =
-    h + ':' + m + ':' + s;
-    const t = setTimeout(this.startTime, 500);
+    h + ':' + m + ':' + s + ' ' + ampm;
+    const t = setInterval(this.startTime, 500);
 }
 
 checkTime(i) {
-  if (i < 10) {i = '0' + i } ;  // add zero in front of numbers < 10
+  if (i < 10) {i = '0' + i };  // add zero in front of numbers < 10
   return i;
 }
   gettingFormElements(val) {
     console.log(val);
+    if (val == 'Text') {
+      this.textfieldattr = true ;
+      this.sizeoffield = true ;
+      this.numberfieldattr = false ;
+      this.datefieldattr =  false ;
+    } else if (val == 'Number') {
+      this.textfieldattr = false ;
+      this.sizeoffield = true ;
+      this.numberfieldattr = true ;
+      this.datefieldattr =  false ;
+    } else if (val == 'Date') {
+      this.textfieldattr = false ;
+      this.sizeoffield = true ;
+      this.numberfieldattr = false ;
+      this.datefieldattr =  true ;
+      jQuery('#datepicker1').datepicker({
+        uiLibrary: 'bootstrap4'
+      });
+      jQuery('#datepicker2').datepicker({
+        uiLibrary: 'bootstrap4'
+      });
+    } else if (val == 'textarea') {
+      this.textfieldattr = false ;
+      this.sizeoffield = true ;
+      this.numberfieldattr = false ;
+      this.datefieldattr =  false ;
+    } else if (val == 'currency') {
+      this.textfieldattr = false ;
+      this.sizeoffield = true ;
+      this.numberfieldattr = false ;
+      this.datefieldattr =  false ;
+    }
     this.customElement = val;
   }
 
@@ -159,20 +215,23 @@ checkTime(i) {
  if (this.customElement === undefined) {
     alert('PLease Choose one of element');
  } else {
+   document.getElementById('okbtn').setAttribute('data-dismiss' , 'modal');
    this.countVal++ ;
   console.log(this.customElement);
    if (this.customElement == 'Text') {
-    this.deletecustomelement = this.data1.nativeElement.insertAdjacentHTML('beforeend',
-    '<div class="form-group " id="textfield_' + this.countVal + '"><div class="row"><div class="col-md-6">'
-    + '<label class="control-label">' + this.labelVal
-    + '</label><input type="text" class="form-control form-control-sm "/>' +
-    '</div><div class="col-sm-2">' +
-    '<a class="mylink"  id="textfieldClick_' + this.countVal + '" style="color:red;"><span class="fa fa-trash"></span></a>' +
-    '</div></div></div>');
+     this.creatingElements();
+   // this.deletecustomelement = this.data1.nativeElement.insertAdjacentHTML('beforeend' , this.creatingElements() );
+    // '<div class="form-group " id="textfield_' + this.countVal + '"><div class="row"><div class="col-md-6">'
+    // + '<label class="control-label">' + this.labelVal
+    // + '</label><input type="text" class="form-control form-control-sm "/>' +
+    // '</div><div class="col-sm-2">' +
+    // '<a class="mylink"  id="textfieldClick_' + this.countVal + '" style="color:red;"><span class="fa fa-trash"></span></a>' +
+    // '</div></div></div>');
    } else if (this.customElement == 'Number') {
     this.deletecustomelement =  this.data1.nativeElement.insertAdjacentHTML('beforeend',
     '<div class="form-group " id="rmvclass2"><div class="row "><div class="col-md-6"><label class="control-label">' + this.labelVal
-    + ' </label><input type="number" class="form-control SmallInput"/><a class="mylink"><i class="fa fa-trash"></i></a></div></div></div>');
+    + ' </label><input type="number" class="form-control form-control-sm "/><a class="mylink">' +
+   '<i class="fa fa-trash"></i></a></div></div></div>');
    } else if (this.customElement == 'Date') {
     this.deletecustomelement =  this.data1.nativeElement.insertAdjacentHTML('beforeend',
      '<div class="form-group " id="rmvclass3"><div class="row "><div class="col-md-4"><label class="control-label">' + this.labelVal
@@ -247,8 +306,31 @@ checkTime(i) {
       expComponent.instance._ref = expComponent;
     }
 
-
 }
+
+/*creating Elements starts*/
+creatingElements() {
+  const divele1 = document.createElement('div') ,
+        divele2 = document.createElement('div') ,
+        divele3 = document.createElement('div') ,
+        inputele = document.createElement('input'),
+        spanele =  document.createElement('span') ;
+        //  fontele , groupele ;
+        divele1.setAttribute('class' , 'form-group');
+        divele2.setAttribute('class' , 'col-md-12');
+        divele3.setAttribute('class' , 'input-group');
+        divele1.appendChild(divele2);
+        divele2.appendChild(divele3);
+        divele3.appendChild(inputele);
+        inputele.setAttribute('class' , 'form-control');
+        inputele.setAttribute('type' , 'text');
+        inputele.setAttribute('maxlength' , '5');
+        divele3.appendChild(spanele);
+        this.data1.nativeElement.appendChild(divele1);
+}
+
+/*creating Elements Ends */
+
 
   changetoggles() {
    /* hospital services section starts*/
