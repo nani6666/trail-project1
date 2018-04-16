@@ -103,7 +103,10 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy{
   labelVal: any ;
   deletecustomelement: any;
   currencyData: any ;
+  minvalue: any ;
+  maxvalue: any ;
   lengthChars: any;
+  sizeOfField: any ;
   presentdate: Date;
   id: any ;
   public invoiceForm: FormGroup;
@@ -149,7 +152,8 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy{
 
   addCustomField() {
    // jQuery('#myModal').modal({backdrop: true});
-    document.getElementById('customdata').click();
+   // document.getElementById('customForm').reset() ;
+    document.getElementById('customdata').click() ;
   }
 
   startTime() {
@@ -189,12 +193,6 @@ checkTime(i) {
       this.sizeoffield = true ;
       this.numberfieldattr = false ;
       this.datefieldattr =  true ;
-      jQuery('#datepicker1').datepicker({
-        uiLibrary: 'bootstrap4'
-      });
-      jQuery('#datepicker2').datepicker({
-        uiLibrary: 'bootstrap4'
-      });
     } else if (val == 'textarea') {
       this.textfieldattr = false ;
       this.sizeoffield = true ;
@@ -211,48 +209,24 @@ checkTime(i) {
 
 
  custommodal() {
- console.log();
- if (this.customElement === undefined) {
-    alert('PLease Choose one of element');
- } else {
+   console.log(this.lengthChars);
+ if (this.labelVal === " ") {
+    alert('Please Enter Label');
+ } else if (this.customElement === undefined) {
+  alert('Please Choose one of element');
+} else {
    document.getElementById('okbtn').setAttribute('data-dismiss' , 'modal');
    this.countVal++ ;
-  console.log(this.customElement);
    if (this.customElement == 'Text') {
-     this.creatingElements();
-   // this.deletecustomelement = this.data1.nativeElement.insertAdjacentHTML('beforeend' , this.creatingElements() );
-    // '<div class="form-group " id="textfield_' + this.countVal + '"><div class="row"><div class="col-md-6">'
-    // + '<label class="control-label">' + this.labelVal
-    // + '</label><input type="text" class="form-control form-control-sm "/>' +
-    // '</div><div class="col-sm-2">' +
-    // '<a class="mylink"  id="textfieldClick_' + this.countVal + '" style="color:red;"><span class="fa fa-trash"></span></a>' +
-    // '</div></div></div>');
+      this.creatingElements(this.labelVal);
    } else if (this.customElement == 'Number') {
-    this.deletecustomelement =  this.data1.nativeElement.insertAdjacentHTML('beforeend',
-    '<div class="form-group " id="rmvclass2"><div class="row "><div class="col-md-6"><label class="control-label">' + this.labelVal
-    + ' </label><input type="number" class="form-control form-control-sm "/><a class="mylink">' +
-   '<i class="fa fa-trash"></i></a></div></div></div>');
+    this.creatingElements(this.labelVal);
    } else if (this.customElement == 'Date') {
-    this.deletecustomelement =  this.data1.nativeElement.insertAdjacentHTML('beforeend',
-     '<div class="form-group " id="rmvclass3"><div class="row "><div class="col-md-4"><label class="control-label">' + this.labelVal
-    + ' </label><input type="date" class="form-control "/><a class="mylink"><i class="fa fa-trash"></i></a></div></div></div>');
+    this.creatingElements(this.labelVal);
    } else if (this.customElement == 'textarea') {
-    this.deletecustomelement =  this.data1.nativeElement.insertAdjacentHTML('beforeend',
-    '<div class="form-group " id="rmvclass4"><div class="row "><div class="col-md-7"><label class="control-label">' + this.labelVal
-    + ' </label><textarea rows="10" class="form-control"/></textarea><a id="something" class="mylink">'
-    + ' <i class="fa fa-trash"></i></a></div></div></div>');
+    this.creatingElements(this.labelVal);
    } else if (this.customElement == 'currency') {
-    this.data1.nativeElement.insertAdjacentHTML('beforeend',
-    '<div class="form-group"><div class="row"><div class="col-md-5"><div class="input-group"><label class="control-label">'
-    + this.labelVal + '</label><select class="form-control" id="currencyId">' +
-    '</select><span class="group-btn"><a class="mylink"><i class="fa fa-trash"></i></a></span></div></div></div></div>');
-    const sel = document.getElementById('currencyId');
-    this.currencysymbol.forEach(ele => {
-      const opt = document.createElement('option');
-      opt.appendChild(document.createTextNode(ele));
-      opt.value = ele;
-      sel.appendChild(opt);
-    });
+    this.creatingElements(this.labelVal);
    }
 }
      let children = document.getElementsByClassName('mylink');
@@ -309,23 +283,78 @@ checkTime(i) {
 }
 
 /*creating Elements starts*/
-creatingElements() {
+creatingElements(labelval) {
   const divele1 = document.createElement('div') ,
         divele2 = document.createElement('div') ,
         divele3 = document.createElement('div') ,
-        inputele = document.createElement('input'),
-        spanele =  document.createElement('span') ;
-        //  fontele , groupele ;
+        divele4 = document.createElement('div') ,
+        inputgroupdiv = document.createElement('div') ,
+        labelele  = document.createElement('label') ,
+        inputele =  document.createElement('input'),
+        textareaele = document.createElement('textarea'),
+        selectele = document.createElement('select'),
+        optionele = document.createElement('option'),
+        spanele =   document.createElement('span') ,
+        anchortag = document.createElement('a') ,
+        deletetrash = document.createElement('i') ;
         divele1.setAttribute('class' , 'form-group');
-        divele2.setAttribute('class' , 'col-md-12');
-        divele3.setAttribute('class' , 'input-group');
+        divele2.setAttribute('class' , 'row');
+        divele3.setAttribute('class' , 'col-sm-3');
+        if (this.sizeOfField == 'small') {
+          divele4.setAttribute('class' , 'col-sm-3');
+        } else if (this.sizeOfField == 'Medium') {
+          divele4.setAttribute('class' , 'col-sm-6');
+        } else if (this.sizeOfField == 'Large') {
+          divele4.setAttribute('class' , 'col-sm-9');
+        }
+
+        inputgroupdiv.setAttribute('class' , 'input-group');
+        labelele.setAttribute('class' , 'customlabel') ;
+        labelele.textContent = labelval ;
+        inputele.setAttribute('class' , 'form-control form-control-sm') ;
+        selectele.setAttribute('class' , 'form-control form-control-sm') ;
+        textareaele.setAttribute('class' , 'form-control form-control-sm') ;
         divele1.appendChild(divele2);
         divele2.appendChild(divele3);
-        divele3.appendChild(inputele);
-        inputele.setAttribute('class' , 'form-control');
-        inputele.setAttribute('type' , 'text');
-        inputele.setAttribute('maxlength' , '5');
-        divele3.appendChild(spanele);
+        divele2.appendChild(divele4);
+        divele3.appendChild(labelele);
+        divele4.appendChild(inputgroupdiv);
+         if (this.customElement == 'Text') {
+          inputgroupdiv.appendChild(inputele);
+          inputgroupdiv.appendChild(spanele);
+          inputele.setAttribute('type' , 'text') ;
+          inputele.setAttribute('maxlength' , this.lengthChars) ;
+        } else if (this.customElement == 'Number' ) {
+          inputele.setAttribute('type' , 'number') ;
+          inputgroupdiv.appendChild(inputele);
+          inputgroupdiv.appendChild(spanele);
+          inputele.setAttribute('min' , this.minvalue) ;
+          inputele.setAttribute('max' , this.maxvalue) ;
+        } else if (this.customElement == 'Date') {
+          inputgroupdiv.appendChild(inputele);
+          inputgroupdiv.appendChild(spanele);
+          inputele.setAttribute('type' , 'date') ;
+        } else if (this.customElement == 'textarea') {
+          inputgroupdiv.appendChild(textareaele);
+          inputgroupdiv.appendChild(spanele);
+        } else if (this.customElement == 'currency') {
+          inputgroupdiv.appendChild(selectele);
+          inputgroupdiv.appendChild(spanele);
+          selectele.setAttribute('id' , 'currencyId');
+          const sel = document.getElementById('currencyId');
+          this.currencysymbol.forEach(ele => {
+            const opt = document.createElement('option');
+            opt.appendChild(document.createTextNode(ele));
+            opt.value = ele;
+            selectele.appendChild(opt);
+          });
+        }
+        spanele.setAttribute('class' , 'mylink') ;
+        deletetrash.setAttribute('class' , 'fa fa-trash delete') ;
+
+
+      //  spanele.appendChild(anchortag);
+        spanele.appendChild(deletetrash);
         this.data1.nativeElement.appendChild(divele1);
 }
 

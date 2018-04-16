@@ -219,7 +219,7 @@
                                </div>
                             </div>
                            </section>
-                           <section>
+                           <section style="padding-top:15px;">
                               <div #parent>
 
 
@@ -228,6 +228,19 @@
 
                               </div>
 
+                              <!-- <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                     <label class="customlabel">testidfnnssssssss</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                      <div class="input-group">
+                                          <input class="form-control form-control-sm">
+                                          <span><i class="fa fa-trash delete"></i></span>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div> -->
                            </section>
                             <section>
                               <div style="padding-top:20px;text-align:center;">
@@ -1124,19 +1137,14 @@
   <button style="display:none;" id="customdata" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#customModal" >Open Small Modal</button>
  <div class="modal fade" id="customModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true "  data-keyboard="false">
  <div class="modal-dialog " role="document ">
-    <div class="modal-header ">
-        <!-- <mat-form-field class="example-full-width">
-            <input type="text" matInput placeholder="Label of Input"  (input)="onlabel($event.target.value)" >
-          </mat-form-field> -->
-
-     </div>
    <div class="modal-content ">
-      <div  class="modal-header ">
+      <div class="modal-header ">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-         </div>
+              <span aria-hidden="true">&times;</span>
+            </button>
+       </div>
      <div class="container">
+       <form id="customForm">
         <div class="form-group">
             <mat-form-field class="example-full-width">
                 <input type="text" matInput placeholder="Label of Input"  (input)="onlabel($event.target.value)" >
@@ -1170,17 +1178,10 @@
                    </span>
                 </a>
               </div>
-              <!-- <div class="col-sm-2">
-                  <a  data-toggle="tooltip" data-placement="top" title="Currency field"  (click)="gettingFormElements('currency')" >
-                     <span >
-                         <i class="fa fa-money text-info" aria-hidden="true"></i>
-                     </span>
-                  </a>
-                </div> -->
            </div>
         </div>
         <div class="form-group col-sm-8" *ngIf="sizeoffield">
-            <select class="form-control">
+            <select class="form-control" [(ngModel)]="sizeOfField" [ngModelOptions]="{standalone: true}">
             <option value="">Choose Size</option>
             <option value="small">Small</option>
             <option value="Medium">Medium</option>
@@ -1189,33 +1190,31 @@
          </div>
          <div class="form-group" *ngIf="textfieldattr" >
             <label class="control-label">Length of  Charaters</label>
-             <mat-slider   min="1" max="20" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="lengthChars"></mat-slider>
+             <mat-slider   min="1" max="20" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="lengthChars" [ngModelOptions]="{standalone: true}"></mat-slider>
           </div>
           <div class="form-group" *ngIf="numberfieldattr">
               <label class="control-label">Min</label>
-               <mat-slider   min="-10" max="100" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="lengthChars"></mat-slider>
+               <mat-slider   min="-10" max="20" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="minvalue" [ngModelOptions]="{standalone: true}"></mat-slider>
             </div>
             <div class="form-group" *ngIf="numberfieldattr" >
                 <label class="control-label">Max</label>
-                 <mat-slider   min="1" max="1000" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="lengthChars"></mat-slider>
+                 <mat-slider   min="1" max="20" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="maxvalue" [ngModelOptions]="{standalone: true}"></mat-slider>
               </div>
-              <div class="form-group" *ngIf="datefieldattr">
+              <!-- <div class="form-group" *ngIf="datefieldattr">
                   <label class="control-label">Min Date</label>
                   <input type="date" class="form-control" id="datepicker1" width="276" />
               </div>
               <div class="form-group" *ngIf="datefieldattr">
                   <label class="control-label">Max Date</label>
                   <input type="date" class="form-control" id="datepicker2" width="276" />
-              </div>
+              </div> -->
+            </form>
      </div>
 
      <div class="modal-footer">
         <button class="btn btn-primary btn-sm mr-auto" data-dismiss="modal"  >CLOSE</button>
         <button class="btn btn-primary btn-sm" id="okbtn" (click)="custommodal()">OK</button>
       </div>
-     <!-- <div class="modal-footer ">
-
-     </div> -->
    </div>
  </div>
 </div>

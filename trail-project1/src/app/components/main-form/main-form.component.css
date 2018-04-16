@@ -31,6 +31,21 @@ a , .btn {
   font-size: 12px !important;
 }
 
+.customlabel {
+  float: left;
+  width:120px;
+  padding-top:8px;
+  white-space:normal;
+  font-size: 12px;
+}
+
+::ng-deep .delete{
+   font-size: 18px;
+   color : red ;
+   padding: 5px 0px 0px 15px;
+   cursor: pointer;
+ }
+
 :host ::ng-deep .labelCenter{
   padding-left: 30px
   }
