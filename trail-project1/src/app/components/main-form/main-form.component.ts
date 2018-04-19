@@ -26,7 +26,9 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   panelOpenState: boolean;
   checkbox: any;
   countVal = 0;
+  items: any[] = [];
   hospServciesGender: any;
+  customForm: FormGroup;
   hospServciesOther: any;
   hospServicesChild: any;
   hospServicesTotal: any;
@@ -129,6 +131,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
  datemax: any ;
   /* currency field properties  Starts */
   currencyfieldattr: boolean ;
+  multibox : boolean ;
   currencyval: any ;
   typeofcurrency: any ;
   /* currency field properties  Ends */
@@ -156,12 +159,33 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     this.countervaluehosp = 0 ;
     this.currencyApi();
     this.currencyval = '';
+    this.createionform() ;
   }
 
   ngOnDestroy() {
     // if (this.id) {
     //   clearInterval(this.id);
     // }
+  }
+  createionform() {
+    this.customForm = this._fb.group({
+      items: this._fb.array([ this.createItem() ])
+    });
+  }
+
+  createItem(): FormGroup {
+    return this._fb.group({
+      name: '',
+    });
+  }
+
+  deleteRow(index: number) {
+    const control = <FormArray>this.customForm.controls['items'];
+    control.removeAt(index);
+}
+  addItem(): void {
+    const control = <FormArray>this.customForm.controls['items'];
+      control.push(this.createItem());
   }
 
   addCustomField() {
@@ -189,47 +213,70 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   gettingFormElements(val) {
    // console.log(val);
     if (val == 'Text') {
+      document.getElementById('textfield').classList.add('border', 'border-danger');
+      document.getElementById('numberfield').classList.remove('border', 'border-danger');
+      document.getElementById('datefield').classList.remove('border', 'border-danger');
+      document.getElementById('currencyfield').classList.remove('border', 'border-danger');
+      document.getElementById('multiplefield').classList.remove('border', 'border-danger');
       this.customlabelfield =  true ;
       this.textfieldattr = true ;
       this.sizeoffield = true ;
       this.numberfieldattr = false ;
       this.datefieldattr =  false ;
       this.currencyfieldattr = false ;
+      this.multibox = false ;
     } else if (val == 'Number') {
+      document.getElementById('textfield').classList.remove('border', 'border-danger');
+      document.getElementById('numberfield').classList.add('border', 'border-danger');
+      document.getElementById('datefield').classList.remove('border', 'border-danger');
+      document.getElementById('currencyfield').classList.remove('border', 'border-danger');
+      document.getElementById('multiplefield').classList.remove('border', 'border-danger');
       this.customlabelfield =  true ;
       this.textfieldattr = false ;
       this.sizeoffield = true ;
       this.numberfieldattr = true ;
       this.datefieldattr =  false ;
       this.currencyfieldattr = false ;
+      this.multibox = false ;
     } else if (val == 'Date') {
+      document.getElementById('textfield').classList.remove('border', 'border-danger');
+      document.getElementById('numberfield').classList.remove('border', 'border-danger');
+      document.getElementById('datefield').classList.add('border', 'border-danger');
+      document.getElementById('currencyfield').classList.remove('border', 'border-danger');
+      document.getElementById('multiplefield').classList.remove('border', 'border-danger');
       this.customlabelfield =  true ;
       this.textfieldattr = false ;
       this.sizeoffield = false ;
       this.numberfieldattr = false ;
       this.datefieldattr =  true ;
       this.currencyfieldattr = false ;
-    } else if (val == 'textarea') {
-      this.customlabelfield =  true ;
-      this.textfieldattr = false ;
-      this.sizeoffield = true ;
-      this.numberfieldattr = false ;
-      this.datefieldattr =  false ;
-      this.currencyfieldattr = false ;
-    } else if (val == 'currency') {
+      this.multibox = false ;
+    }  else if (val == 'currency') {
+      document.getElementById('textfield').classList.remove('border', 'border-danger');
+      document.getElementById('numberfield').classList.remove('border', 'border-danger');
+      document.getElementById('datefield').classList.remove('border', 'border-danger');
+      document.getElementById('currencyfield').classList.add('border', 'border-danger');
+      document.getElementById('multiplefield').classList.remove('border', 'border-danger');
       this.customlabelfield =  true ;
       this.textfieldattr = false ;
       this.sizeoffield = false ;
       this.numberfieldattr = false ;
       this.datefieldattr =  false ;
       this.currencyfieldattr = true ;
+      this.multibox = false ;
     } else if (val == 'multiple') {
+      document.getElementById('textfield').classList.remove('border', 'border-danger');
+      document.getElementById('numberfield').classList.remove('border', 'border-danger');
+      document.getElementById('datefield').classList.remove('border', 'border-danger');
+      document.getElementById('currencyfield').classList.remove('border', 'border-danger');
+      document.getElementById('multiplefield').classList.add('border', 'border-danger');
       this.customlabelfield =  true ;
       this.textfieldattr = false ;
       this.sizeoffield = false ;
       this.numberfieldattr = false ;
       this.datefieldattr =  false ;
       this.currencyfieldattr = false ;
+      this.multibox = true ;
     }
     this.customElement = val;
   }
@@ -327,13 +374,13 @@ creatingElements(labelval) {
         divele2.setAttribute('class' , 'row');
         divele3.setAttribute('class' , 'col-sm-3');
         if (this.sizeOfField == 'small') {
-          divele4.setAttribute('class' , 'col-sm-3');
+          divele4.setAttribute('class' , 'col-sm-3 inputPadding');
         } else if (this.sizeOfField == 'Medium') {
-          divele4.setAttribute('class' , 'col-sm-6');
+          divele4.setAttribute('class' , 'col-sm-6 inputPadding');
         } else if (this.sizeOfField == 'Large') {
-          divele4.setAttribute('class' , 'col-sm-9');
+          divele4.setAttribute('class' , 'col-sm-9 inputPadding');
         } else {
-          divele4.setAttribute('class' , 'col-sm-6');
+          divele4.setAttribute('class' , 'col-sm-6 inputPadding');
         }
 
         inputgroupdiv.setAttribute('class' , 'input-group');

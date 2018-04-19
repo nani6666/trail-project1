@@ -39,12 +39,27 @@ a , .btn {
   font-size: 12px;
 }
 
+
 ::ng-deep .delete{
    font-size: 18px;
    color : red ;
    padding: 5px 0px 0px 15px;
    cursor: pointer;
  }
+
+ ::ng-deep .inputPadding{
+  padding: 0px 0px 0px  32px;
+ }
+
+ .btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
+}
 
 :host ::ng-deep .labelCenter{
   padding-left: 30px
