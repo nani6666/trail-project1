@@ -1,0 +1,6 @@
+::ng-deep .delete{
+  font-size: 18px;
+  color : red ;
+  padding: 20px 0px 0px 15px;
+  cursor: pointer;
+}

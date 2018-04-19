@@ -3,8 +3,131 @@
       <div class="col-md-3">
           <div class="card">
               <div class="card-body">
-                  <div id="txt"></div>
-                  <strong>{{presentdate  | date :'fullDate'}}</strong>
+
+                  <!-- <div id="txt"></div>
+                  <strong>{{presentdate  | date :'fullDate'}}</strong> -->
+                  <div class="container" style="background-color: #fff;" *ngIf="customSection">
+                      <h5 class="card-title">Custom Row Fields</h5>
+                  <form id="customForm">
+                  <label class="control-label">Custom Elements</label>
+                    <div class="form-group" >
+                       <div class="row">
+                         <div class="col-sm-3">
+                           <a  matTooltip="Textfield"   (click)="gettingFormElements('Text')" ><span  ><i  class="fa fa-lg text-info" aria-hidden="true" >ABC</i>
+                           </span></a>
+                         </div>
+                         <div class="col-sm-3">
+                           <a matTooltip="Number field"  (click)="gettingFormElements('Number')" ><span ><i class="fa fa-lg text-info" aria-hidden="true">123</i>
+                           </span></a>
+                         </div>
+                         <div class="col-sm-3">
+                           <a  matTooltip="Date field" (click)="gettingFormElements('Date')" ><span ><i class="fa fa-calendar fa-lg text-info" aria-hidden="true"></i>
+                           </span></a>
+                         </div>
+                         <div class="col-sm-3">
+                          <a  matTooltip="Currency field"  (click)="gettingFormElements('currency')" >
+                             <span >
+                                 <i class="fa fa-money fa-lg text-info" aria-hidden="true"></i>
+                             </span>
+                          </a>
+                        </div>
+                         </div>
+                    </div>
+                    <div class="form-group" >
+                        <div class="row">
+
+                         <div class="col-sm-3">
+                            <a  matTooltip="Multiple Choice"  (click)="gettingFormElements('multiple')" >
+                               <span >
+                                   <i class="fa fa-list fa-lg text-info" aria-hidden="true"></i>
+                               </span>
+                            </a>
+                          </div>
+                      </div>
+                     </div>
+                     <div class="" *ngIf="customlabelfield">
+                        <div class="form-check">
+                            <input class="" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                             Required
+                            </label>
+                          </div>
+                     </div>
+                     <div class="" *ngIf="customlabelfield">
+                        <mat-form-field class="example-full-width">
+                            <input type="text" matInput placeholder="Label of Input"  (input)="onlabel($event.target.value)" >
+                          </mat-form-field>
+                     </div>
+                    <!-- <div class="form-group col-sm-8" *ngIf="sizeoffield">
+                        <select class="form-control" [(ngModel)]="sizeOfField" [ngModelOptions]="{standalone: true}">
+                        <option value="">Choose Size</option>
+                        <option value="small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                        </select>
+                     </div> -->
+                     <div class="" *ngIf="textfieldattr">
+                      <div class="form-check">
+                          <input class="" type="checkbox" value="" id="defaultCheck2" [(ngModel)]="multilineText" [ngModelOptions]="{standalone: true}" >
+                          <label class="form-check-label" for="defaultCheck2">
+                            Multi line Text
+                          </label>
+                        </div>
+                   </div>
+                     <div class="" *ngIf="textfieldattr" >
+                        <label class="control-label">Maximum Characters length</label>
+                         <mat-slider   min="1" max="20" step="1" value="0" [disabled]="multilineText" thumbLabel tickInterval="auto" [(ngModel)]="lengthChars" [ngModelOptions]="{standalone: true}"></mat-slider>
+                      </div>
+
+                      <div *ngIf="numberfieldattr" >
+                         <label class="control-label">Type</label>
+                      <div >
+                        <input type="radio" name="typeofnumber"  value='range'  [(ngModel)]='typeofnumber'  [ngModelOptions]="{standalone: true}"> <label>Range</label>
+                        <input type="radio" name='typeofnumber' value='Decimal'  [(ngModel)]='typeofnumber' [ngModelOptions]="{standalone: true}"><label>Decimal</label>
+                      </div>
+
+                      <div class="" *ngIf="typeofnumber == 'range'">
+                          <label class="control-label">Min</label>
+                           <mat-slider   min="0" max="20" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="minvalue" [ngModelOptions]="{standalone: true}"></mat-slider>
+                        </div>
+                        <div class="" *ngIf="typeofnumber == 'range'" >
+                            <label class="control-label">Max</label>
+                             <mat-slider   min="1" max="20" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="maxvalue" [ngModelOptions]="{standalone: true}"></mat-slider>
+                          </div>
+                        </div>
+                          <div class="" *ngIf="datefieldattr">
+                              <div class="form-check">
+                                  <input class="" type="checkbox" value="" id="defaultCheck2" [(ngModel)]="daterange" [ngModelOptions]="{standalone: true}" >
+                                  <label class="form-check-label" for="defaultCheck2">
+                                    Range
+                                  </label>
+                                </div>
+                                <div *ngIf="daterange"><label >Min Date</label><input type="date" [(ngModel)]="datemin" [ngModelOptions]="{standalone: true}"  class="form-control" id="min" value="11-08-2012"></div>
+                                <div *ngIf="daterange"><label>Max Date</label><input type="date"  [(ngModel)]="datemax" [ngModelOptions]="{standalone: true}" class="form-control" id="max" value="11-08-2012"></div>
+                           </div>
+                           <div class="" *ngIf="currencyfieldattr">
+                              <div >
+                                  <label class="" for="defaultCheck2">
+                                    Type
+                                  </label>
+                                </div>
+                                <div >
+                                    <input type="radio" name="typeofnumber"  value='specific'  [(ngModel)]='typeofcurrency'  [ngModelOptions]="{standalone: true}"> <label>Specific</label>
+                                    <input type="radio" name='typeofnumber' value='any'  [(ngModel)]='typeofcurrency' [ngModelOptions]="{standalone: true}"><label>Any</label>
+                                  </div>
+                                  <div *ngIf="typeofcurrency=='specific'">
+                                    <!-- <label>Choose Currency</label> -->
+                                    <select [(ngModel)]='currencyval'  [ngModelOptions]="{standalone: true}" class="form-control">
+                                      <option value="">Choose Currency</option>
+                                      <option *ngFor="let val of currencysymbol" value={{val}}>{{val}}</option>
+                                    </select>
+                                  </div>
+                           </div>
+                        </form>
+                        <div class="" style="padding-top:30px;text-align:center;">
+                            <button class="btn btn-primary btn-sm" id="okbtn" (click)="custommodal()">Add Form</button>
+                          </div>
+                 </div>
               </div>
           </div>
         </div>
@@ -247,6 +370,7 @@
                                 <button class="btn btn-sm btn-primary" (click)="addComponent('hosp')">Clone Row</button>
                                 <button class="btn btn-sm btn-primary" (click)="addCustomField()">Add Custom Row</button>
                                 <button class="btn btn-sm btn-primary" >Save Templete</button>
+                                <button class="btn btn-sm btn-primary" >Reset</button>
                               </div>
                             </section>
                         </mat-expansion-panel>
@@ -466,6 +590,7 @@
                                         <button class="btn btn-sm btn-primary"  (click)="addComponent('pecf')">Clone Row</button>
                                         <button class="btn btn-sm btn-primary">Add Custom Row</button>
                                         <button class="btn btn-sm btn-primary">Save Templete</button>
+                                        <button class="btn btn-sm btn-primary" >Reset</button>
                                       </div>
                                  </section>
                           </mat-expansion-panel>
@@ -687,6 +812,7 @@
                                       <button class="btn btn-sm btn-primary"  (click)="addComponent('outreach')">Clone Row</button>
                                       <button class="btn btn-sm btn-primary">Add Custom Row</button>
                                       <button class="btn btn-sm btn-primary">Save Templete</button>
+                                      <button class="btn btn-sm btn-primary" >Reset</button>
                                     </div>
                                </section>
 
@@ -907,6 +1033,7 @@
                                           <button class="btn btn-sm btn-primary" (click)="addComponent('train')">Clone Row</button>
                                           <button class="btn btn-sm btn-primary">Add Custom Row</button>
                                           <button class="btn btn-sm btn-primary">Save Templete</button>
+                                          <button class="btn btn-sm btn-primary" >Reset</button>
                                         </div>
                                    </section>
                         </mat-expansion-panel>
@@ -1126,6 +1253,7 @@
                                           <button class="btn btn-sm btn-primary" (click)="addComponent('other')">Clone Row</button>
                                           <button class="btn btn-sm btn-primary">Add Custom Row</button>
                                           <button class="btn btn-sm btn-primary">Save Templete</button>
+                                          <button class="btn btn-sm btn-primary" >Reset</button>
                                         </div>
                                    </section>
                           </mat-expansion-panel>
@@ -1134,93 +1262,6 @@
             </div>
           </div>
   </div>
-  <button style="display:none;" id="customdata" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#customModal" >Open Small Modal</button>
- <div class="modal fade" id="customModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true "  data-keyboard="false">
- <div class="modal-dialog " role="document ">
-   <div class="modal-content ">
-      <div class="modal-header ">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-       </div>
-     <div class="container">
-       <form id="customForm">
-        <div class="form-group">
-            <mat-form-field class="example-full-width">
-                <input type="text" matInput placeholder="Label of Input"  (input)="onlabel($event.target.value)" >
-              </mat-form-field>
-        </div>
-        <div class="form-group" >
-           <div class="row">
-             <div class="col-sm-2">
-               <a data-toggle="tooltip" data-placement="top" title="Textfield"  (click)="gettingFormElements('Text')" ><span  ><i  class="fa fa-lg text-info" aria-hidden="true" >ABC</i>
-               </span></a>
-             </div>
-             <div class="col-sm-2">
-               <a data-toggle="tooltip" data-placement="top" title="Number field" (click)="gettingFormElements('Number')" ><span ><i class="fa fa-lg text-info" aria-hidden="true">123</i>
-               </span></a>
-             </div>
-             <div class="col-sm-2">
-               <a  data-toggle="tooltip" data-placement="top" title="Date field" (click)="gettingFormElements('Date')" ><span ><i class="fa fa-calendar fa-lg text-info" aria-hidden="true"></i>
-               </span></a>
-             </div>
-             <div class="col-sm-2">
-               <a  data-toggle="tooltip" data-placement="top" title="Textarea field"  (click)="gettingFormElements('textarea')" >
-                  <span >
-                      <i class="fa fa-sticky-note-o fa-lg text-info" aria-hidden="true"></i>
-                  </span>
-               </a>
-             </div>
-             <div class="col-sm-2">
-                <a  data-toggle="tooltip" data-placement="top" title="Currency field"  (click)="gettingFormElements('currency')" >
-                   <span >
-                       <i class="fa fa-money fa-lg text-info" aria-hidden="true"></i>
-                   </span>
-                </a>
-              </div>
-           </div>
-        </div>
-        <div class="form-group col-sm-8" *ngIf="sizeoffield">
-            <select class="form-control" [(ngModel)]="sizeOfField" [ngModelOptions]="{standalone: true}">
-            <option value="">Choose Size</option>
-            <option value="small">Small</option>
-            <option value="Medium">Medium</option>
-            <option value="Large">Large</option>
-            </select>
-         </div>
-         <div class="form-group" *ngIf="textfieldattr" >
-            <label class="control-label">Length of  Charaters</label>
-             <mat-slider   min="1" max="20" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="lengthChars" [ngModelOptions]="{standalone: true}"></mat-slider>
-          </div>
-          <div class="form-group" *ngIf="numberfieldattr">
-              <label class="control-label">Min</label>
-               <mat-slider   min="-10" max="20" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="minvalue" [ngModelOptions]="{standalone: true}"></mat-slider>
-            </div>
-            <div class="form-group" *ngIf="numberfieldattr" >
-                <label class="control-label">Max</label>
-                 <mat-slider   min="1" max="20" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="maxvalue" [ngModelOptions]="{standalone: true}"></mat-slider>
-              </div>
-              <!-- <div class="form-group" *ngIf="datefieldattr">
-                  <label class="control-label">Min Date</label>
-                  <input type="date" class="form-control" id="datepicker1" width="276" />
-              </div>
-              <div class="form-group" *ngIf="datefieldattr">
-                  <label class="control-label">Max Date</label>
-                  <input type="date" class="form-control" id="datepicker2" width="276" />
-              </div> -->
-            </form>
-     </div>
-
-     <div class="modal-footer">
-        <button class="btn btn-primary btn-sm mr-auto" data-dismiss="modal"  >CLOSE</button>
-        <button class="btn btn-primary btn-sm" id="okbtn" (click)="custommodal()">OK</button>
-      </div>
-   </div>
- </div>
-</div>
-</div>
-
-
 
 
 

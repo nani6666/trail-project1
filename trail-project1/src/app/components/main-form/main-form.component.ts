@@ -6,6 +6,7 @@ import { Component,
   ViewChild, OnDestroy ,
   ComponentFactoryResolver,
   ViewContainerRef, ElementRef , Renderer2} from '@angular/core';
+
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 declare const jQuery: any;
@@ -14,7 +15,7 @@ declare const jQuery: any;
   templateUrl: './main-form.component.html',
   styleUrls: ['./main-form.component.css']
 })
-export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy{
+export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   @ViewChild('parent', { read: ViewContainerRef }) container: ViewContainerRef;
   @ViewChild('parent1', { read: ViewContainerRef }) container1: ViewContainerRef;
   @ViewChild('parent2', { read: ViewContainerRef }) container2: ViewContainerRef;
@@ -108,29 +109,41 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy{
   lengthChars: any;
   sizeOfField: any ;
   presentdate: Date;
+  customSection: boolean;
+  customlabelfield: boolean;
   id: any ;
   public invoiceForm: FormGroup;
    /* fields properties  Starts */
    sizeoffield: boolean ;
    /* text field properties  Starts */
   textfieldattr: boolean ;
+  multilineText: any ;
 /* text field properties  Ends */
  /* number field properties  Starts */
  numberfieldattr: boolean ;
+ typeofnumber: any ;
  /* number field properties  Ends */
- datefieldattr:boolean ;
+ datefieldattr: boolean ;
+ daterange: any ;
+ datemin: any ;
+ datemax: any ;
+  /* currency field properties  Starts */
+  currencyfieldattr: boolean ;
+  currencyval: any ;
+  typeofcurrency: any ;
+  /* currency field properties  Ends */
 /* fields properties  Ends */
   constructor(private _fb: FormBuilder , private _cfr: ComponentFactoryResolver,
        private renderer: Renderer2 , private serviceCall: RestcallsService ) { }
        ngAfterViewInit() {
-        console.log(this.data1.nativeElement);
+        // console.log(this.data1.nativeElement);
       }
   ngOnInit() {
-    this.startTime();
-  this.id = setInterval(() => {
-    this.startTime();
-  }, 500);
-    this.presentdate = new Date();
+  //   this.startTime();
+  // this.id = setInterval(() => {
+  //   this.startTime();
+  // }, 500);
+  //  this.presentdate = new Date();
     this.hospServicesTotal = true ;
     this.hospServciesGender = true ;
     this.hospServciesOther = true ;
@@ -142,20 +155,20 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy{
     this.changetoggles();
     this.countervaluehosp = 0 ;
     this.currencyApi();
+    this.currencyval = '';
   }
 
   ngOnDestroy() {
-    if (this.id) {
-      clearInterval(this.id);
-    }
+    // if (this.id) {
+    //   clearInterval(this.id);
+    // }
   }
 
   addCustomField() {
-   // jQuery('#myModal').modal({backdrop: true});
-   // document.getElementById('customForm').reset() ;
-    document.getElementById('customdata').click() ;
+    this.customSection = true ;
   }
 
+  /* live time method starts */
   startTime() {
     const today = new Date();
     let h = today.getHours();
@@ -171,51 +184,64 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy{
     h + ':' + m + ':' + s + ' ' + ampm;
     const t = setInterval(this.startTime, 500);
 }
+/* live time method Ends */
 
-checkTime(i) {
-  if (i < 10) {i = '0' + i };  // add zero in front of numbers < 10
-  return i;
-}
   gettingFormElements(val) {
-    console.log(val);
+   // console.log(val);
     if (val == 'Text') {
+      this.customlabelfield =  true ;
       this.textfieldattr = true ;
       this.sizeoffield = true ;
       this.numberfieldattr = false ;
       this.datefieldattr =  false ;
+      this.currencyfieldattr = false ;
     } else if (val == 'Number') {
+      this.customlabelfield =  true ;
       this.textfieldattr = false ;
       this.sizeoffield = true ;
       this.numberfieldattr = true ;
       this.datefieldattr =  false ;
+      this.currencyfieldattr = false ;
     } else if (val == 'Date') {
+      this.customlabelfield =  true ;
       this.textfieldattr = false ;
-      this.sizeoffield = true ;
+      this.sizeoffield = false ;
       this.numberfieldattr = false ;
       this.datefieldattr =  true ;
+      this.currencyfieldattr = false ;
     } else if (val == 'textarea') {
+      this.customlabelfield =  true ;
       this.textfieldattr = false ;
       this.sizeoffield = true ;
       this.numberfieldattr = false ;
       this.datefieldattr =  false ;
+      this.currencyfieldattr = false ;
     } else if (val == 'currency') {
+      this.customlabelfield =  true ;
       this.textfieldattr = false ;
-      this.sizeoffield = true ;
+      this.sizeoffield = false ;
       this.numberfieldattr = false ;
       this.datefieldattr =  false ;
+      this.currencyfieldattr = true ;
+    } else if (val == 'multiple') {
+      this.customlabelfield =  true ;
+      this.textfieldattr = false ;
+      this.sizeoffield = false ;
+      this.numberfieldattr = false ;
+      this.datefieldattr =  false ;
+      this.currencyfieldattr = false ;
     }
     this.customElement = val;
   }
 
 
  custommodal() {
-   console.log(this.lengthChars);
- if (this.labelVal === " ") {
-    alert('Please Enter Label');
- } else if (this.customElement === undefined) {
+  if (this.customElement === undefined) {
   alert('Please Choose one of element');
-} else {
-   document.getElementById('okbtn').setAttribute('data-dismiss' , 'modal');
+  } else if (this.labelVal === " ") {
+  alert('Please Enter Label');
+  }  else {
+  this.customSection =  false ;
    this.countVal++ ;
    if (this.customElement == 'Text') {
       this.creatingElements(this.labelVal);
@@ -306,6 +332,8 @@ creatingElements(labelval) {
           divele4.setAttribute('class' , 'col-sm-6');
         } else if (this.sizeOfField == 'Large') {
           divele4.setAttribute('class' , 'col-sm-9');
+        } else {
+          divele4.setAttribute('class' , 'col-sm-6');
         }
 
         inputgroupdiv.setAttribute('class' , 'input-group');
@@ -320,34 +348,62 @@ creatingElements(labelval) {
         divele3.appendChild(labelele);
         divele4.appendChild(inputgroupdiv);
          if (this.customElement == 'Text') {
-          inputgroupdiv.appendChild(inputele);
-          inputgroupdiv.appendChild(spanele);
-          inputele.setAttribute('type' , 'text') ;
-          inputele.setAttribute('maxlength' , this.lengthChars) ;
+           if ( this.multilineText == true) {
+            inputgroupdiv.appendChild(textareaele);
+            inputgroupdiv.appendChild(spanele);
+           } else {
+            inputgroupdiv.appendChild(inputele);
+            inputgroupdiv.appendChild(spanele);
+            inputele.setAttribute('type' , 'text') ;
+            inputele.setAttribute('maxlength' , this.lengthChars) ;
+           }
+
         } else if (this.customElement == 'Number' ) {
           inputele.setAttribute('type' , 'number') ;
           inputgroupdiv.appendChild(inputele);
           inputgroupdiv.appendChild(spanele);
           inputele.setAttribute('min' , this.minvalue) ;
           inputele.setAttribute('max' , this.maxvalue) ;
+          if (this.typeofnumber == 'Decimal'){
+            inputele.setAttribute('step' , '.01') ;
+          } else {
+
+          }
         } else if (this.customElement == 'Date') {
+          if (this.daterange == true ) {
           inputgroupdiv.appendChild(inputele);
           inputgroupdiv.appendChild(spanele);
           inputele.setAttribute('type' , 'date') ;
-        } else if (this.customElement == 'textarea') {
-          inputgroupdiv.appendChild(textareaele);
+          inputele.setAttribute('min' , this.datemin) ;
+          inputele.setAttribute('max' ,  this.datemax) ;
+          } else {
+          inputgroupdiv.appendChild(inputele);
           inputgroupdiv.appendChild(spanele);
-        } else if (this.customElement == 'currency') {
-          inputgroupdiv.appendChild(selectele);
-          inputgroupdiv.appendChild(spanele);
-          selectele.setAttribute('id' , 'currencyId');
-          const sel = document.getElementById('currencyId');
-          this.currencysymbol.forEach(ele => {
-            const opt = document.createElement('option');
-            opt.appendChild(document.createTextNode(ele));
-            opt.value = ele;
-            selectele.appendChild(opt);
-          });
+          inputele.setAttribute('type' , 'date') ;
+          }
+        }  else if (this.customElement == 'currency') {
+          inputgroupdiv.appendChild(inputele);
+          inputele.setAttribute('type' , 'number') ;
+          inputele.setAttribute('step' , 'any') ;
+
+          if (this.typeofcurrency == 'specific') {
+            inputgroupdiv.appendChild(spanele);
+            spanele.setAttribute('style' , 'padding-left:30px');
+            spanele.textContent =  '  (' + this.currencyval + ' )';
+            inputgroupdiv.appendChild(spanele);
+          } else {
+            inputgroupdiv.appendChild(selectele);
+            selectele.setAttribute('id' , 'currencyId');
+            const sel = document.getElementById('currencyId');
+            this.currencysymbol.forEach(ele => {
+              const opt = document.createElement('option');
+              opt.appendChild(document.createTextNode(ele));
+                opt.value = this.currencyval;
+              selectele.appendChild(opt);
+              });
+              inputgroupdiv.appendChild(spanele);
+          }
+
         }
         spanele.setAttribute('class' , 'mylink') ;
         deletetrash.setAttribute('class' , 'fa fa-trash delete') ;
@@ -358,6 +414,9 @@ creatingElements(labelval) {
         this.data1.nativeElement.appendChild(divele1);
 }
 
+   changeCurrencyval(val) {
+    const elem = document.getElementById('currencyId') ;
+   }
 /*creating Elements Ends */
 
 
