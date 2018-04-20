@@ -3,31 +3,31 @@
       <div class="col-md-3">
           <div class="card">
               <div class="card-body">
-
+                  <h5 class="card-title">Custom Row Fields</h5>
                   <!-- <div id="txt"></div>
                   <strong>{{presentdate  | date :'fullDate'}}</strong> -->
                   <div class="container" style="background-color: #fff;" *ngIf="customSection">
-                      <h5 class="card-title">Custom Row Fields</h5>
+
                   <form [formGroup]="customForm" id="customForm">
                   <label class="control-label">Custom Elements</label>
                     <div class="form-group" >
                        <div class="row">
-                         <div class="col-sm-3" id="textfield">
-                           <a  matTooltip="Textfield" class=""  (click)="gettingFormElements('Text')" ><span  ><i  class="fa fa-lg text-info" aria-hidden="true" >ABC</i>
+                         <div class="col-sm-3" >
+                           <a  matTooltip="Textfield" class=""  (click)="gettingFormElements('Text')" ><span  ><i  id="textfield" class="fa fa-lg text-info" aria-hidden="true" >ABC</i>
                            </span></a>
                          </div>
-                         <div class="col-sm-3" id="numberfield">
-                           <a matTooltip="Number field"   (click)="gettingFormElements('Number')" ><span ><i class="fa fa-lg text-info" aria-hidden="true">123</i>
+                         <div class="col-sm-3" >
+                           <a matTooltip="Number field"   (click)="gettingFormElements('Number')" ><span ><i id="numberfield" class="fa fa-lg text-info" aria-hidden="true">123</i>
                            </span></a>
                          </div>
-                         <div class="col-sm-3" id="datefield">
-                           <a  matTooltip="Date field"  (click)="gettingFormElements('Date')" ><span ><i class="fa fa-calendar fa-lg text-info" aria-hidden="true"></i>
+                         <div class="col-sm-3" >
+                           <a  matTooltip="Date field"  (click)="gettingFormElements('Date')" ><span ><i id="datefield" class="fa fa-calendar fa-lg text-info" aria-hidden="true"></i>
                            </span></a>
                          </div>
-                         <div class="col-sm-3" id="currencyfield">
+                         <div class="col-sm-3" >
                           <a  matTooltip="Currency field"   (click)="gettingFormElements('currency')" >
                              <span >
-                                 <i class="fa fa-money fa-lg text-info" aria-hidden="true"></i>
+                                 <i id="currencyfield" class="fa fa-money fa-lg text-info" aria-hidden="true"></i>
                              </span>
                           </a>
                         </div>
@@ -36,10 +36,10 @@
                     <div class="form-group" >
                         <div class="row">
 
-                         <div class="col-sm-3" id="multiplefield">
+                         <div class="col-sm-3" >
                             <a  matTooltip="Multiple Choice"  (click)="gettingFormElements('multiple')" >
                                <span >
-                                   <i class="fa fa-list fa-lg text-info" aria-hidden="true"></i>
+                                   <i id="multiplefield" class="fa fa-list fa-lg text-info" aria-hidden="true"></i>
                                </span>
                             </a>
                           </div>
@@ -123,6 +123,12 @@
                                   </div>
                            </div>
                            <div   *ngIf="multibox">
+                              <div class="form-check">
+                                  <input class="" type="checkbox" value="" id="multiselect" [(ngModel)]="multiselect" [ngModelOptions]="{standalone: true}" >
+                                  <label class="" for="multiselect">
+                                    Multiselect
+                                  </label>
+                                </div>
                            <button class="btn  btn-primary btn-circle float-right" (click)="addItem()"><i class="fa fa-plus" aria-hidden="true"></i></button>
                            <div formArrayName="items" *ngFor="let item of  customForm.controls.items.controls; let i=index">
                              <div [formGroupName]="i" class="form-group">

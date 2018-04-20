@@ -131,10 +131,13 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
  datemax: any ;
   /* currency field properties  Starts */
   currencyfieldattr: boolean ;
-  multibox : boolean ;
   currencyval: any ;
   typeofcurrency: any ;
-  /* currency field properties  Ends */
+   /* currency field properties  Ends */
+    /* multi field properties  Starts */
+  multiselect: any ;
+  multibox: boolean ;
+ /* multi field properties  Ends */
 /* fields properties  Ends */
   constructor(private _fb: FormBuilder , private _cfr: ComponentFactoryResolver,
        private renderer: Renderer2 , private serviceCall: RestcallsService ) { }
@@ -213,11 +216,12 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   gettingFormElements(val) {
    // console.log(val);
     if (val == 'Text') {
-      document.getElementById('textfield').classList.add('border', 'border-danger');
-      document.getElementById('numberfield').classList.remove('border', 'border-danger');
-      document.getElementById('datefield').classList.remove('border', 'border-danger');
-      document.getElementById('currencyfield').classList.remove('border', 'border-danger');
-      document.getElementById('multiplefield').classList.remove('border', 'border-danger');
+      document.getElementById('textfield').classList.remove('text-info');
+      document.getElementById('textfield').classList.add('text-danger');
+      document.getElementById('numberfield').classList.remove('text-danger');
+      document.getElementById('datefield').classList.remove('text-danger');
+      document.getElementById('currencyfield').classList.remove('text-danger');
+      document.getElementById('multiplefield').classList.remove('text-danger');
       this.customlabelfield =  true ;
       this.textfieldattr = true ;
       this.sizeoffield = true ;
@@ -226,11 +230,12 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.currencyfieldattr = false ;
       this.multibox = false ;
     } else if (val == 'Number') {
-      document.getElementById('textfield').classList.remove('border', 'border-danger');
-      document.getElementById('numberfield').classList.add('border', 'border-danger');
-      document.getElementById('datefield').classList.remove('border', 'border-danger');
-      document.getElementById('currencyfield').classList.remove('border', 'border-danger');
-      document.getElementById('multiplefield').classList.remove('border', 'border-danger');
+      document.getElementById('textfield').classList.remove('text-danger');
+      document.getElementById('numberfield').classList.remove('text-info');
+      document.getElementById('numberfield').classList.add('text-danger');
+      document.getElementById('datefield').classList.remove('text-danger');
+      document.getElementById('currencyfield').classList.remove('text-danger');
+      document.getElementById('multiplefield').classList.remove('text-danger');
       this.customlabelfield =  true ;
       this.textfieldattr = false ;
       this.sizeoffield = true ;
@@ -239,11 +244,12 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.currencyfieldattr = false ;
       this.multibox = false ;
     } else if (val == 'Date') {
-      document.getElementById('textfield').classList.remove('border', 'border-danger');
-      document.getElementById('numberfield').classList.remove('border', 'border-danger');
-      document.getElementById('datefield').classList.add('border', 'border-danger');
-      document.getElementById('currencyfield').classList.remove('border', 'border-danger');
-      document.getElementById('multiplefield').classList.remove('border', 'border-danger');
+      document.getElementById('textfield').classList.remove('text-danger');
+      document.getElementById('numberfield').classList.remove('text-danger');
+      document.getElementById('datefield').classList.remove('text-info');
+      document.getElementById('datefield').classList.add('text-danger');
+      document.getElementById('currencyfield').classList.remove('text-danger');
+      document.getElementById('multiplefield').classList.remove('text-danger');
       this.customlabelfield =  true ;
       this.textfieldattr = false ;
       this.sizeoffield = false ;
@@ -252,11 +258,12 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.currencyfieldattr = false ;
       this.multibox = false ;
     }  else if (val == 'currency') {
-      document.getElementById('textfield').classList.remove('border', 'border-danger');
-      document.getElementById('numberfield').classList.remove('border', 'border-danger');
-      document.getElementById('datefield').classList.remove('border', 'border-danger');
-      document.getElementById('currencyfield').classList.add('border', 'border-danger');
-      document.getElementById('multiplefield').classList.remove('border', 'border-danger');
+      document.getElementById('textfield').classList.remove('text-danger');
+      document.getElementById('numberfield').classList.remove('text-danger');
+      document.getElementById('datefield').classList.remove('text-danger');
+      document.getElementById('currencyfield').classList.remove('text-info');
+      document.getElementById('currencyfield').classList.add('text-danger');
+      document.getElementById('multiplefield').classList.remove('text-danger');
       this.customlabelfield =  true ;
       this.textfieldattr = false ;
       this.sizeoffield = false ;
@@ -265,11 +272,12 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.currencyfieldattr = true ;
       this.multibox = false ;
     } else if (val == 'multiple') {
-      document.getElementById('textfield').classList.remove('border', 'border-danger');
-      document.getElementById('numberfield').classList.remove('border', 'border-danger');
-      document.getElementById('datefield').classList.remove('border', 'border-danger');
-      document.getElementById('currencyfield').classList.remove('border', 'border-danger');
-      document.getElementById('multiplefield').classList.add('border', 'border-danger');
+      document.getElementById('textfield').classList.remove('text-danger');
+      document.getElementById('numberfield').classList.remove('text-danger');
+      document.getElementById('datefield').classList.remove('text-danger');
+      document.getElementById('currencyfield').classList.remove('text-danger');
+      document.getElementById('multiplefield').classList.remove('text-info');
+      document.getElementById('multiplefield').classList.add('text-danger');
       this.customlabelfield =  true ;
       this.textfieldattr = false ;
       this.sizeoffield = false ;
@@ -299,6 +307,8 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
    } else if (this.customElement == 'textarea') {
     this.creatingElements(this.labelVal);
    } else if (this.customElement == 'currency') {
+    this.creatingElements(this.labelVal);
+   } else if (this.customElement == 'multiple') {
     this.creatingElements(this.labelVal);
    }
 }
@@ -451,6 +461,40 @@ creatingElements(labelval) {
               inputgroupdiv.appendChild(spanele);
           }
 
+        } else if (this.customElement == 'multiple') {
+          console.log(this.customForm.value.items);
+          if (this.multiselect === true ) {
+            this.customForm.value.items.forEach(ele => {
+            const checkelement = document.createElement('div') ;
+            const inputeleradio = document.createElement('input');
+            const labelforradio = document.createElement('label');
+            checkelement.setAttribute('class' , 'form-check');
+            checkelement.setAttribute('style' , 'padding-left:20px;');
+            inputgroupdiv.appendChild(checkelement);
+            inputeleradio.setAttribute('type' , 'checkbox') ;
+            checkelement.appendChild(inputeleradio);
+            checkelement.appendChild(labelforradio);
+            labelforradio.textContent = ele.name ;
+          });
+          } else {
+           this.customForm.value.items.forEach(ele => {
+            const checkelement = document.createElement('div') ;
+            const inputeleradio = document.createElement('input');
+            const labelforradio = document.createElement('label');
+            checkelement.setAttribute('class' , 'form-check');
+            checkelement.setAttribute('style' , 'padding-left:20px;');
+            inputgroupdiv.appendChild(checkelement);
+            inputeleradio.setAttribute('type' , 'radio') ;
+            inputeleradio.setAttribute('name' , 'question') ;
+            inputeleradio.setAttribute('value' , ele.name) ;
+            checkelement.appendChild(inputeleradio);
+            checkelement.appendChild(labelforradio);
+            labelforradio.textContent = ele.name ;
+          });
+          }
+
+
+          inputgroupdiv.appendChild(spanele);
         }
         spanele.setAttribute('class' , 'mylink') ;
         deletetrash.setAttribute('class' , 'fa fa-trash delete') ;
@@ -645,11 +689,6 @@ creatingElements(labelval) {
      /* other services section Ends*/
   }
 
-  clonerow() {
-    this.countervaluehosp++;
-     console.log(this.countervaluehosp);
-    let ServerResponseHtml = '';
-   //  document.getElementById('clone').appendChild('') ;
-  }
+
 
 }
