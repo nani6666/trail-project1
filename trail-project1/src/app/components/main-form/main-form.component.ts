@@ -216,7 +216,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   gettingFormElements(val) {
    // console.log(val);
     if (val == 'Text') {
-      document.getElementById('textfield').classList.remove('text-info');
+    //  document.getElementById('textfield').classList.remove('text-info');
       document.getElementById('textfield').classList.add('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
       document.getElementById('datefield').classList.remove('text-danger');
@@ -231,7 +231,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.multibox = false ;
     } else if (val == 'Number') {
       document.getElementById('textfield').classList.remove('text-danger');
-      document.getElementById('numberfield').classList.remove('text-info');
+    //  document.getElementById('numberfield').classList.remove('text-info');
       document.getElementById('numberfield').classList.add('text-danger');
       document.getElementById('datefield').classList.remove('text-danger');
       document.getElementById('currencyfield').classList.remove('text-danger');
@@ -246,7 +246,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     } else if (val == 'Date') {
       document.getElementById('textfield').classList.remove('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
-      document.getElementById('datefield').classList.remove('text-info');
+     // document.getElementById('datefield').classList.remove('text-info');
       document.getElementById('datefield').classList.add('text-danger');
       document.getElementById('currencyfield').classList.remove('text-danger');
       document.getElementById('multiplefield').classList.remove('text-danger');
@@ -261,7 +261,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       document.getElementById('textfield').classList.remove('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
       document.getElementById('datefield').classList.remove('text-danger');
-      document.getElementById('currencyfield').classList.remove('text-info');
+    //  document.getElementById('currencyfield').classList.remove('text-info');
       document.getElementById('currencyfield').classList.add('text-danger');
       document.getElementById('multiplefield').classList.remove('text-danger');
       this.customlabelfield =  true ;
@@ -276,7 +276,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       document.getElementById('numberfield').classList.remove('text-danger');
       document.getElementById('datefield').classList.remove('text-danger');
       document.getElementById('currencyfield').classList.remove('text-danger');
-      document.getElementById('multiplefield').classList.remove('text-info');
+     // document.getElementById('multiplefield').classList.remove('text-info');
       document.getElementById('multiplefield').classList.add('text-danger');
       this.customlabelfield =  true ;
       this.textfieldattr = false ;
@@ -346,9 +346,13 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     // document.getElementById('labelid').click();
     const comp = this._cfr.resolveComponentFactory(DynamicFormsComponent);
     if (val == 'hosp') {
-      const expComponent = this.container.createComponent(comp);
-      expComponent.instance._ref = expComponent;
-      expComponent.instance.modal();
+      const ele = document.getElementById('mainParent').lastElementChild ;
+      const cln = ele.cloneNode(true);
+      console.log(document.getElementById('mainParent').lastElementChild);
+      // const expComponent = this.container.createComponent(comp);
+      // expComponent.instance._ref = expComponent;
+      // expComponent.instance.modal();
+      this.data1.nativeElement.appendChild(cln) ;
     } else if (val == 'pecf' ) {
       const expComponent = this.container1.createComponent(comp);
       expComponent.instance._ref = expComponent;

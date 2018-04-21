@@ -4,5 +4,13 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false ,
+  firebase: {
+    apiKey: 'AIzaSyBYM9qBucLfcBm09coayIdKFNuSGVUSw4w',
+    authDomain: 'dynamic-forms-13ab0.firebaseapp.com',
+    databaseURL: 'https://dynamic-forms-13ab0.firebaseio.com',
+    projectId: 'dynamic-forms-13ab0',
+    storageBucket: 'dynamic-forms-13ab0.appspot.com',
+    messagingSenderId: '910234310613'
+  }
 };
