@@ -1,15 +1,15 @@
-import { element } from 'protractor';
-import { RestcallsService } from './../../services/restcalls.service';
-import { DynamicFormsComponent } from './../dynamic-forms/dynamic-forms.component';
+
 import { Component,
   OnInit, AfterViewInit ,
   ViewChild, OnDestroy ,
   ComponentFactoryResolver,
   ViewContainerRef, ElementRef , Renderer2} from '@angular/core';
-
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { HtmlParser } from '@angular/compiler';
+import { element } from 'protractor';
+import { RestcallsService } from './../../services/restcalls.service';
+import { DynamicFormsComponent } from './../dynamic-forms/dynamic-forms.component';
 declare const jQuery: any;
 @Component({
   selector: 'app-main-form',
@@ -203,16 +203,24 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
    openformlabel(val) {
      this.accordionName = val ;
      const el = document.getElementById('hospFormData') ;
-       this.htmlContent = JSON.stringify(el.outerHTML);
+       // this.htmlContent = JSON.stringify(el.outerHTML);
+       this.htmlContent = el.outerHTML;
        document.getElementById('formId').click();
    }
  /* open label Ends */
 /* open label starts */
    saveTempData() {
-     if (this.formname === undefined){
+
+    //  const checkboxes = document.getElementsByName('labelCheckbox');
+    //  if (checkboxes.item){
+    //   alert ('something is checked');
+    //  } else {
+    //   alert (' nothing checked ');
+    //  }
+     if (this.formname == '') {
       alert('please Enter Form Name');
      } else {
-       document.getElementById('okbtnform').setAttribute('data-dismiss','modal')
+       document.getElementById('okbtnform').setAttribute('data-dismiss', 'modal') ;
       const obj = {
         'formName': this.formname,
         'accordion': this.accordionName,
@@ -222,9 +230,13 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
         'enableTotal': this.hospServicesTotal,
         'htmlContent': this.htmlContent
           };
-          console.log(obj);
           this.serviceCall.PostCall('/DynamicForm/CreateForm' , obj).subscribe(data => {
-            console.log(data);
+           // console.log(JSON.parse((<any>data)._body));
+            if (JSON.parse((<any>data)._body).message == 'Success') {
+             document.getElementById('alertPopup').click();
+            } else {
+             alert(JSON.parse((<any>data)._body).message);
+            }
           },
           err => {
             console.log('error');

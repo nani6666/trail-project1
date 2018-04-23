@@ -44,11 +44,15 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 import { DynamicFormsComponent } from './components/dynamic-forms/dynamic-forms.component';
+import { GetTemplatesComponent } from './components/get-templates/get-templates.component';
+import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     MainFormComponent,
-    DynamicFormsComponent
+    DynamicFormsComponent,
+    GetTemplatesComponent,
+    SanitizeHtmlPipe
   ],
   imports: [
     BrowserModule,

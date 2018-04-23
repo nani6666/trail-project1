@@ -1,0 +1,62 @@
+<div class="container-fluid" style="padding-top:50px;">
+  <div class="row" >
+      <div class="card" style="background-color: #DDDBD7">
+          <div class="card-body">
+              <div class="row card-group">
+                  <div class="col-sm-3" *ngFor="let forms of formstemplatesArr">
+                      <div class="card" style="width: 200px ;">
+                          <div class="card-body">
+                              <img class="card-img-top"  style="text-align:center;width: 50px ; height:50px"
+                               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6IxpIZQ3sd7TNkzSSmWR-YmBLnY1gupyKBlEqGWlWR4_W33gH" >
+                              <div class="card-body">
+                                <a class="card-text" (click)="getformData(forms.id)">{{forms.formName}} </a>
+                              </div>
+                            </div>
+                        </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+
+
+      <!-- <div class="card ">
+          <h6>
+          saved Forms
+          </h6>
+         <div class="card-body">
+            <mat-accordion>
+                <mat-expansion-panel  *ngFor="let forms of formsArray">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                     {{forms}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                </mat-expansion-panel>
+              </mat-accordion>
+         </div>
+        </div> -->
+
+
+<div class="row">
+  <div class="col-md-8">
+      <div class="card"  *ngIf="htmlcontentdiv">
+          <div class="card-body">
+            <div class="card-title">{{templatename}}</div>
+            <div #htmlcontent [innerHtml]="testhtml | sanitizeHtml" >
+            </div>
+            <div style="text-align:center;">
+                <button class="btn btn-success btn-sm">Save</button>
+              </div>
+          </div>
+
+        </div>
+  </div>
+</div>
+
+</div>
