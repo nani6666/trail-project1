@@ -152,16 +152,17 @@
           </div>
         </div>
         <div class="col-md-9">
-            <div class="card">
+            <div class="card" >
                 <div class="card-body">
                     <mat-accordion>
                         <mat-expansion-panel class="panel1">
                           <mat-expansion-panel-header>
                             <mat-panel-title>
-                             Hospital Services
+                                Primary Eye Care Facility(PECF)
                             </mat-panel-title>
                           </mat-expansion-panel-header>
-                         <div class="row">
+                          <div id="hospFormData">
+                         <div class="row" >
                            <div class="col-md-2">
 
                            </div>
@@ -370,6 +371,9 @@
                               <div #divdata id="mainParent">
 
                               </div>
+                              <div id="testinghtml">
+
+                              </div>
 
                               <!-- <div class="form-group">
                                 <div class="row">
@@ -385,11 +389,12 @@
                                 </div>
                               </div> -->
                            </section>
+                           </div>
                             <section>
                               <div style="padding-top:20px;text-align:center;">
                                 <button class="btn btn-sm btn-primary" (click)="addComponent('hosp')">Clone Row</button>
                                 <button class="btn btn-sm btn-primary" (click)="addCustomField()">Add Custom Row</button>
-                                <button class="btn btn-sm btn-primary" >Save Templete</button>
+                                <button class="btn btn-sm btn-primary" (click)="openformlabel('pecf')">Save Templete</button>
                                 <button class="btn btn-sm btn-primary" >Reset</button>
                               </div>
                             </section>
@@ -397,7 +402,7 @@
                         <mat-expansion-panel class="panel2">
                             <mat-expansion-panel-header>
                               <mat-panel-title>
-                               Primary Eye Care Facility(PECF)
+                                  Hospital Services
                               </mat-panel-title>
                             </mat-expansion-panel-header>
                             <div class="row">
@@ -1282,6 +1287,22 @@
             </div>
           </div>
   </div>
-
+  <button style="display:none;" id="formId" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#finalModal">Open Small Modal</button>
+  <div class="modal fade" id="finalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true "
+  data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog " role="document " style="width:320px">
+    <div class="modal-content ">
+      <div class="modal-header ">
+         <mat-form-field class="example-full-width">
+             <input type="text" matInput placeholder="Form Name"   [(ngModel)]="formname" [ngModelOptions]="{standalone: true}">
+           </mat-form-field>
+      </div>
+      <div class="modal-footer">
+        <button type="button " class="btn btn-primary common_btn addbtn mr-auto"  data-dismiss="modal">cancel</button>
+        <button type="button " class="btn btn-primary common_btn addbtn" id="okbtnform" (click)="saveTempData();">OK</button>
+      </div>
+    </div>
+  </div>
+ </div>
 
 

@@ -9,6 +9,7 @@ import { Component,
 
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { HtmlParser } from '@angular/compiler';
 declare const jQuery: any;
 @Component({
   selector: 'app-main-form',
@@ -113,6 +114,8 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   presentdate: Date;
   customSection: boolean;
   customlabelfield: boolean;
+  formname: any;
+  accordionName: any;
   id: any ;
   public invoiceForm: FormGroup;
    /* fields properties  Starts */
@@ -137,6 +140,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     /* multi field properties  Starts */
   multiselect: any ;
   multibox: boolean ;
+  htmlContent: any ;
  /* multi field properties  Ends */
 /* fields properties  Ends */
   constructor(private _fb: FormBuilder , private _cfr: ComponentFactoryResolver,
@@ -195,6 +199,41 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     this.customSection = true ;
   }
 
+  /* open label starts */
+   openformlabel(val) {
+     this.accordionName = val ;
+     const el = document.getElementById('hospFormData') ;
+       this.htmlContent = JSON.stringify(el.outerHTML);
+       document.getElementById('formId').click();
+   }
+ /* open label Ends */
+/* open label starts */
+   saveTempData() {
+     if (this.formname === undefined){
+      alert('please Enter Form Name');
+     } else {
+       document.getElementById('okbtnform').setAttribute('data-dismiss','modal')
+      const obj = {
+        'formName': this.formname,
+        'accordion': this.accordionName,
+        'enableGender': this.hospServciesGender,
+        'enableOther': this.hospServciesOther,
+        'enableChild': this.hospServicesChild,
+        'enableTotal': this.hospServicesTotal,
+        'htmlContent': this.htmlContent
+          };
+          console.log(obj);
+          this.serviceCall.PostCall('/DynamicForm/CreateForm' , obj).subscribe(data => {
+            console.log(data);
+          },
+          err => {
+            console.log('error');
+          }
+        );
+     }
+
+    }
+/* open label Ends */
   /* live time method starts */
   startTime() {
     const today = new Date();
@@ -293,7 +332,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
  custommodal() {
   if (this.customElement === undefined) {
   alert('Please Choose one of element');
-  } else if (this.labelVal === " ") {
+  } else if (this.labelVal === ' ') {
   alert('Please Enter Label');
   }  else {
   this.customSection =  false ;
