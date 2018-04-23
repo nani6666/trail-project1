@@ -50,7 +50,7 @@
                             <input type="text" matInput placeholder="Label of Input"  (input)="onlabel($event.target.value)" >
                           </mat-form-field>
                         <div class="form-check">
-                            <input class="" type="checkbox" value="" id="defaultCheck1">
+                            <input class="" type="checkbox" value=""  [(ngModel)]="requiredField" [ngModelOptions]="{standalone: true}" id="defaultCheck1">
                             <label class="" for="defaultCheck1">
                              Required
                             </label>
@@ -393,7 +393,7 @@
                            </div>
                             <section>
                               <div style="padding-top:20px;text-align:center;">
-                                <button class="btn btn-sm btn-primary" (click)="addComponent('hosp')">Clone Row</button>
+                                <button class="btn btn-sm btn-primary" (click)="addComponent('PECF')">Clone Row</button>
                                 <button class="btn btn-sm btn-primary" (click)="addCustomField()">Add Custom Row</button>
                                 <button class="btn btn-sm btn-primary" (click)="openformlabel('pecf')">Save Templete</button>
                                 <button class="btn btn-sm btn-primary" >Reset</button>

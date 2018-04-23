@@ -36,9 +36,9 @@ export class GetTemplatesComponent implements OnInit {
 
    /*get template Data Started*/
     getformData(val) {
-      this.htmlcontentdiv = true ;
-    console.log(val);
-     this.serviceCall.getCallByParameter('/DynamicForm/GetFormById/' , val).subscribe(data => {
+       this.htmlcontentdiv = true ;
+       console.log(val);
+       this.serviceCall.getCallByParameter('/DynamicForm/GetFormById/' , val).subscribe(data => {
        console.log(data);
        this.templatename = (<any>data).formName  + '-' + ' ( ' + (<any>data).accordion + ') ' ;
        this.testhtml = (<any>data).htmlContent ;

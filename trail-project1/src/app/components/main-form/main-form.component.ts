@@ -85,6 +85,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   trainglassesDistrbuted: boolean ;
   trainglassPrescribe: boolean ;
   trainReviewPatients: boolean ;
+  requiredField: boolean ;
   trainNewPatient: boolean ;
   otherServciesGender: any;
   otherServciesOther: any;
@@ -164,9 +165,11 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     this.otherServicesTotal = true ;
     this.changetoggles();
     this.countervaluehosp = 0 ;
+    this.requiredField = false;
     this.currencyApi();
     this.currencyval = '';
     this.createionform() ;
+    this.gettingFormElements('Text');
   }
 
   ngOnDestroy() {
@@ -197,6 +200,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 
   addCustomField() {
     this.customSection = true ;
+    this.gettingFormElements('Text');
   }
 
   /* open label starts */
@@ -438,6 +442,16 @@ creatingElements(labelval) {
         divele1.setAttribute('class' , 'form-group');
         divele2.setAttribute('class' , 'row');
         divele3.setAttribute('class' , 'col-sm-3');
+        if (this.requiredField == true) {
+          inputele.setAttribute('required' , 'required');
+          textareaele.setAttribute('required' , 'required');
+          selectele.setAttribute('required' , 'required');
+        } else {
+          inputele.removeAttribute('required');
+          textareaele.removeAttribute('required');
+          selectele.removeAttribute('required');
+        }
+
         if (this.sizeOfField == 'small') {
           divele4.setAttribute('class' , 'col-sm-3 inputPadding');
         } else if (this.sizeOfField == 'Medium') {
@@ -466,6 +480,7 @@ creatingElements(labelval) {
            } else {
             inputgroupdiv.appendChild(inputele);
             inputgroupdiv.appendChild(spanele);
+
             inputele.setAttribute('type' , 'text') ;
             inputele.setAttribute('maxlength' , this.lengthChars) ;
            }
