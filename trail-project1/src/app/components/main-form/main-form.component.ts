@@ -205,6 +205,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 
   /* open label starts */
    openformlabel(val) {
+
      this.accordionName = val ;
      const el = document.getElementById('hospFormData') ;
        // this.htmlContent = JSON.stringify(el.outerHTML);
@@ -272,6 +273,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
    // console.log(val);
     if (val == 'Text') {
       this.titleOfSelector = 'Text Field';
+      this.labelVal = '';
     //  document.getElementById('textfield').classList.remove('text-info');
       document.getElementById('textfield').classList.add('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
@@ -286,6 +288,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.currencyfieldattr = false ;
       this.multibox = false ;
     } else if (val == 'Number') {
+      this.labelVal = '';
       this.titleOfSelector = 'Number Field';
       document.getElementById('textfield').classList.remove('text-danger');
     //  document.getElementById('numberfield').classList.remove('text-info');
@@ -301,6 +304,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.currencyfieldattr = false ;
       this.multibox = false ;
     } else if (val == 'Date') {
+      this.labelVal = '';
       this.titleOfSelector = 'Date Field';
       document.getElementById('textfield').classList.remove('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
@@ -316,6 +320,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.currencyfieldattr = false ;
       this.multibox = false ;
     }  else if (val == 'currency') {
+      this.labelVal = '';
       this.titleOfSelector = 'Currency Field';
       document.getElementById('textfield').classList.remove('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
@@ -331,6 +336,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.currencyfieldattr = true ;
       this.multibox = false ;
     } else if (val == 'multiple') {
+      this.labelVal = '';
       this.titleOfSelector = 'Multiple Field';
       document.getElementById('textfield').classList.remove('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
@@ -414,8 +420,15 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       // expComponent.instance.modal();
       this.data1.nativeElement.appendChild(cln) ;
     } else if (val == 'pecf' ) {
-      const expComponent = this.container1.createComponent(comp);
-      expComponent.instance._ref = expComponent;
+      const ele = document.getElementById('mainParent').lastElementChild ;
+      const cln = ele.cloneNode(true);
+      console.log(document.getElementById('mainParent').lastElementChild);
+      // const expComponent = this.container.createComponent(comp);
+      // expComponent.instance._ref = expComponent;
+      // expComponent.instance.modal();
+      // this.data1.nativeElement.appendChild(cln) ;
+      // const expComponent = this.container1.createComponent(comp);
+      // expComponent.instance._ref = expComponent;
     } else if (val == 'outreach' ) {
       const expComponent = this.container2.createComponent(comp);
       expComponent.instance._ref = expComponent;
@@ -447,6 +460,9 @@ creatingElements(labelval) {
         divele1.setAttribute('class' , 'form-group');
         divele2.setAttribute('class' , 'row');
         divele3.setAttribute('class' , 'col-sm-3');
+        inputele.setAttribute('value' , ' ');
+        textareaele.setAttribute('value' , ' ');
+        selectele.setAttribute('value' , ' ');
         if (this.requiredField == true) {
           inputele.setAttribute('required' , 'required');
           textareaele.setAttribute('required' , 'required');
@@ -470,9 +486,9 @@ creatingElements(labelval) {
         inputgroupdiv.setAttribute('class' , 'input-group');
         labelele.setAttribute('class' , 'customlabel') ;
         labelele.textContent = labelval ;
-        inputele.setAttribute('class' , 'form-control form-control-sm') ;
-        selectele.setAttribute('class' , 'form-control form-control-sm') ;
-        textareaele.setAttribute('class' , 'form-control form-control-sm') ;
+        inputele.setAttribute('class' , 'form-control form-control-sm getval') ;
+        selectele.setAttribute('class' , 'form-control form-control-sm getval') ;
+        textareaele.setAttribute('class' , 'form-control form-control-sm getval') ;
         divele1.appendChild(divele2);
         divele2.appendChild(divele3);
         divele2.appendChild(divele4);
@@ -547,6 +563,7 @@ creatingElements(labelval) {
             checkelement.setAttribute('style' , 'padding-left:20px;');
             inputgroupdiv.appendChild(checkelement);
             inputeleradio.setAttribute('type' , 'checkbox') ;
+            inputeleradio.setAttribute('class' , 'getval') ;
             checkelement.appendChild(inputeleradio);
             checkelement.appendChild(labelforradio);
             labelforradio.textContent = ele.name ;
@@ -562,6 +579,7 @@ creatingElements(labelval) {
             inputeleradio.setAttribute('type' , 'radio') ;
             inputeleradio.setAttribute('name' , 'question') ;
             inputeleradio.setAttribute('value' , ele.name) ;
+            inputeleradio.setAttribute('class' , 'getval') ;
             checkelement.appendChild(inputeleradio);
             checkelement.appendChild(labelforradio);
             labelforradio.textContent = ele.name ;

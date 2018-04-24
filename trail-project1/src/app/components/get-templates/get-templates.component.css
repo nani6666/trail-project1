@@ -9,6 +9,10 @@ a {
   display:none;
 }
 
+:host ::ng-deep  .titlename {
+  display:none;
+}
+
 :host ::ng-deep .SmallInput {
   width: 80px;
   height: 20px;

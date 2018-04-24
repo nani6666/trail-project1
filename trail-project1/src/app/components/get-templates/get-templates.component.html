@@ -7,11 +7,20 @@
                     <div class="col-sm-3" *ngFor="let forms of formstemplatesArr">
                         <div class="card" style="width: 200px ;">
                             <div class="card-body">
-                                <img class="card-img-top"  style="text-align:center;width: 50px ; height:50px"
+                                <div class="row">
+                                <img class="card-img-top"  style="text-align:center;width: 30px ; height:30px"
                                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6IxpIZQ3sd7TNkzSSmWR-YmBLnY1gupyKBlEqGWlWR4_W33gH" >
-                                <div class="card-body">
-                                  <a class="card-text" (click)="getformData(forms.id)">{{forms.formName}} </a>
-                                </div>
+                                    <div class="col">
+                                        <a class="card-title" (click)="gettemplateData(forms.id)">{{forms.formName}} </a>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card-text">
+                                            <ul>
+                                              <li *ngFor="let formsaveData of forms.formData"><a (click)="getformData(formsaveData.formDataId)">{{formsaveData.formDataName}}</a></li>
+                                            </ul>
+                                         </div>
+                                    </div>
+                                     </div>
                               </div>
                           </div>
                     </div>
@@ -50,20 +59,42 @@
 
 <div class="row" style="padding-top:25px;">
   <div class="col-sm-8">
-    <form ngNativeValidate>
       <div class="card"  *ngIf="htmlcontentdiv">
-          <div class="card-body">
-            <div class="card-title">{{templatename}}</div>
+    <form ngNativeValidate id="formDataHtml">
+          <div class="card-body ">
+            <div class="card-title" id="titleNone">{{templatename}}</div>
             <div #htmlcontent [innerHtml]="testhtml | sanitizeHtml" >
             </div>
-            <div style="text-align:center;">
-                <button type="submit" class="btn btn-success btn-sm">Save</button>
+            <div  style="text-align:center;">
+                <button type="submit" class="btn btn-success btn-sm" id="formdatpopId" (click)="formDatabyname();">Save</button>
               </div>
           </div>
-
-        </div>
       </form>
+    </div>
   </div>
 </div>
 
+<div class="row" style="padding-top:25px;">
+<div class="col-sm-8"  >
+    <div class="card"  *ngIf="formhtmlcontentdiv" [innerHtml]="formrecordhtml | sanitizeHtml">
+      </div>
 </div>
+</div>
+
+<button style="display:none;" id="formdataNameId" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#formNameModal">Open Small Modal</button>
+  <div class="modal fade" id="formNameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true "
+  data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog " role="document " style="width:320px">
+    <div class="modal-content ">
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="Form Name"  [(ngModel)]="formdataname" [ngModelOptions]="{standalone: true}">
+
+      </mat-form-field>
+      <span *ngIf="validFormDataName" style="color: red;font-size:12px;"><strong>Please Enter Form Name</strong></span>
+      <div class="modal-footer">
+        <button type="button "  class="btn btn-sm btn-primary common_btn addbtn mr-auto"  data-dismiss="modal">cancel</button>
+        <button type="button " class="btn btn-sm btn-primary common_btn addbtn" id="okbtnform" (click)="saveFormData();">Save</button>
+      </div>
+    </div>
+  </div>
+ </div>
