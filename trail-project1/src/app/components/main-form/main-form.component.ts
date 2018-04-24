@@ -205,7 +205,12 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 
   /* open label starts */
    openformlabel(val) {
-
+   const checkboxelement =  document.getElementsByClassName('checkboxVal');
+   const aryele = new Array();
+       for ( let i = 0; i < checkboxelement.length; i++) {
+        aryele [i] = checkboxelement[i].checked;
+        }
+        console.log(aryele);
      this.accordionName = val ;
      const el = document.getElementById('hospFormData') ;
        // this.htmlContent = JSON.stringify(el.outerHTML);
