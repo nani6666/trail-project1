@@ -3,13 +3,13 @@
       <div class="col-md-3">
           <div class="card">
               <div class="card-body">
-                  <h5 class="card-title">Custom Row Fields</h5>
+                  <h5 class="card-title">Custom Fields Designer</h5>
                   <!-- <div id="txt"></div>
                   <strong>{{presentdate  | date :'fullDate'}}</strong> -->
                   <div class="container" style="background-color: #fff;" *ngIf="customSection">
 
                   <form [formGroup]="customForm" id="customForm">
-                  <label class="control-label">Custom Elements</label>
+                  <label class="control-label">{{titleOfSelector}}</label>
                     <div class="form-group" >
                        <div class="row">
                          <div class="col-sm-3" >
@@ -50,7 +50,7 @@
                             <input type="text" matInput placeholder="Label of Input"  (input)="onlabel($event.target.value)" >
                           </mat-form-field>
                         <div class="form-check">
-                            <input class="" type="checkbox" value="" id="defaultCheck1">
+                            <input class="" type="checkbox" value=""  [(ngModel)]="requiredField" [ngModelOptions]="{standalone: true}" id="defaultCheck1">
                             <label class="" for="defaultCheck1">
                              Required
                             </label>
@@ -185,39 +185,39 @@
                                  </div>
                             </div>
                          </div>
-                         <label class="control-label text-warning" style="padding-left:15px;"> <input class="hideele" type="checkbox" name="labelCheckbox" [(ngModel)]="hospSAervicesSelectall" (change)="changetoggles()"><span ><strong>Select All</strong></span></label>
+                         <label class="control-label text-warning" style="padding-left:15px;"> <input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospSAervicesSelectall" (change)="changetoggles()"><span ><strong>Select All</strong></span></label>
                          <div id="hospFormData">
                          <section>
 
                          <div class="row">
                            <div class="col-md-3" style="padding-top:25px;">
-                              <label class="control-label checkbox-inline"> <input class="hideele" type="checkbox" name="labelCheckbox" [(ngModel)]="hospNewPatient"><span >New Patients Seen</span></label>
+                              <label class="control-label checkbox-inline"> <input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospNewPatient"><span >New Patients Seen</span></label>
                            </div>
                         <div class="col-md-9">
                             <div class="row">
                                 <div class="col-sm-2" *ngIf="hospgenderFields">
                                     <label class="labelCenter control-label">AM</label>
-                                    <input type="text"  class="form-control SmallInput " />
+                                    <input type="number"  value="" class="form-control SmallInput getval" />
                                   </div>
                                  <div class="col-sm-2"  *ngIf="hospgenderFields">
                                     <label class="labelCenter control-label">AF</label>
-                                    <input type="text"   class="form-control SmallInput" />
+                                    <input type="number" value=""  class="form-control  SmallInput getval" />
                                    </div>
                                    <div class="col-md-2"   *ngIf="hospotherFields">
                                       <label class="labelCenter control-label">OT</label>
-                                      <input type="text"  class="form-control SmallInput" />
+                                      <input type="number"  value="" class="form-control  SmallInput getval" />
                                      </div>
                                      <div class="col-md-2"  *ngIf="hospchildFields">
                                         <label class="labelCenter control-label">CM</label>
-                                        <input type="text" class="form-control SmallInput" />
+                                        <input type="number" value="" class="form-control  SmallInput getval" />
                                       </div>
                                       <div class="col-md-2"  *ngIf="hospchildFields">
                                           <label class=" labelCenter control-label">CF</label>
-                                          <input type="text"  class="form-control SmallInput" />
+                                          <input type="number" value="" class="form-control  SmallInput getval" />
                                       </div>
                                       <div class="col-md-2"  *ngIf="hosptotalFields">
                                             <label class="labelCenter control-label">Total</label>
-                                            <input type="text"  class="form-control SmallInput" />
+                                            <input type="number" value="" class="form-control  SmallInput getval" />
                                       </div>
                                   </div>
                             </div>
@@ -226,33 +226,33 @@
                         <section>
                             <div class="row">
                               <div class="col-md-3" style="padding-top:15px;">
-                                 <label class="control-label">  <input class="hideele" type="checkbox" name="labelCheckbox" [(ngModel)]="hospReviewPatients"><span >Review Patients</span></label>
+                                 <label class="control-label">  <input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospReviewPatients"><span >Review Patients</span></label>
                               </div>
                            <div class="col-md-9">
                                <div class="row">
                                   <div class="col-sm-2" *ngIf="hospgenderFields">
                                       <label class="labelCenter control-label"></label>
-                                      <input type="text"  class="form-control SmallInput " />
+                                      <input type="number" value=""  class="form-control  SmallInput getval " />
                                     </div>
                                    <div class="col-sm-2"  *ngIf="hospgenderFields">
                                       <label class="labelCenter control-label"></label>
-                                      <input type="text"   class="form-control SmallInput" />
+                                      <input type="number" value=""  class="form-control  SmallInput getval" />
                                      </div>
                                      <div class="col-md-2"   *ngIf="hospotherFields">
                                         <label class="labelCenter control-label"></label>
-                                        <input type="text"  class="form-control SmallInput" />
+                                        <input type="number" value="" class="form-control  SmallInput getval" />
                                        </div>
                                        <div class="col-md-2"  *ngIf="hospchildFields">
                                           <label class="labelCenter control-label"></label>
-                                          <input type="text" class="form-control SmallInput" />
+                                          <input type="number" value="" class="form-control  SmallInput getval" />
                                         </div>
                                         <div class="col-md-2"  *ngIf="hospchildFields">
                                             <label class=" labelCenter control-label"></label>
-                                            <input type="text"  class="form-control SmallInput" />
+                                            <input type="number" value="" class="form-control  SmallInput getval" />
                                         </div>
                                         <div class="col-md-2"  *ngIf="hosptotalFields">
                                               <label class="labelCenter control-label"></label>
-                                              <input type="text"  class="form-control SmallInput" />
+                                              <input type="number" value="" class="form-control  SmallInput getval" />
                                         </div>
                                      </div>
                                </div>
@@ -261,33 +261,33 @@
                            <section>
                               <div class="row">
                                 <div class="col-md-3" style="padding-top:15px;">
-                                   <label class="control-label" ><input class="hideele" type="checkbox" name="labelCheckbox" [(ngModel)]="hospglassPrescribe"><span >Glasses Prescribed</span></label>
+                                   <label class="control-label" ><input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospglassPrescribe"><span >Glasses Prescribed</span></label>
                                 </div>
                              <div class="col-md-9">
                                  <div class="row">
                                     <div class="col-sm-2" *ngIf="hospgenderFields">
                                         <label class="labelCenter control-label"></label>
-                                        <input type="text"  class="form-control SmallInput " />
+                                        <input type="number" value="" class="form-control  SmallInput getval " />
                                       </div>
                                      <div class="col-sm-2"  *ngIf="hospgenderFields">
                                         <label class="labelCenter control-label"></label>
-                                        <input type="text"   class="form-control SmallInput" />
+                                        <input type="number" value=""  class="form-control  SmallInput getval" />
                                        </div>
                                        <div class="col-md-2"   *ngIf="hospotherFields">
                                           <label class="labelCenter control-label"></label>
-                                          <input type="text"  class="form-control SmallInput" />
+                                          <input type="number" value="" class="form-control  SmallInput getval" />
                                          </div>
                                          <div class="col-md-2"  *ngIf="hospchildFields">
                                             <label class="labelCenter control-label"></label>
-                                            <input type="text" class="form-control SmallInput" />
+                                            <input type="number" value="" class="form-control  SmallInput getval" />
                                           </div>
                                           <div class="col-md-2"  *ngIf="hospchildFields">
                                               <label class=" labelCenter control-label"></label>
-                                              <input type="text"  class="form-control SmallInput" />
+                                              <input type="number" value="" class="form-control  SmallInput getval" />
                                           </div>
                                           <div class="col-md-2"  *ngIf="hosptotalFields">
                                                 <label class="labelCenter control-label"></label>
-                                                <input type="text"  class="form-control SmallInput" />
+                                                <input type="number" value=""  class="form-control  SmallInput getval" />
                                           </div>
                                        </div>
                                  </div>
@@ -296,33 +296,33 @@
                              <section>
                          <div class="row">
                            <div class="col-md-3" style="padding-top:15px;">
-                              <label class="control-label"> <input  class="hideele" type="checkbox" name="labelCheckbox" [(ngModel)]="hospglassesDistrbuted"><span >Glasses Distributed</span></label>
+                              <label class="control-label"> <input  class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospglassesDistrbuted"><span >Glasses Distributed</span></label>
                            </div>
                         <div class="col-md-9">
                             <div class="row">
                                 <div class="col-sm-2" *ngIf="hospgenderFields">
                                     <label class="labelCenter control-label"></label>
-                                    <input type="text"  class="form-control SmallInput " />
+                                    <input type="number" value="" class="form-control  SmallInput getval " />
                                   </div>
                                  <div class="col-sm-2"  *ngIf="hospgenderFields">
                                     <label class="labelCenter control-label"></label>
-                                    <input type="text"   class="form-control SmallInput" />
+                                    <input type="number" value=""  class="form-control  SmallInput getval" />
                                    </div>
                                    <div class="col-md-2"   *ngIf="hospotherFields">
                                       <label class="labelCenter control-label"></label>
-                                      <input type="text"  class="form-control SmallInput" />
+                                      <input type="number" value="" class="form-control  SmallInput getval" />
                                      </div>
                                      <div class="col-md-2"  *ngIf="hospchildFields">
                                         <label class="labelCenter control-label"></label>
-                                        <input type="text" class="form-control SmallInput" />
+                                        <input type="number" value="" class="form-control  SmallInput getval" />
                                       </div>
                                       <div class="col-md-2"  *ngIf="hospchildFields">
                                           <label class=" labelCenter control-label"></label>
-                                          <input type="text"  class="form-control SmallInput" />
+                                          <input type="number" value="" class="form-control  SmallInput getval" />
                                       </div>
                                       <div class="col-md-2"  *ngIf="hosptotalFields">
                                             <label class="labelCenter control-label"></label>
-                                            <input type="text"  class="form-control SmallInput" />
+                                            <input type="number"  value="" class="form-control  SmallInput getval" />
                                       </div>
                                   </div>
                             </div>
@@ -332,33 +332,33 @@
                             <div class="row">
                               <div class="col-md-3" style="padding-top:15px;">
 
-                                 <label class="control-label"> <input class="hideele" type="checkbox" name="labelCheckbox" [(ngModel)]="hospCatracts"><span >Catracts Advised</span></label>
+                                 <label class="control-label"> <input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospCatracts"><span >Catracts Advised</span></label>
                               </div>
                            <div class="col-md-9">
                                <div class="row">
                                   <div class="col-sm-2" *ngIf="hospgenderFields">
                                       <label class="labelCenter control-label"></label>
-                                      <input type="text"  class="form-control SmallInput " />
+                                      <input type="number" value=""  class="form-control  SmallInput getval " />
                                     </div>
                                    <div class="col-sm-2"  *ngIf="hospgenderFields">
                                       <label class="labelCenter control-label"></label>
-                                      <input type="text"   class="form-control SmallInput" />
+                                      <input type="number"  value="" class="form-control  SmallInput getval" />
                                      </div>
                                      <div class="col-md-2"   *ngIf="hospotherFields">
                                         <label class="labelCenter control-label"></label>
-                                        <input type="text"  class="form-control SmallInput" />
+                                        <input type="number" value="" class="form-control  SmallInput getval" />
                                        </div>
                                        <div class="col-md-2"  *ngIf="hospchildFields">
                                           <label class="labelCenter control-label"></label>
-                                          <input type="text" class="form-control SmallInput" />
+                                          <input type="number" value="" class="form-control  SmallInput getval" />
                                         </div>
                                         <div class="col-md-2"  *ngIf="hospchildFields">
                                             <label class=" labelCenter control-label"></label>
-                                            <input type="text"  class="form-control SmallInput" />
+                                            <input type="number" value="" class="form-control  SmallInput getval" />
                                         </div>
                                         <div class="col-md-2"  *ngIf="hosptotalFields">
                                               <label class="labelCenter control-label"></label>
-                                              <input type="text"  class="form-control SmallInput" />
+                                              <input type="number" value="" class="form-control  SmallInput getval" />
                                         </div>
                                      </div>
                                </div>
@@ -393,7 +393,7 @@
                            </div>
                             <section>
                               <div style="padding-top:20px;text-align:center;">
-                                <button class="btn btn-sm btn-primary" (click)="addComponent('hosp')">Clone Row</button>
+                                <button class="btn btn-sm btn-primary" (click)="addComponent('pecf')">Clone Row</button>
                                 <button class="btn btn-sm btn-primary" (click)="addCustomField()">Add Custom Row</button>
                                 <button class="btn btn-sm btn-primary" (click)="openformlabel('pecf')">Save Templete</button>
                                 <button class="btn btn-sm btn-primary" >Reset</button>
@@ -439,27 +439,27 @@
                                  <div class="row">
                                      <div class="col-sm-2" *ngIf="pecfgenderFields">
                                          <label class="labelCenter control-label">AM</label>
-                                         <input type="text"  class="form-control SmallInput " />
+                                         <input type="number"  class="form-control  SmallInput getval " />
                                        </div>
                                       <div class="col-sm-2"  *ngIf="pecfgenderFields">
                                          <label class="labelCenter control-label">AF</label>
-                                         <input type="text"   class="form-control SmallInput" />
+                                         <input type="number"   class="form-control  SmallInput getval" />
                                         </div>
                                         <div class="col-md-2"   *ngIf="pecfotherFields">
                                            <label class="labelCenter control-label">OT</label>
-                                           <input type="text"  class="form-control SmallInput" />
+                                           <input type="number"  class="form-control  SmallInput getval" />
                                           </div>
                                           <div class="col-md-2"  *ngIf="pecfchildFields">
                                              <label class="labelCenter control-label">CM</label>
-                                             <input type="text" class="form-control SmallInput" />
+                                             <input type="number" class="form-control  SmallInput getval" />
                                            </div>
                                            <div class="col-md-2"  *ngIf="pecfchildFields">
                                                <label class=" labelCenter control-label">CF</label>
-                                               <input type="text"  class="form-control SmallInput" />
+                                               <input type="number"  class="form-control  SmallInput getval" />
                                            </div>
                                            <div class="col-md-2"  *ngIf="pecftotalFields">
                                                  <label class="labelCenter control-label">Total</label>
-                                                 <input type="text"  class="form-control SmallInput" />
+                                                 <input type="number"  class="form-control  SmallInput getval" />
                                            </div>
                                        </div>
                                  </div>
@@ -474,27 +474,27 @@
                                     <div class="row">
                                        <div class="col-sm-2" *ngIf="pecfgenderFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text"  class="form-control SmallInput " />
+                                           <input type="number"  class="form-control  SmallInput getval " />
                                          </div>
                                         <div class="col-sm-2"  *ngIf="pecfgenderFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text"   class="form-control SmallInput" />
+                                           <input type="number"   class="form-control  SmallInput getval" />
                                           </div>
                                           <div class="col-md-2"   *ngIf="pecfotherFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"  class="form-control SmallInput" />
+                                             <input type="number"  class="form-control  SmallInput getval" />
                                             </div>
                                             <div class="col-md-2"  *ngIf="pecfchildFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text" class="form-control SmallInput" />
+                                               <input type="number" class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="pecfchildFields">
                                                  <label class=" labelCenter control-label"></label>
-                                                 <input type="text"  class="form-control SmallInput" />
+                                                 <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="pecftotalFields">
                                                    <label class="labelCenter control-label"></label>
-                                                   <input type="text"  class="form-control SmallInput" />
+                                                   <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                           </div>
                                     </div>
@@ -509,27 +509,27 @@
                                       <div class="row">
                                          <div class="col-sm-2" *ngIf="pecfgenderFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"  class="form-control SmallInput " />
+                                             <input type="number"  class="form-control  SmallInput getval " />
                                            </div>
                                           <div class="col-sm-2"  *ngIf="pecfgenderFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"   class="form-control SmallInput" />
+                                             <input type="number"   class="form-control  SmallInput getval" />
                                             </div>
                                             <div class="col-md-2"   *ngIf="pecfotherFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text"  class="form-control SmallInput" />
+                                               <input type="number"  class="form-control  SmallInput getval" />
                                               </div>
                                               <div class="col-md-2"  *ngIf="pecfchildFields">
                                                  <label class="labelCenter control-label"></label>
-                                                 <input type="text" class="form-control SmallInput" />
+                                                 <input type="number" class="form-control  SmallInput getval" />
                                                </div>
                                                <div class="col-md-2"  *ngIf="pecfchildFields">
                                                    <label class=" labelCenter control-label"></label>
-                                                   <input type="text"  class="form-control SmallInput" />
+                                                   <input type="number"  class="form-control  SmallInput getval" />
                                                </div>
                                                <div class="col-md-2"  *ngIf="pecftotalFields">
                                                      <label class="labelCenter control-label"></label>
-                                                     <input type="text"  class="form-control SmallInput" />
+                                                     <input type="number"  class="form-control  SmallInput getval" />
                                                </div>
                                             </div>
                                       </div>
@@ -544,27 +544,27 @@
                                  <div class="row">
                                      <div class="col-sm-2" *ngIf="pecfgenderFields">
                                          <label class="labelCenter control-label"></label>
-                                         <input type="text"  class="form-control SmallInput " />
+                                         <input type="number"  class="form-control  SmallInput getval " />
                                        </div>
                                       <div class="col-sm-2"  *ngIf="pecfgenderFields">
                                          <label class="labelCenter control-label"></label>
-                                         <input type="text"   class="form-control SmallInput" />
+                                         <input type="number"   class="form-control  SmallInput getval" />
                                         </div>
                                         <div class="col-md-2"   *ngIf="pecfotherFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text"  class="form-control SmallInput" />
+                                           <input type="number"  class="form-control  SmallInput getval" />
                                           </div>
                                           <div class="col-md-2"  *ngIf="pecfchildFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text" class="form-control SmallInput" />
+                                             <input type="number" class="form-control  SmallInput getval" />
                                            </div>
                                            <div class="col-md-2"  *ngIf="pecfchildFields">
                                                <label class=" labelCenter control-label"></label>
-                                               <input type="text"  class="form-control SmallInput" />
+                                               <input type="number"  class="form-control  SmallInput getval" />
                                            </div>
                                            <div class="col-md-2"  *ngIf="pecftotalFields">
                                                  <label class="labelCenter control-label"></label>
-                                                 <input type="text"  class="form-control SmallInput" />
+                                                 <input type="number"  class="form-control  SmallInput getval" />
                                            </div>
                                        </div>
                                  </div>
@@ -580,27 +580,27 @@
                                     <div class="row">
                                        <div class="col-sm-2" *ngIf="pecfgenderFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text"  class="form-control SmallInput " />
+                                           <input type="number"  class="form-control  SmallInput getval " />
                                          </div>
                                         <div class="col-sm-2"  *ngIf="pecfgenderFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text"   class="form-control SmallInput" />
+                                           <input type="number"   class="form-control  SmallInput getval" />
                                           </div>
                                           <div class="col-md-2"   *ngIf="pecfotherFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"  class="form-control SmallInput" />
+                                             <input type="number"  class="form-control  SmallInput getval" />
                                             </div>
                                             <div class="col-md-2"  *ngIf="pecfchildFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text" class="form-control SmallInput" />
+                                               <input type="number" class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="pecfchildFields">
                                                  <label class=" labelCenter control-label"></label>
-                                                 <input type="text"  class="form-control SmallInput" />
+                                                 <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="pecftotalFields">
                                                    <label class="labelCenter control-label"></label>
-                                                   <input type="text"  class="form-control SmallInput" />
+                                                   <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                           </div>
                                     </div>
@@ -661,27 +661,27 @@
                                <div class="row">
                                    <div class="col-sm-2" *ngIf="outReachgenderFields">
                                        <label class="labelCenter control-label">AM</label>
-                                       <input type="text"  class="form-control SmallInput " />
+                                       <input type="number"  class="form-control  SmallInput getval " />
                                      </div>
                                     <div class="col-sm-2"  *ngIf="outReachgenderFields">
                                        <label class="labelCenter control-label">AF</label>
-                                       <input type="text"   class="form-control SmallInput" />
+                                       <input type="number"   class="form-control  SmallInput getval" />
                                       </div>
                                       <div class="col-md-2"   *ngIf="outReachotherFields">
                                          <label class="labelCenter control-label">OT</label>
-                                         <input type="text"  class="form-control SmallInput" />
+                                         <input type="number"  class="form-control  SmallInput getval" />
                                         </div>
                                         <div class="col-md-2"  *ngIf="outReachchildFields">
                                            <label class="labelCenter control-label">CM</label>
-                                           <input type="text" class="form-control SmallInput" />
+                                           <input type="number" class="form-control  SmallInput getval" />
                                          </div>
                                          <div class="col-md-2"  *ngIf="outReachchildFields">
                                              <label class=" labelCenter control-label">CF</label>
-                                             <input type="text"  class="form-control SmallInput" />
+                                             <input type="number"  class="form-control  SmallInput getval" />
                                          </div>
                                          <div class="col-md-2"  *ngIf="outReachtotalFields">
                                                <label class="labelCenter control-label">Total</label>
-                                               <input type="text"  class="form-control SmallInput" />
+                                               <input type="number"  class="form-control  SmallInput getval" />
                                          </div>
                                      </div>
                                </div>
@@ -696,27 +696,27 @@
                                   <div class="row">
                                      <div class="col-sm-2" *ngIf="outReachgenderFields">
                                          <label class="labelCenter control-label"></label>
-                                         <input type="text"  class="form-control SmallInput " />
+                                         <input type="number"  class="form-control  SmallInput getval " />
                                        </div>
                                       <div class="col-sm-2"  *ngIf="outReachgenderFields">
                                          <label class="labelCenter control-label"></label>
-                                         <input type="text"   class="form-control SmallInput" />
+                                         <input type="number"   class="form-control  SmallInput getval" />
                                         </div>
                                         <div class="col-md-2"   *ngIf="outReachotherFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text"  class="form-control SmallInput" />
+                                           <input type="number"  class="form-control  SmallInput getval" />
                                           </div>
                                           <div class="col-md-2"  *ngIf="outReachchildFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text" class="form-control SmallInput" />
+                                             <input type="number" class="form-control  SmallInput getval" />
                                            </div>
                                            <div class="col-md-2"  *ngIf="outReachchildFields">
                                                <label class=" labelCenter control-label"></label>
-                                               <input type="text"  class="form-control SmallInput" />
+                                               <input type="number"  class="form-control  SmallInput getval" />
                                            </div>
                                            <div class="col-md-2"  *ngIf="outReachtotalFields">
                                                  <label class="labelCenter control-label"></label>
-                                                 <input type="text"  class="form-control SmallInput" />
+                                                 <input type="number"  class="form-control  SmallInput getval" />
                                            </div>
                                         </div>
                                   </div>
@@ -731,27 +731,27 @@
                                     <div class="row">
                                        <div class="col-sm-2" *ngIf="outReachgenderFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text"  class="form-control SmallInput " />
+                                           <input type="number"  class="form-control  SmallInput getval " />
                                          </div>
                                         <div class="col-sm-2"  *ngIf="outReachgenderFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text"   class="form-control SmallInput" />
+                                           <input type="number"   class="form-control  SmallInput getval" />
                                           </div>
                                           <div class="col-md-2"   *ngIf="outReachotherFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"  class="form-control SmallInput" />
+                                             <input type="number"  class="form-control  SmallInput getval" />
                                             </div>
                                             <div class="col-md-2"  *ngIf="outReachchildFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text" class="form-control SmallInput" />
+                                               <input type="number" class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="outReachchildFields">
                                                  <label class=" labelCenter control-label"></label>
-                                                 <input type="text"  class="form-control SmallInput" />
+                                                 <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="outReachtotalFields">
                                                    <label class="labelCenter control-label"></label>
-                                                   <input type="text"  class="form-control SmallInput" />
+                                                   <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                           </div>
                                     </div>
@@ -766,27 +766,27 @@
                                <div class="row">
                                    <div class="col-sm-2" *ngIf="outReachgenderFields">
                                        <label class="labelCenter control-label"></label>
-                                       <input type="text"  class="form-control SmallInput " />
+                                       <input type="number"  class="form-control  SmallInput getval " />
                                      </div>
                                     <div class="col-sm-2"  *ngIf="outReachgenderFields">
                                        <label class="labelCenter control-label"></label>
-                                       <input type="text"   class="form-control SmallInput" />
+                                       <input type="number"   class="form-control  SmallInput getval" />
                                       </div>
                                       <div class="col-md-2"   *ngIf="outReachotherFields">
                                          <label class="labelCenter control-label"></label>
-                                         <input type="text"  class="form-control SmallInput" />
+                                         <input type="number"  class="form-control  SmallInput getval" />
                                         </div>
                                         <div class="col-md-2"  *ngIf="outReachchildFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text" class="form-control SmallInput" />
+                                           <input type="number" class="form-control  SmallInput getval" />
                                          </div>
                                          <div class="col-md-2"  *ngIf="outReachchildFields">
                                              <label class=" labelCenter control-label"></label>
-                                             <input type="text"  class="form-control SmallInput" />
+                                             <input type="number"  class="form-control  SmallInput getval" />
                                          </div>
                                          <div class="col-md-2"  *ngIf="outReachtotalFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text"  class="form-control SmallInput" />
+                                               <input type="number"  class="form-control  SmallInput getval" />
                                          </div>
                                      </div>
                                </div>
@@ -802,27 +802,27 @@
                                   <div class="row">
                                      <div class="col-sm-2" *ngIf="outReachgenderFields">
                                          <label class="labelCenter control-label"></label>
-                                         <input type="text"  class="form-control SmallInput " />
+                                         <input type="number"  class="form-control  SmallInput getval " />
                                        </div>
                                       <div class="col-sm-2"  *ngIf="outReachgenderFields">
                                          <label class="labelCenter control-label"></label>
-                                         <input type="text"   class="form-control SmallInput" />
+                                         <input type="number"   class="form-control  SmallInput getval" />
                                         </div>
                                         <div class="col-md-2"   *ngIf="outReachotherFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text"  class="form-control SmallInput" />
+                                           <input type="number"  class="form-control  SmallInput getval" />
                                           </div>
                                           <div class="col-md-2"  *ngIf="outReachchildFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text" class="form-control SmallInput" />
+                                             <input type="number" class="form-control  SmallInput getval" />
                                            </div>
                                            <div class="col-md-2"  *ngIf="outReachchildFields">
                                                <label class=" labelCenter control-label"></label>
-                                               <input type="text"  class="form-control SmallInput" />
+                                               <input type="number"  class="form-control  SmallInput getval" />
                                            </div>
                                            <div class="col-md-2"  *ngIf="outReachtotalFields">
                                                  <label class="labelCenter control-label"></label>
-                                                 <input type="text"  class="form-control SmallInput" />
+                                                 <input type="number"  class="form-control  SmallInput getval" />
                                            </div>
                                         </div>
                                   </div>
@@ -882,27 +882,27 @@
                                    <div class="row">
                                        <div class="col-sm-2" *ngIf="traingenderFields">
                                            <label class="labelCenter control-label">AM</label>
-                                           <input type="text"  class="form-control SmallInput " />
+                                           <input type="number"  class="form-control  SmallInput getval " />
                                          </div>
                                         <div class="col-sm-2"  *ngIf="traingenderFields">
                                            <label class="labelCenter control-label">AF</label>
-                                           <input type="text"   class="form-control SmallInput" />
+                                           <input type="number"   class="form-control  SmallInput getval" />
                                           </div>
                                           <div class="col-md-2"   *ngIf="trainotherFields">
                                              <label class="labelCenter control-label">OT</label>
-                                             <input type="text"  class="form-control SmallInput" />
+                                             <input type="number"  class="form-control  SmallInput getval" />
                                             </div>
                                             <div class="col-md-2"  *ngIf="trainchildFields">
                                                <label class="labelCenter control-label">CM</label>
-                                               <input type="text" class="form-control SmallInput" />
+                                               <input type="number" class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="trainchildFields">
                                                  <label class=" labelCenter control-label">CF</label>
-                                                 <input type="text"  class="form-control SmallInput" />
+                                                 <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="traintotalFields">
                                                    <label class="labelCenter control-label">Total</label>
-                                                   <input type="text"  class="form-control SmallInput" />
+                                                   <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                          </div>
                                    </div>
@@ -917,27 +917,27 @@
                                       <div class="row">
                                          <div class="col-sm-2" *ngIf="traingenderFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"  class="form-control SmallInput " />
+                                             <input type="number"  class="form-control  SmallInput getval " />
                                            </div>
                                           <div class="col-sm-2"  *ngIf="traingenderFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"   class="form-control SmallInput" />
+                                             <input type="number"   class="form-control  SmallInput getval" />
                                             </div>
                                             <div class="col-md-2"   *ngIf="trainotherFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text"  class="form-control SmallInput" />
+                                               <input type="number"  class="form-control  SmallInput getval" />
                                               </div>
                                               <div class="col-md-2"  *ngIf="trainchildFields">
                                                  <label class="labelCenter control-label"></label>
-                                                 <input type="text" class="form-control SmallInput" />
+                                                 <input type="number" class="form-control  SmallInput getval" />
                                                </div>
                                                <div class="col-md-2"  *ngIf="trainchildFields">
                                                    <label class=" labelCenter control-label"></label>
-                                                   <input type="text"  class="form-control SmallInput" />
+                                                   <input type="number"  class="form-control  SmallInput getval" />
                                                </div>
                                                <div class="col-md-2"  *ngIf="traintotalFields">
                                                      <label class="labelCenter control-label"></label>
-                                                     <input type="text"  class="form-control SmallInput" />
+                                                     <input type="number"  class="form-control  SmallInput getval" />
                                                </div>
                                             </div>
                                       </div>
@@ -952,27 +952,27 @@
                                         <div class="row">
                                            <div class="col-sm-2" *ngIf="traingenderFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text"  class="form-control SmallInput " />
+                                               <input type="number"  class="form-control  SmallInput getval " />
                                              </div>
                                             <div class="col-sm-2"  *ngIf="traingenderFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text"   class="form-control SmallInput" />
+                                               <input type="number"   class="form-control  SmallInput getval" />
                                               </div>
                                               <div class="col-md-2"   *ngIf="trainotherFields">
                                                  <label class="labelCenter control-label"></label>
-                                                 <input type="text"  class="form-control SmallInput" />
+                                                 <input type="number"  class="form-control  SmallInput getval" />
                                                 </div>
                                                 <div class="col-md-2"  *ngIf="trainchildFields">
                                                    <label class="labelCenter control-label"></label>
-                                                   <input type="text" class="form-control SmallInput" />
+                                                   <input type="number" class="form-control  SmallInput getval" />
                                                  </div>
                                                  <div class="col-md-2"  *ngIf="trainchildFields">
                                                      <label class=" labelCenter control-label"></label>
-                                                     <input type="text"  class="form-control SmallInput" />
+                                                     <input type="number"  class="form-control  SmallInput getval" />
                                                  </div>
                                                  <div class="col-md-2"  *ngIf="traintotalFields">
                                                        <label class="labelCenter control-label"></label>
-                                                       <input type="text"  class="form-control SmallInput" />
+                                                       <input type="number"  class="form-control  SmallInput getval" />
                                                  </div>
                                               </div>
                                         </div>
@@ -987,27 +987,27 @@
                                    <div class="row">
                                        <div class="col-sm-2" *ngIf="traingenderFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text"  class="form-control SmallInput " />
+                                           <input type="number"  class="form-control  SmallInput getval " />
                                          </div>
                                         <div class="col-sm-2"  *ngIf="traingenderFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text"   class="form-control SmallInput" />
+                                           <input type="number"   class="form-control  SmallInput getval" />
                                           </div>
                                           <div class="col-md-2"   *ngIf="trainotherFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"  class="form-control SmallInput" />
+                                             <input type="number"  class="form-control  SmallInput getval" />
                                             </div>
                                             <div class="col-md-2"  *ngIf="trainchildFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text" class="form-control SmallInput" />
+                                               <input type="number" class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="trainchildFields">
                                                  <label class=" labelCenter control-label"></label>
-                                                 <input type="text"  class="form-control SmallInput" />
+                                                 <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="traintotalFields">
                                                    <label class="labelCenter control-label"></label>
-                                                   <input type="text"  class="form-control SmallInput" />
+                                                   <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                          </div>
                                    </div>
@@ -1023,27 +1023,27 @@
                                       <div class="row">
                                          <div class="col-sm-2" *ngIf="traingenderFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"  class="form-control SmallInput " />
+                                             <input type="number"  class="form-control  SmallInput getval " />
                                            </div>
                                           <div class="col-sm-2"  *ngIf="traingenderFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"   class="form-control SmallInput" />
+                                             <input type="number"   class="form-control  SmallInput getval" />
                                             </div>
                                             <div class="col-md-2"   *ngIf="trainotherFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text"  class="form-control SmallInput" />
+                                               <input type="number"  class="form-control  SmallInput getval" />
                                               </div>
                                               <div class="col-md-2"  *ngIf="trainchildFields">
                                                  <label class="labelCenter control-label"></label>
-                                                 <input type="text" class="form-control SmallInput" />
+                                                 <input type="number" class="form-control  SmallInput getval" />
                                                </div>
                                                <div class="col-md-2"  *ngIf="trainchildFields">
                                                    <label class=" labelCenter control-label"></label>
-                                                   <input type="text"  class="form-control SmallInput" />
+                                                   <input type="number"  class="form-control  SmallInput getval" />
                                                </div>
                                                <div class="col-md-2"  *ngIf="traintotalFields">
                                                      <label class="labelCenter control-label"></label>
-                                                     <input type="text"  class="form-control SmallInput" />
+                                                     <input type="number"  class="form-control  SmallInput getval" />
                                                </div>
                                             </div>
                                       </div>
@@ -1102,27 +1102,27 @@
                                    <div class="row">
                                        <div class="col-sm-2" *ngIf="othergenderFields">
                                            <label class="labelCenter control-label">AM</label>
-                                           <input type="text"  class="form-control SmallInput " />
+                                           <input type="number"  class="form-control  SmallInput getval " />
                                          </div>
                                         <div class="col-sm-2"  *ngIf="othergenderFields">
                                            <label class="labelCenter control-label">AF</label>
-                                           <input type="text"   class="form-control SmallInput" />
+                                           <input type="number"   class="form-control  SmallInput getval" />
                                           </div>
                                           <div class="col-md-2"   *ngIf="otherotherFields">
                                              <label class="labelCenter control-label">OT</label>
-                                             <input type="text"  class="form-control SmallInput" />
+                                             <input type="number"  class="form-control  SmallInput getval" />
                                             </div>
                                             <div class="col-md-2"  *ngIf="otherchildFields">
                                                <label class="labelCenter control-label">CM</label>
-                                               <input type="text" class="form-control SmallInput" />
+                                               <input type="number" class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="otherchildFields">
                                                  <label class=" labelCenter control-label">CF</label>
-                                                 <input type="text"  class="form-control SmallInput" />
+                                                 <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="othertotalFields">
                                                    <label class="labelCenter control-label">Total</label>
-                                                   <input type="text"  class="form-control SmallInput" />
+                                                   <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                          </div>
                                    </div>
@@ -1137,27 +1137,27 @@
                                       <div class="row">
                                          <div class="col-sm-2" *ngIf="othergenderFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"  class="form-control SmallInput " />
+                                             <input type="number"  class="form-control  SmallInput getval " />
                                            </div>
                                           <div class="col-sm-2"  *ngIf="othergenderFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"   class="form-control SmallInput" />
+                                             <input type="number"   class="form-control  SmallInput getval" />
                                             </div>
                                             <div class="col-md-2"   *ngIf="otherotherFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text"  class="form-control SmallInput" />
+                                               <input type="number"  class="form-control  SmallInput getval" />
                                               </div>
                                               <div class="col-md-2"  *ngIf="otherchildFields">
                                                  <label class="labelCenter control-label"></label>
-                                                 <input type="text" class="form-control SmallInput" />
+                                                 <input type="number" class="form-control  SmallInput getval" />
                                                </div>
                                                <div class="col-md-2"  *ngIf="otherchildFields">
                                                    <label class=" labelCenter control-label"></label>
-                                                   <input type="text"  class="form-control SmallInput" />
+                                                   <input type="number"  class="form-control  SmallInput getval" />
                                                </div>
                                                <div class="col-md-2"  *ngIf="othertotalFields">
                                                      <label class="labelCenter control-label"></label>
-                                                     <input type="text"  class="form-control SmallInput" />
+                                                     <input type="number"  class="form-control  SmallInput getval" />
                                                </div>
                                             </div>
                                       </div>
@@ -1172,27 +1172,27 @@
                                         <div class="row">
                                            <div class="col-sm-2" *ngIf="othergenderFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text"  class="form-control SmallInput " />
+                                               <input type="number"  class="form-control  SmallInput getval " />
                                              </div>
                                             <div class="col-sm-2"  *ngIf="othergenderFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text"   class="form-control SmallInput" />
+                                               <input type="number"   class="form-control  SmallInput getval" />
                                               </div>
                                               <div class="col-md-2"   *ngIf="otherotherFields">
                                                  <label class="labelCenter control-label"></label>
-                                                 <input type="text"  class="form-control SmallInput" />
+                                                 <input type="number"  class="form-control  SmallInput getval" />
                                                 </div>
                                                 <div class="col-md-2"  *ngIf="otherchildFields">
                                                    <label class="labelCenter control-label"></label>
-                                                   <input type="text" class="form-control SmallInput" />
+                                                   <input type="number" class="form-control  SmallInput getval" />
                                                  </div>
                                                  <div class="col-md-2"  *ngIf="otherchildFields">
                                                      <label class=" labelCenter control-label"></label>
-                                                     <input type="text"  class="form-control SmallInput" />
+                                                     <input type="number"  class="form-control  SmallInput getval" />
                                                  </div>
                                                  <div class="col-md-2"  *ngIf="othertotalFields">
                                                        <label class="labelCenter control-label"></label>
-                                                       <input type="text"  class="form-control SmallInput" />
+                                                       <input type="number"  class="form-control  SmallInput getval" />
                                                  </div>
                                               </div>
                                         </div>
@@ -1207,27 +1207,27 @@
                                    <div class="row">
                                        <div class="col-sm-2" *ngIf="othergenderFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text"  class="form-control SmallInput " />
+                                           <input type="number"  class="form-control  SmallInput getval " />
                                          </div>
                                         <div class="col-sm-2"  *ngIf="othergenderFields">
                                            <label class="labelCenter control-label"></label>
-                                           <input type="text"   class="form-control SmallInput" />
+                                           <input type="number"   class="form-control  SmallInput getval" />
                                           </div>
                                           <div class="col-md-2"   *ngIf="otherotherFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"  class="form-control SmallInput" />
+                                             <input type="number"  class="form-control  SmallInput getval" />
                                             </div>
                                             <div class="col-md-2"  *ngIf="otherchildFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text" class="form-control SmallInput" />
+                                               <input type="number" class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="otherchildFields">
                                                  <label class=" labelCenter control-label"></label>
-                                                 <input type="text"  class="form-control SmallInput" />
+                                                 <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                              <div class="col-md-2"  *ngIf="othertotalFields">
                                                    <label class="labelCenter control-label"></label>
-                                                   <input type="text"  class="form-control SmallInput" />
+                                                   <input type="number"  class="form-control  SmallInput getval" />
                                              </div>
                                          </div>
                                    </div>
@@ -1243,27 +1243,27 @@
                                       <div class="row">
                                          <div class="col-sm-2" *ngIf="othergenderFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"  class="form-control SmallInput " />
+                                             <input type="number"  class="form-control  SmallInput getval " />
                                            </div>
                                           <div class="col-sm-2"  *ngIf="othergenderFields">
                                              <label class="labelCenter control-label"></label>
-                                             <input type="text"   class="form-control SmallInput" />
+                                             <input type="number"   class="form-control  SmallInput getval" />
                                             </div>
                                             <div class="col-md-2"   *ngIf="otherotherFields">
                                                <label class="labelCenter control-label"></label>
-                                               <input type="text"  class="form-control SmallInput" />
+                                               <input type="number"  class="form-control  SmallInput getval" />
                                               </div>
                                               <div class="col-md-2"  *ngIf="otherchildFields">
                                                  <label class="labelCenter control-label"></label>
-                                                 <input type="text" class="form-control SmallInput" />
+                                                 <input type="number" class="form-control  SmallInput getval" />
                                                </div>
                                                <div class="col-md-2"  *ngIf="otherchildFields">
                                                    <label class=" labelCenter control-label"></label>
-                                                   <input type="text"  class="form-control SmallInput" />
+                                                   <input type="number"  class="form-control  SmallInput getval" />
                                                </div>
                                                <div class="col-md-2"  *ngIf="othertotalFields">
                                                      <label class="labelCenter control-label"></label>
-                                                     <input type="text"  class="form-control SmallInput" />
+                                                     <input type="number"  class="form-control  SmallInput getval" />
                                                </div>
                                             </div>
                                       </div>
@@ -1312,7 +1312,7 @@
   <div class="modal-dialog " role="document " style="width:320px">
     <div class="modal-content ">
       <div class="modal-header ">
-        <div><p>Template Data Save Successfully</p></div>
+        <div><p>Form Created Successfully</p></div>
       </div>
       <div class="" style="text-align:center;">
         <button type="button"  routerLink="/Tempaltes" class="btn btn-primary btn-sm common_btn addbtn" data-dismiss="modal" >OK</button>
