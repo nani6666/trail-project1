@@ -211,11 +211,16 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
         aryele [i] = checkboxelement[i].checked;
         }
         console.log(aryele);
-     this.accordionName = val ;
-     const el = document.getElementById('hospFormData') ;
+        if (aryele.includes(true)) {
+          this.accordionName = val ;
+         const el = document.getElementById('hospFormData') ;
        // this.htmlContent = JSON.stringify(el.outerHTML);
-       this.htmlContent = el.outerHTML;
-       document.getElementById('formId').click();
+         this.htmlContent = el.outerHTML;
+         document.getElementById('formId').click();
+        } else {
+          alert('Please Select one of the field') ;
+        }
+
    }
  /* open label Ends */
 /* open label starts */
