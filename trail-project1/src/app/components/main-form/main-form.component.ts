@@ -29,6 +29,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   countVal = 0;
   items: any[] = [];
   hospServciesGender: any;
+  titleOfSelector:any ;
   customForm: FormGroup;
   hospServciesOther: any;
   hospServicesChild: any;
@@ -169,7 +170,6 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     this.currencyApi();
     this.currencyval = '';
     this.createionform() ;
-    this.gettingFormElements('Text');
   }
 
   ngOnDestroy() {
@@ -271,6 +271,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   gettingFormElements(val) {
    // console.log(val);
     if (val == 'Text') {
+      this.titleOfSelector = 'Text Field';
     //  document.getElementById('textfield').classList.remove('text-info');
       document.getElementById('textfield').classList.add('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
@@ -285,6 +286,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.currencyfieldattr = false ;
       this.multibox = false ;
     } else if (val == 'Number') {
+      this.titleOfSelector = 'Number Field';
       document.getElementById('textfield').classList.remove('text-danger');
     //  document.getElementById('numberfield').classList.remove('text-info');
       document.getElementById('numberfield').classList.add('text-danger');
@@ -299,6 +301,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.currencyfieldattr = false ;
       this.multibox = false ;
     } else if (val == 'Date') {
+      this.titleOfSelector = 'Date Field';
       document.getElementById('textfield').classList.remove('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
      // document.getElementById('datefield').classList.remove('text-info');
@@ -313,6 +316,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.currencyfieldattr = false ;
       this.multibox = false ;
     }  else if (val == 'currency') {
+      this.titleOfSelector = 'Currency Field';
       document.getElementById('textfield').classList.remove('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
       document.getElementById('datefield').classList.remove('text-danger');
@@ -327,6 +331,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.currencyfieldattr = true ;
       this.multibox = false ;
     } else if (val == 'multiple') {
+      this.titleOfSelector = 'Multiple Field';
       document.getElementById('textfield').classList.remove('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
       document.getElementById('datefield').classList.remove('text-danger');
