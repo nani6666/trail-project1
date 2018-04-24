@@ -48,7 +48,7 @@ a , .btn {
  }
 
  ::ng-deep .inputPadding{
-  padding: 0px 0px 0px  32px;
+  padding: 0px 0px 0px  31px;
  }
 
  .btn-circle {
@@ -83,9 +83,28 @@ padding-left: 5px;
    margin-left: 0px;
 }
 
+.btn-primary{
+  margin:2px;
+}
+.dynfields{
+  padding: 0px !important;
+}
 
+.btn-circle[_ngcontent-c1] {
+  width: 20px;
+  height: 20px;
+  padding: 1px 0px;
+  margin-right: 16px;
+  margin-bottom: 5px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
+}
 
-
+.label{
+  margin-left:4px !important;
+}
 ::ng-deep .mat-slider-min-value.mat-slider-thumb-label-showing .mat-slider-thumb, .mat-slider-min-value.mat-slider-thumb-label-showing .mat-slider-thumb-label {
   background-color: rgba(13, 69, 223, 0.87) ;
 }
@@ -125,4 +144,13 @@ padding-left: 5px;
 
 ::ng-deep .mat-slide-toggle.mat-warn.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
   background-color: #ffe066;
+}
+
+.disabled{
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.colorclass{
+  color:#dc3545;
 }

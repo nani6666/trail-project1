@@ -24,6 +24,13 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   @ViewChild('parent4', { read: ViewContainerRef }) container4: ViewContainerRef;
   @ViewChild('divdata') data1: ElementRef;
 
+  seletvalues: boolean;
+  selecdate: any;
+  selectmindate: any;
+  selectedfield: any;
+  isBtnDisableddiv: boolean;
+  applycolor: boolean;
+  CustomElements: string;
   panelOpenState: boolean;
   checkbox: any;
   countVal = 0;
@@ -119,6 +126,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   formname: any;
   accordionName: any;
   id: any ;
+  inputvalue:any;
   public invoiceForm: FormGroup;
    /* fields properties  Starts */
    sizeoffield: boolean ;
@@ -199,6 +207,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   }
 
   addCustomField() {
+    this.isBtnDisableddiv = true;
     this.customSection = true ;
     this.gettingFormElements('Text');
   }
@@ -281,15 +290,14 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 
   gettingFormElements(val) {
    // console.log(val);
+   this.CustomElements = val + ' ' + 'field' ;
+    this.selectedfield = val;
+    this.labelVal = '';
+    this.currencyval ='';
     if (val == 'Text') {
       this.titleOfSelector = 'Text Field';
       this.labelVal = '';
-    //  document.getElementById('textfield').classList.remove('text-info');
-      document.getElementById('textfield').classList.add('text-danger');
-      document.getElementById('numberfield').classList.remove('text-danger');
-      document.getElementById('datefield').classList.remove('text-danger');
-      document.getElementById('currencyfield').classList.remove('text-danger');
-      document.getElementById('multiplefield').classList.remove('text-danger');
+      this.isBtnDisableddiv = true;
       this.customlabelfield =  true ;
       this.textfieldattr = true ;
       this.sizeoffield = true ;
@@ -297,9 +305,16 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.datefieldattr =  false ;
       this.currencyfieldattr = false ;
       this.multibox = false ;
+    //  document.getElementById('textfield').classList.remove('text-info');
+      document.getElementById('textfield').classList.add('text-danger');
+      document.getElementById('numberfield').classList.remove('text-danger');
+      document.getElementById('datefield').classList.remove('text-danger');
+      document.getElementById('currencyfield').classList.remove('text-danger');
+      document.getElementById('multiplefield').classList.remove('text-danger');
     } else if (val == 'Number') {
       this.labelVal = '';
       this.titleOfSelector = 'Number Field';
+      this.isBtnDisableddiv = true;
       document.getElementById('textfield').classList.remove('text-danger');
     //  document.getElementById('numberfield').classList.remove('text-info');
       document.getElementById('numberfield').classList.add('text-danger');
@@ -316,6 +331,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     } else if (val == 'Date') {
       this.labelVal = '';
       this.titleOfSelector = 'Date Field';
+      this.isBtnDisableddiv = true;
       document.getElementById('textfield').classList.remove('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
      // document.getElementById('datefield').classList.remove('text-info');
@@ -329,9 +345,10 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.datefieldattr =  true ;
       this.currencyfieldattr = false ;
       this.multibox = false ;
-    }  else if (val == 'currency') {
+    }  else if (val == 'Currency') {
       this.labelVal = '';
       this.titleOfSelector = 'Currency Field';
+      this.isBtnDisableddiv = true;
       document.getElementById('textfield').classList.remove('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
       document.getElementById('datefield').classList.remove('text-danger');
@@ -348,6 +365,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     } else if (val == 'multiple') {
       this.labelVal = '';
       this.titleOfSelector = 'Multiple Field';
+      this.isBtnDisableddiv = true;
       document.getElementById('textfield').classList.remove('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
       document.getElementById('datefield').classList.remove('text-danger');
@@ -382,7 +400,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     this.creatingElements(this.labelVal);
    } else if (this.customElement == 'textarea') {
     this.creatingElements(this.labelVal);
-   } else if (this.customElement == 'currency') {
+   } else if (this.customElement == 'Currency') {
     this.creatingElements(this.labelVal);
    } else if (this.customElement == 'multiple') {
     this.creatingElements(this.labelVal);
@@ -414,10 +432,79 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     // return this.currencysymbol ;
   }
 
+
+
+datevalidationmin(data) {
+  this.selectmindate = data;
+  if( this.selectedfield === 'Date') {
+    if (this.selecdate !== undefined && this.selecdate.length !== 0 && this.labelVal.length > 0 
+      && this.selectmindate !== undefined  && this.selectmindate.length !== 0  ) {
+      this.isBtnDisableddiv = false;
+    } else {
+      this.isBtnDisableddiv = true;
+    }
+  }
+  }
+  
+  datevalidationmax(data) {
+    this.selecdate = data;
+    if( this.selectedfield === 'Date') {
+    if (this.selecdate !== undefined && this.selecdate.length !== 0 && this.labelVal.length > 0
+       && this.selectmindate !== undefined  && this.selectmindate.length !== 0  ) {
+      this.isBtnDisableddiv = false;
+    } else {
+      this.isBtnDisableddiv = true;
+    }
+  }
+  }
+
+  selectcurrencyany(typeofcurrency) {
+    if (this.selectedfield === 'Currency' && typeofcurrency === 'any' && this.labelVal.length > 0) {
+    this.isBtnDisableddiv = false;
+  } else {
+    this.isBtnDisableddiv = true;
+  }
+  if (this.selectedfield === 'Currency' && typeofcurrency === 'specific' && this.labelVal.length > 0) {
+    this.isBtnDisableddiv = true;
+  }
+  }
+
+  selectcurrency(val){
+    console.log(val , 'jjhkhkhkkhkhkhk');
+    if ( this.selectedfield === 'Currency') {
+      if (val !== undefined) {
+      this.isBtnDisableddiv = false;
+    } else {
+      this.isBtnDisableddiv = true;
+    }
+  }  
+  }
+  
+
  onlabel(labelvalue: any) {
   // console.log(labelvalue);
   this.labelVal = labelvalue ;
- }
+  if( this.selectedfield === 'Text') {
+    if (this.labelVal.length > 0 ) {
+    this.isBtnDisableddiv = false;
+   } else {
+    this.isBtnDisableddiv = true;
+   }
+  } else if( this.selectedfield === 'Number') {
+    if (this.labelVal.length > 0 ) {
+    this.isBtnDisableddiv = false;
+  } else {
+    this.isBtnDisableddiv = true;
+   }
+  } else if( this.selectedfield === 'Date') {
+    if (this.selecdate !== undefined && this.labelVal.length > 0 && this.selectmindate !== undefined  ) {
+      this.isBtnDisableddiv = false;
+    } else {
+      this.isBtnDisableddiv = true;
+    }
+  }
+  }
+ 
   addComponent(val) {
     // document.getElementById('labelid').click();
     const comp = this._cfr.resolveComponentFactory(DynamicFormsComponent);
@@ -494,9 +581,11 @@ creatingElements(labelval) {
         }
 
         inputgroupdiv.setAttribute('class' , 'input-group');
+        inputgroupdiv.setAttribute('style' , 'width:408px;height:20px');
         labelele.setAttribute('class' , 'customlabel') ;
         labelele.textContent = labelval ;
         inputele.setAttribute('class' , 'form-control form-control-sm getval') ;
+        inputele.setAttribute('style' , 'border-radius:4px') ;
         selectele.setAttribute('class' , 'form-control form-control-sm getval') ;
         textareaele.setAttribute('class' , 'form-control form-control-sm getval') ;
         divele1.appendChild(divele2);
@@ -539,19 +628,20 @@ creatingElements(labelval) {
           inputgroupdiv.appendChild(spanele);
           inputele.setAttribute('type' , 'date') ;
           }
-        }  else if (this.customElement == 'currency') {
+        }  else if (this.customElement == 'Currency') {
           inputgroupdiv.appendChild(inputele);
           inputele.setAttribute('type' , 'number') ;
           inputele.setAttribute('step' , 'any') ;
 
           if (this.typeofcurrency == 'specific') {
             inputgroupdiv.appendChild(spanele);
-            spanele.setAttribute('style' , 'padding-left:30px');
+            spanele.setAttribute('style' , 'padding-right:30px');
             spanele.textContent =  '  (' + this.currencyval + ' )';
             inputgroupdiv.appendChild(spanele);
           } else {
             inputgroupdiv.appendChild(selectele);
             selectele.setAttribute('id' , 'currencyId');
+            selectele.setAttribute('style' , 'height:24px;margin-left:5px;border-radius:4px;');
             const sel = document.getElementById('currencyId');
             this.currencysymbol.forEach(ele => {
               const opt = document.createElement('option');
@@ -570,13 +660,14 @@ creatingElements(labelval) {
             const inputeleradio = document.createElement('input');
             const labelforradio = document.createElement('label');
             checkelement.setAttribute('class' , 'form-check');
-            checkelement.setAttribute('style' , 'padding-left:20px;');
+            checkelement.setAttribute('style' , 'padding-right:20px;');
             inputgroupdiv.appendChild(checkelement);
             inputeleradio.setAttribute('type' , 'checkbox') ;
             inputeleradio.setAttribute('class' , 'getval') ;
             checkelement.appendChild(inputeleradio);
             checkelement.appendChild(labelforradio);
             labelforradio.textContent = ele.name ;
+            labelforradio.setAttribute('style' , 'margin-left:4px;') ;
           });
           } else {
            this.customForm.value.items.forEach(ele => {
@@ -584,7 +675,7 @@ creatingElements(labelval) {
             const inputeleradio = document.createElement('input');
             const labelforradio = document.createElement('label');
             checkelement.setAttribute('class' , 'form-check');
-            checkelement.setAttribute('style' , 'padding-left:20px;');
+            checkelement.setAttribute('style' , 'padding-right:20px;');
             inputgroupdiv.appendChild(checkelement);
             inputeleradio.setAttribute('type' , 'radio') ;
             inputeleradio.setAttribute('name' , 'question') ;
@@ -593,6 +684,7 @@ creatingElements(labelval) {
             checkelement.appendChild(inputeleradio);
             checkelement.appendChild(labelforradio);
             labelforradio.textContent = ele.name ;
+            labelforradio.setAttribute('style' , 'margin-left:4px;');
           });
           }
 
@@ -600,7 +692,9 @@ creatingElements(labelval) {
           inputgroupdiv.appendChild(spanele);
         }
         spanele.setAttribute('class' , 'mylink') ;
+        spanele.setAttribute('style' , 'margin-left:6px') ;
         deletetrash.setAttribute('class' , 'fa fa-trash delete') ;
+        deletetrash.setAttribute('style' , 'padding:0px;') ;
 
 
       //  spanele.appendChild(anchortag);
@@ -612,6 +706,26 @@ creatingElements(labelval) {
     const elem = document.getElementById('currencyId') ;
    }
 /*creating Elements Ends */
+
+
+multipulinputvalue(){
+  console.log(this.customForm.value.items);
+  for (let i = 0 ; i < this.customForm.value.items.length ; i++){
+    if (this.customForm.value.items[i].name === '' || this.customForm.value.items[i].name === undefined 
+        && this.labelVal.length > 0){
+        this.seletvalues = true;
+        break;
+    } else {
+      this.seletvalues = false;
+    }
+  }
+
+  if (this.seletvalues === false) {
+    this.isBtnDisableddiv = false;
+  } else {
+    this.isBtnDisableddiv = true;
+  }
+}
 
 
   changetoggles() {

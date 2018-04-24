@@ -25,6 +25,7 @@ export class GetTemplatesComponent implements OnInit {
  validFormDataName: boolean ;
  formhtmlcontentdiv: boolean ;
  formrecordhtml: any;
+ formDataArrays: any ;
  htmlcontentdiv: boolean ;
   constructor(private serviceCall: RestcallsService) { }
 
@@ -66,7 +67,8 @@ export class GetTemplatesComponent implements OnInit {
     }
     /* get all forms Ended  */
    /*Formdata name  starts */
-   formDatabyname() {
+   formDatabyname(val) {
+    event.preventDefault();
      const el = document.getElementById('formDataHtml');
      console.log(el);
      this.formhtmlContent = el.outerHTML ;
@@ -77,6 +79,7 @@ export class GetTemplatesComponent implements OnInit {
         for ( let i = 0; i < ids.length; i++) {
             ary[i] = ids[i].value;
         }
+        this.formDataArrays = ary ;
      console.log(ary);
     document.getElementById('formdataNameId').click();
    }
@@ -93,7 +96,8 @@ export class GetTemplatesComponent implements OnInit {
           'formDataId': (this.formDataId === '') ? 0 : this.formDataId,
           'formDataName': this.formdataname ,
           'customFormId': this.templateId,
-          'htmlData':  this.formhtmlContent
+          'htmlData':  this.formhtmlContent,
+          'strArray':  this.formDataArrays
         };
         this.serviceCall.PostCall('/DynamicForm/InsertFormData' , formdataobj).subscribe(data => {
           console.log(data);
@@ -116,4 +120,5 @@ export class GetTemplatesComponent implements OnInit {
 
     }
     /*Formdata Get Ends */
+
 }

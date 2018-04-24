@@ -13,7 +13,7 @@
                     <div class="form-group" >
                        <div class="row">
                          <div class="col-sm-3" >
-                           <a  matTooltip="Textfield" class=""  (click)="gettingFormElements('Text')" ><span  ><i  id="textfield" class="fa fa-lg text-info" aria-hidden="true" >ABC</i>
+                           <a  matTooltip="Textfield" class="" [ngClass]={colorclass:applycolor} (click)="gettingFormElements('Text')" ><span  ><i  id="textfield" class="fa fa-lg text-info" aria-hidden="true" >ABC</i>
                            </span></a>
                          </div>
                          <div class="col-sm-3" >
@@ -25,7 +25,7 @@
                            </span></a>
                          </div>
                          <div class="col-sm-3" >
-                          <a  matTooltip="Currency field"   (click)="gettingFormElements('currency')" >
+                          <a  matTooltip="Currency field"   (click)="gettingFormElements('Currency')" >
                              <span >
                                  <i id="currencyfield" class="fa fa-money fa-lg text-info" aria-hidden="true"></i>
                              </span>
@@ -47,10 +47,10 @@
                     </div>
                      <div class="" *ngIf="customlabelfield">
                         <mat-form-field class="example-full-width">
-                            <input type="text" matInput placeholder="Label of Input"  (input)="onlabel($event.target.value)" >
+                            <input type="text" matInput placeholder="Label of Input" [value]='labelVal' (input)="onlabel($event.target.value)" >
                           </mat-form-field>
                         <div class="form-check">
-                            <input class="" type="checkbox" value=""  [(ngModel)]="requiredField" [ngModelOptions]="{standalone: true}" id="defaultCheck1">
+                            <input class="" type="checkbox" value=""  [(ngModel)]="requiredField"  [ngModelOptions]="{standalone: true}" id="defaultCheck1">
                             <label class="" for="defaultCheck1">
                              Required
                             </label>
@@ -81,8 +81,8 @@
                       <div *ngIf="numberfieldattr" >
                          <label class="control-label">Type</label>
                       <div >
-                        <input type="radio" name="typeofnumber"  value='range'  [(ngModel)]='typeofnumber'  [ngModelOptions]="{standalone: true}"> <label>Range</label>
-                        <input type="radio" name='typeofnumber' value='Decimal'  [(ngModel)]='typeofnumber' [ngModelOptions]="{standalone: true}"><label>Decimal</label>
+                        <input type="radio" name="typeofnumber"  value='range'  [(ngModel)]='typeofnumber'  [ngModelOptions]="{standalone: true}"> <label>Range</label>&nbsp;
+                        <input type="radio" name='typeofnumber' value='Decimal'  [(ngModel)]='typeofnumber' [ngModelOptions]="{standalone: true}"> <label>Decimal</label>
                       </div>
 
                       <div class="" *ngIf="typeofnumber == 'range'">
@@ -101,8 +101,8 @@
                                     Range
                                   </label>
                                 </div>
-                                <div *ngIf="daterange"><label >Min Date</label><input type="date" [(ngModel)]="datemin" [ngModelOptions]="{standalone: true}"  class="form-control" id="min" value="11-08-2012"></div>
-                                <div *ngIf="daterange"><label>Max Date</label><input type="date"  [(ngModel)]="datemax" [ngModelOptions]="{standalone: true}" class="form-control" id="max" min="{{datemin}}" value="11-08-2012"></div>
+                                <div *ngIf="daterange"><label >Min Date</label><input type="date" [(ngModel)]="datemin"  (change)="datevalidationmin(datemin)"  [ngModelOptions]="{standalone: true}"  class="form-control" id="min" value="11-08-2012"></div>&nbsp;
+                                <div *ngIf="daterange"><label>Max Date</label><input type="date"  [(ngModel)]="datemax" (change)="datevalidationmax(datemax)" [ngModelOptions]="{standalone: true}" class="form-control" id="max" min="{{datemin}}" value="11-08-2012"></div>
                            </div>
                            <div class="" *ngIf="currencyfieldattr">
                               <div >
@@ -111,12 +111,12 @@
                                   </label>
                                 </div>
                                 <div >
-                                    <input type="radio" name="typeofnumber"  value='specific'  [(ngModel)]='typeofcurrency'  [ngModelOptions]="{standalone: true}"> <label>Specific</label>
-                                    <input type="radio" name='typeofnumber' value='any'  [(ngModel)]='typeofcurrency' [ngModelOptions]="{standalone: true}"><label>Any</label>
+                                    <input type="radio" name="typeofnumber"  value='specific'  [(ngModel)]='typeofcurrency'  [ngModelOptions]="{standalone: true}"> <label>Specific</label>&nbsp;
+                                    <input type="radio" name='typeofnumber' value='any'  [(ngModel)]='typeofcurrency' (change)='selectcurrencyany(typeofcurrency)' [ngModelOptions]="{standalone: true}"> <label>Any</label>
                                   </div>
                                   <div *ngIf="typeofcurrency=='specific'">
                                     <!-- <label>Choose Currency</label> -->
-                                    <select [(ngModel)]='currencyval'  [ngModelOptions]="{standalone: true}" class="form-control">
+                                    <select [(ngModel)]='currencyval'  [ngModelOptions]="{standalone: true}" class="form-control" (change)='selectcurrency(currencyval)' >
                                       <option value="">Choose Currency</option>
                                       <option *ngFor="let val of currencysymbol" value={{val}}>{{val}}</option>
                                     </select>
@@ -133,7 +133,7 @@
                            <div formArrayName="items" *ngFor="let item of  customForm.controls.items.controls; let i=index">
                              <div [formGroupName]="i" class="form-group">
                                <div class="input-group">
-                                  <input formControlName="name" placeholder="option name">
+                                  <input formControlName="name" placeholder="option name" (change)='multipulinputvalue()'>
                                   <span  class="input-group-text"
                                   *ngIf="customForm.controls.items.controls.length > 1"  (click)="deleteRow(i)"><i class="fa fa-trash delete"></i></span>
 
@@ -145,7 +145,7 @@
                         </form>
                         <!-- <pre>{{customForm.value | json}}</pre> -->
                         <div class="" style="padding-top:30px;text-align:center;">
-                            <button class="btn btn-primary btn-sm" id="okbtn" (click)="custommodal()">Add Form</button>
+                            <button class="btn btn-primary btn-sm" id="okbtn" [ngClass]={disabled:isBtnDisableddiv} (click)="custommodal()">Add To Form</button>
                           </div>
                  </div>
               </div>
