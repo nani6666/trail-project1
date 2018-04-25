@@ -20,6 +20,7 @@ export class GetTemplatesComponent implements OnInit {
  formdataname: any ;
  templateId: any ;
  formDataId: any ;
+ interval: any;
  formhtmlContent: any ;
  formRecordname: any ;
  validFormDataName: boolean ;
@@ -113,14 +114,15 @@ export class GetTemplatesComponent implements OnInit {
         if (this.saveorUpdate == 'save') {
           this.serviceCall.PostCall('/DynamicForm/InsertFormData' , formdataobj).subscribe(data => {
            //  console.log(data);
-            this.getAllForms();
+           this.htmlcontentdiv = false ;
+            this.getAllFormtemplates();
           });
         } else {
 
           this.serviceCall.updateCall('/DynamicForm/UpdateForm/' + this.formDataId , formdataobj) .subscribe(data => {
             // console.log(data);
             this.formhtmlcontentdiv =  false;
-           this.getAllForms();
+           this.getAllFormtemplates();
         });
         }
 
