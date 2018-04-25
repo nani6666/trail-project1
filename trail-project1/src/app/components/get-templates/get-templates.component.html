@@ -68,7 +68,7 @@
             </div>
            </form>
             <div class="createForm"  id="createForm" style="text-align:center;"  *ngIf="createbutton">
-                <button type="button" class="btn btn-success btn-sm" id="formdatpopId" (click)="formDatabyname()">Save</button>
+                <button type="button" class="btn btn-success btn-sm" id="formdatpopId" (click)="formDatabyname('save')">Save</button>
               </div>
           </div>
 
@@ -84,7 +84,7 @@
       <div    [innerHtml]="formrecordhtml | sanitizeHtml">
       </div>
       <div  style="text-align:center;"  *ngIf="updateButton">
-          <button type="button" class="btn btn-success btn-sm" id="formupdateById" (click)="formDatabyname()">Save</button>
+          <button type="button" class="btn btn-success btn-sm" id="formupdateById" (click)="formDatabyname('update')">Update</button>
       </div>
   </div>
 </div>
