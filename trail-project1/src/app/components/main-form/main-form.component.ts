@@ -217,7 +217,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
    const checkboxelement =  document.getElementsByClassName('checkboxVal');
    const aryele = new Array();
        for ( let i = 0; i < checkboxelement.length; i++) {
-        aryele [i] = checkboxelement[i].checked;
+        aryele [i] =  (<any>checkboxelement[i]).checked;
         }
         console.log(aryele);
         if (aryele.includes(true)) {
@@ -437,7 +437,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 datevalidationmin(data) {
   this.selectmindate = data;
   if( this.selectedfield === 'Date') {
-    if (this.selecdate !== undefined && this.selecdate.length !== 0 && this.labelVal.length > 0 
+    if (this.selecdate !== undefined && this.selecdate.length !== 0 && this.labelVal.length > 0
       && this.selectmindate !== undefined  && this.selectmindate.length !== 0  ) {
       this.isBtnDisableddiv = false;
     } else {
@@ -445,7 +445,7 @@ datevalidationmin(data) {
     }
   }
   }
-  
+
   datevalidationmax(data) {
     this.selecdate = data;
     if( this.selectedfield === 'Date') {
@@ -477,9 +477,9 @@ datevalidationmin(data) {
     } else {
       this.isBtnDisableddiv = true;
     }
-  }  
   }
-  
+  }
+
 
  onlabel(labelvalue: any) {
   // console.log(labelvalue);
@@ -504,7 +504,7 @@ datevalidationmin(data) {
     }
   }
   }
- 
+
   addComponent(val) {
     // document.getElementById('labelid').click();
     const comp = this._cfr.resolveComponentFactory(DynamicFormsComponent);
@@ -711,7 +711,7 @@ creatingElements(labelval) {
 multipulinputvalue(){
   console.log(this.customForm.value.items);
   for (let i = 0 ; i < this.customForm.value.items.length ; i++){
-    if (this.customForm.value.items[i].name === '' || this.customForm.value.items[i].name === undefined 
+    if (this.customForm.value.items[i].name === '' || this.customForm.value.items[i].name === undefined
         && this.labelVal.length > 0){
         this.seletvalues = true;
         break;

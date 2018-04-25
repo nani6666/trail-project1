@@ -60,24 +60,34 @@
 <div class="row" style="padding-top:25px;">
   <div class="col-sm-8">
       <div class="card"  *ngIf="htmlcontentdiv">
-    <form ngNativeValidate id="formDataHtml" onsubmit="formDatabyname(event)">
+
           <div class="card-body ">
             <div class="card-title" id="titleNone">{{templatename}}</div>
+            <form ngNativeValidate id="formDataHtml">
             <div #htmlcontent [innerHtml]="testhtml | sanitizeHtml" >
             </div>
-            <div  style="text-align:center;">
-                <button type="submit" class="btn btn-success btn-sm" id="formdatpopId" >Save</button>
+           </form>
+            <div class="createForm"  id="createForm" style="text-align:center;"  *ngIf="createbutton">
+                <button type="button" class="btn btn-success btn-sm" id="formdatpopId" (click)="formDatabyname()">Save</button>
               </div>
           </div>
-      </form>
+
     </div>
   </div>
 </div>
 
 <div class="row" style="padding-top:25px;">
 <div class="col-sm-8"  >
-    <div class="card"  *ngIf="formhtmlcontentdiv" [innerHtml]="formrecordhtml | sanitizeHtml">
+    <div class="card"  *ngIf="formhtmlcontentdiv">
+        <div class="card-body ">
+     <span class="card-title">{{formRecordname}}</span>
+      <div    [innerHtml]="formrecordhtml | sanitizeHtml">
       </div>
+      <div  style="text-align:center;"  *ngIf="updateButton">
+          <button type="button" class="btn btn-success btn-sm" id="formupdateById" (click)="formDatabyname()">Save</button>
+      </div>
+  </div>
+</div>
 </div>
 </div>
 

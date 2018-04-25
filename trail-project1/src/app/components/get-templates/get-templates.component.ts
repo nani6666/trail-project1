@@ -26,7 +26,10 @@ export class GetTemplatesComponent implements OnInit {
  formhtmlcontentdiv: boolean ;
  formrecordhtml: any;
  formDataArrays: any ;
+ formDataGetArray: any ;
  htmlcontentdiv: boolean ;
+ createbutton: boolean ;
+ updateButton: boolean ;
   constructor(private serviceCall: RestcallsService) { }
 
   ngOnInit() {
@@ -47,13 +50,16 @@ export class GetTemplatesComponent implements OnInit {
    /*get template Data Started*/
     gettemplateData(val) {
        this.htmlcontentdiv = true ;
+       this.createbutton =  true ;
        this.formhtmlcontentdiv = false ;
+       this.updateButton = false ;
        this.templateId = val ;
        console.log(val);
        this.serviceCall.getCallByParameter('/DynamicForm/GetFormById/' , val).subscribe(data => {
        console.log(data);
        this.templatename = (<any>data).formName  + '-' + ' ( ' + (<any>data).accordion + ') ' ;
        this.testhtml = (<any>data).htmlContent ;
+       document.getElementById('createForm').classList.remove('hideele');
      });
     }
    /* get template Data Ended */
@@ -67,20 +73,20 @@ export class GetTemplatesComponent implements OnInit {
     }
     /* get all forms Ended  */
    /*Formdata name  starts */
-   formDatabyname(val) {
-    event.preventDefault();
+   formDatabyname() {
+   // event.preventDefault();
+    // console.log(val);
      const el = document.getElementById('formDataHtml');
      console.log(el);
      this.formhtmlContent = el.outerHTML ;
      const form = document.getElementsByTagName('input')[1].value;
      const length = document.getElementsByTagName('input').length;
-     const ids = document.getElementsByClassName('getval');
+     const ids = (document.getElementsByClassName('getval')  as HTMLCollectionOf<Element>);
         const ary = new Array();
         for ( let i = 0; i < ids.length; i++) {
-            ary[i] = ids[i].value;
+            ary[i] = (  <any>ids[i]).value;
         }
         this.formDataArrays = ary ;
-     console.log(ary);
     document.getElementById('formdataNameId').click();
    }
     /*Formdata name Ends */
@@ -109,13 +115,22 @@ export class GetTemplatesComponent implements OnInit {
     /*save Formdata   Ends */
     /*Formdata Get Starts */
     getformData(val) {
+      this.formDataId = val ;
+    //  document.getElementById('createForm').classList.add('hideele');
       this.htmlcontentdiv = false ;
+      this.createbutton =  false ;
       this.formhtmlcontentdiv = true ;
-      console.log(val);
+      this.updateButton = true ;
+    //  console.log(val);
       this.serviceCall.getCallByParameter('/DynamicForm/GetFormDataById/' , val).subscribe(data => {
-        console.log(data);
-        this.formRecordname = (<any>data).customFormName + '-' + ' ( ' + (<any>data).formDataName + ') ' ;
+        console.log((<any>data).strArray);
+        this.formRecordname = (<any>data).formDataName + '-' + ' ( ' + (<any>data).customFormName + ') ' ;
         this.formrecordhtml = (<any>data).htmlData ;
+        const ids = (document.getElementsByClassName('getval'));
+        for ( let i = 0; i < ids.length ; i++) {
+          ( <any>ids[i]).value =  (<any>data).strArray[i];
+        }
+
       });
 
     }

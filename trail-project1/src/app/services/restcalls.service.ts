@@ -50,11 +50,11 @@ export class RestcallsService {
     }
     /* delete call Ends */
 
-    /*update call Starts*/
+    /* update call Starts */
     updateCall(urlval , data): Observable<any[]> {
       return this._http.put(API_URL + urlval , data)
         .map((res: Response) => res)
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }
-    /*update Call Ends */
+    /* update Call Ends */
 }

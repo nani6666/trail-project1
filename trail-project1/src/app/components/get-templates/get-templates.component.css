@@ -22,10 +22,14 @@ a {
   height: 25px;
   font-size: 12px !important;
 } */
-
-:host ::ng-deep input:invalid {
-  border: 1px solid red ;
+:host ::ng-deep input:required:invalid {
+  border: 2px solid red ;
 }
+:host ::ng-deep input:invalid {
+  border: 2px solid red ;
+}
+
+
 
 /* :host ::ng-deep input:valid {
   border: 1px solid greenyellow;
