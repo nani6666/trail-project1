@@ -206,7 +206,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       control.push(this.createItem());
   }
 
-  addCustomField() {
+  addCustomField(val) {
     this.isBtnDisableddiv = true;
     this.customSection = true ;
     this.gettingFormElements('Text');
@@ -484,7 +484,7 @@ datevalidationmin(data) {
  onlabel(labelvalue: any) {
   // console.log(labelvalue);
   this.labelVal = labelvalue ;
-  if( this.selectedfield === 'Text') {
+  if ( this.selectedfield === 'Text') {
     if (this.labelVal.length > 0 ) {
     this.isBtnDisableddiv = false;
    } else {
@@ -526,6 +526,7 @@ datevalidationmin(data) {
       // this.data1.nativeElement.appendChild(cln) ;
       // const expComponent = this.container1.createComponent(comp);
       // expComponent.instance._ref = expComponent;
+      this.data1.nativeElement.appendChild(cln) ;
     } else if (val == 'outreach' ) {
       const expComponent = this.container2.createComponent(comp);
       expComponent.instance._ref = expComponent;

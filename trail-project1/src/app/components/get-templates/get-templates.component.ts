@@ -86,9 +86,9 @@ export class GetTemplatesComponent implements OnInit {
      const ids = document.getElementsByClassName('getval');
         const ary = new Array();
         for ( let i = 0; i < ids.length; i++) {
-            ary[i] = (  <any>ids[i]).value;
+            ary[i] = ( <any>ids[i]).value;
         }
-      //  console.log(ary);
+        console.log(ary);
         this.formDataArrays = ary ;
        // console.log(this.formDataArrays);
     document.getElementById('formdataNameId').click();

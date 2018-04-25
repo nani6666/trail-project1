@@ -400,7 +400,7 @@
                               </div>
                             </section>
                         </mat-expansion-panel>
-                        <mat-expansion-panel class="panel2">
+                        <mat-expansion-panel class="panel2" disabled >
                             <mat-expansion-panel-header>
                               <mat-panel-title>
                                   Hospital Services
@@ -614,14 +614,14 @@
                                  <section>
                                     <div style="padding-top:20px;text-align:center;">
                                         <button class="btn btn-sm btn-primary"  (click)="addComponent('pecf')">Clone Row</button>
-                                        <button class="btn btn-sm btn-primary">Add Custom Row</button>
+                                        <button class="btn btn-sm btn-primary"  (click)="addCustomField()">Add Custom Row</button>
                                         <button class="btn btn-sm btn-primary">Save Templete</button>
                                         <button class="btn btn-sm btn-primary" >Reset</button>
                                       </div>
                                  </section>
                           </mat-expansion-panel>
                         <mat-expansion-panel class="panel3" (opened)="panelOpenState = true"
-                                             (closed)="panelOpenState = false">
+                                             (closed)="panelOpenState = false" disabled>
                           <mat-expansion-panel-header>
                             <mat-panel-title>
                              Outreach Activities
@@ -836,14 +836,14 @@
                                <section>
                                   <div style="padding-top:20px;text-align:center;">
                                       <button class="btn btn-sm btn-primary"  (click)="addComponent('outreach')">Clone Row</button>
-                                      <button class="btn btn-sm btn-primary">Add Custom Row</button>
+                                      <button class="btn btn-sm btn-primary"  (click)="addCustomField()">Add Custom Row</button>
                                       <button class="btn btn-sm btn-primary">Save Templete</button>
                                       <button class="btn btn-sm btn-primary" >Reset</button>
                                     </div>
                                </section>
 
                         </mat-expansion-panel>
-                        <mat-expansion-panel class="panel4">
+                        <mat-expansion-panel class="panel4" disabled >
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
                                 Training & Development
@@ -1057,13 +1057,13 @@
                                    <section>
                                       <div style="padding-top:20px;text-align:center;">
                                           <button class="btn btn-sm btn-primary" (click)="addComponent('train')">Clone Row</button>
-                                          <button class="btn btn-sm btn-primary">Add Custom Row</button>
+                                          <button class="btn btn-sm btn-primary" (click)="addCustomField()">Add Custom Row</button>
                                           <button class="btn btn-sm btn-primary">Save Templete</button>
                                           <button class="btn btn-sm btn-primary" >Reset</button>
                                         </div>
                                    </section>
                         </mat-expansion-panel>
-                        <mat-expansion-panel class="panel5">
+                        <mat-expansion-panel class="panel5" disabled >
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
                                 Other Services
@@ -1277,7 +1277,7 @@
                                    <section>
                                       <div style="padding-top:20px;text-align:center;">
                                           <button class="btn btn-sm btn-primary" (click)="addComponent('other')">Clone Row</button>
-                                          <button class="btn btn-sm btn-primary">Add Custom Row</button>
+                                          <button class="btn btn-sm btn-primary" >Add Custom Row</button>
                                           <button class="btn btn-sm btn-primary">Save Templete</button>
                                           <button class="btn btn-sm btn-primary" >Reset</button>
                                         </div>
