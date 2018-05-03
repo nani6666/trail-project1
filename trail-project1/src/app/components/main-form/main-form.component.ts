@@ -330,7 +330,8 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 /* live time method Ends */
 
   gettingFormElements(val) {
-    this.customForm.controls.items.controls.length = 1;
+    this.createionform();
+    this.customForm.controls['items'].reset();
     this.customElement = val;
     this.labelVal = '';
     this.currencyval = '';
