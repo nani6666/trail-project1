@@ -467,6 +467,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
      const children = document.getElementsByClassName('mylink');
      for (let i = 0; i < children.length; i++) {
      children[i].addEventListener('click', (event: Event) => {
+
        const delobj = (<any>event).target.closest('div .form-group') ;
        delobj.remove();
     });
@@ -475,9 +476,11 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   const edit = document.getElementsByClassName('editlink');
   for ( let i = 0; i < edit.length; i++) {
   edit[i].addEventListener('click', (event: Event) => {
-  const editobj = (<any>event).target.closest('div .input-group');
-   const finalEle = editobj.nativeElement;
-  console.log(finalEle);
+    this.customSection = true ;
+    const editobj = (<any>event).target.closest('div .form-group .row') ;
+    console.log(editobj.parentNode.childNodes[0].childNodes[1].childNodes[0].childNodes[0].attributes);
+    console.log(editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML);
+  //  console.log(editobj.parentNode.childNodes[0].childNodes[0].childNodes[0].label[0].innerHTML);
  });
 }
 

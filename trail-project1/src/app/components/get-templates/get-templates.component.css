@@ -8,7 +8,9 @@ a {
 :host ::ng-deep  .mylink {
   display:none;
 }
-
+:host ::ng-deep  .editlink {
+  display:none;
+}
 :host ::ng-deep  .titlename {
   display:none;
 }
@@ -72,7 +74,7 @@ editicon{
   height:auto;
   margin-bottom: 15px;
   margin-top:20px;
-  margin-left: 10px; 
+  margin-left: 10px;
 }
 .sinlinealign{
 float: left;
@@ -90,9 +92,9 @@ overflow: scroll !important;
 }
 .imageicon{
   text-align: center;
-   width: 45px; 
-   height: 45px; 
-   margin-left: 7px; 
+   width: 45px;
+   height: 45px;
+   margin-left: 7px;
    margin-top: -45px;
 }
 .modal-content{
