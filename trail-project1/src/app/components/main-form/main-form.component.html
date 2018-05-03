@@ -2,122 +2,111 @@
   <div class="row">
       <div class="col-md-3">
           <div class="card">
-              <div class="card-body">
-                  <h5 class="card-title">Custom Fields Designer</h5>
-                  <!-- <div id="txt"></div>
-                  <strong>{{presentdate  | date :'fullDate'}}</strong> -->
-                  <div class="container" style="background-color: #fff;" *ngIf="customSection">
-
+              <div class="card-body cusfldlabel">
+                  <div class="card-title custcardtitle">&nbsp; Custom Fields Designer 
+                      <span [ngClass]={disabled:customSectiontoggel}  style='cursor: pointer;' >
+                      <span *ngIf="customSection === undefined || customSection === false" (click)='hidefunction()'><i class="fa fa-angle-down"></i></span>
+                      <span  *ngIf="customSection === true" (click)='hidefunction()'><i class="fa fa-angle-up"></i></span>
+                      </span>
+                    </div> 
+                  <div class="card container" style="background-color: #fff;" *ngIf="customSection">
                   <form [formGroup]="customForm" id="customForm">
-                  <label class="control-label">{{titleOfSelector}}</label>
-                    <div class="form-group" >
-                       <div class="row">
-                         <div class="col-sm-3" >
-                           <a  matTooltip="Textfield" class="" [ngClass]={colorclass:applycolor} (click)="gettingFormElements('Text')" ><span  ><i  id="textfield" class="fa fa-lg text-info" aria-hidden="true" >ABC</i>
+                    <div class="form-group mainformgroup" >
+                       <div class="row ">
+                         <div class="col-sm-3 cardheading" >
+                           <a  matTooltip="Textfield"   (click)="gettingFormElements('Text')" ><span  ><i  id="textfield" [class.myclass]='applyclass' class="fa fa-lg text-info" aria-hidden="true" >ABC</i>
                            </span></a>
                          </div>
-                         <div class="col-sm-3" >
+                         <div class="col-sm-3 cardheading" >
                            <a matTooltip="Number field"   (click)="gettingFormElements('Number')" ><span ><i id="numberfield" class="fa fa-lg text-info" aria-hidden="true">123</i>
                            </span></a>
                          </div>
-                         <div class="col-sm-3" >
+                         <div class="col-sm-3 cardheading" >
                            <a  matTooltip="Date field"  (click)="gettingFormElements('Date')" ><span ><i id="datefield" class="fa fa-calendar fa-lg text-info" aria-hidden="true"></i>
                            </span></a>
                          </div>
-                         <div class="col-sm-3" >
+                         <div class="col-sm-3 cardheading" >
                           <a  matTooltip="Currency field"   (click)="gettingFormElements('Currency')" >
                              <span >
                                  <i id="currencyfield" class="fa fa-money fa-lg text-info" aria-hidden="true"></i>
                              </span>
                           </a>
-                        </div>
-                         </div>
-                    </div>
-                    <div class="form-group" >
-                        <div class="row">
-
-                         <div class="col-sm-3" >
-                            <a  matTooltip="Multiple Choice"  (click)="gettingFormElements('multiple')" >
-                               <span >
-                                   <i id="multiplefield" class="fa fa-list fa-lg text-info" aria-hidden="true"></i>
-                               </span>
-                            </a>
+                        </div>                        
+                         <div class="form-group" >
+                            <div class="row">    
+                             <div class="col-sm-3 cardheading" >
+                                <a  matTooltip="Multiple Choice"  (click)="gettingFormElements('multiple')" >
+                                   <span >
+                                       <i id="multiplefield" class="fa fa-list fa-lg text-info" aria-hidden="true"></i>
+                                   </span>
+                                </a>
+                              </div>
                           </div>
-                      </div>
+                        </div>
                     </div>
+                </div>
                      <div class="" *ngIf="customlabelfield">
                         <mat-form-field class="example-full-width">
                             <input type="text" matInput placeholder="Label of Input" [value]='labelVal' (input)="onlabel($event.target.value)" >
                           </mat-form-field>
                         <div class="form-check">
                             <input class="" type="checkbox" value = "  " [(ngModel)]="requiredField"  [ngModelOptions]="{standalone: true}" id="defaultCheck1">
-                            <label class="" for="defaultCheck1">
+                            <label class="fieldlabel" for="defaultCheck1">
                              Required
                             </label>
                           </div>
                      </div>
-
-                    <!-- <div class="form-group col-sm-8" *ngIf="sizeoffield">
-                        <select class="form-control" [(ngModel)]="sizeOfField" [ngModelOptions]="{standalone: true}">
-                        <option value="">Choose Size</option>
-                        <option value="small">Small</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Large">Large</option>
-                        </select>
-                     </div> -->
                      <div class="" *ngIf="textfieldattr">
                       <div class="form-check">
                           <input class="" type="checkbox" value = "  "id="defaultCheck2" [(ngModel)]="multilineText" [ngModelOptions]="{standalone: true}" >
-                          <label class="" for="defaultCheck2">
+                          <label class="fieldlabel" for="defaultCheck2">
                             Multi line Text
                           </label>
                         </div>
                    </div>
                      <div class="" *ngIf="textfieldattr" >
-                        <label class="control-label">Maximum Characters length</label>
+                        <label class="fieldlabel"  class="control-label fieldlabel">Maximum Characters length</label>
                          <mat-slider   min="1" max="20" step="1" value="0" [disabled]="multilineText" thumbLabel tickInterval="auto" [(ngModel)]="lengthChars" [ngModelOptions]="{standalone: true}"></mat-slider>
                       </div>
 
                       <div *ngIf="numberfieldattr" >
-                         <label class="control-label">Type</label>
+                         <!-- <label class="control-label">Type</label> -->
                       <div >
-                        <input type="radio" name="typeofnumber"  value='range'  [(ngModel)]='typeofnumber'  [ngModelOptions]="{standalone: true}"> <label>Range</label>&nbsp;
-                        <input type="radio" name='typeofnumber' value='Decimal'  [(ngModel)]='typeofnumber' [ngModelOptions]="{standalone: true}"> <label>Decimal</label>
+                        <input type="radio" name="typeofnumber"  value='range'  [(ngModel)]='typeofnumber'  [ngModelOptions]="{standalone: true}"> <label class="fieldlabel">Range</label>&nbsp;
+                        <input type="radio" name='typeofnumber' value='Decimal'  [(ngModel)]='typeofnumber' [ngModelOptions]="{standalone: true}"> <label class="fieldlabel">Decimal</label>
                       </div>
 
                       <div class="" *ngIf="typeofnumber == 'range'">
-                          <label class="control-label">Min</label>
+                          <label class="control-label fieldlabel" >Min</label>
                            <mat-slider   min="0" max="20" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="minvalue" [ngModelOptions]="{standalone: true}"></mat-slider>
                         </div>
                         <div class="" *ngIf="typeofnumber == 'range'" >
-                            <label class="control-label">Max</label>
+                            <label  class="control-label fieldlabel" >Max</label>
                              <mat-slider   min="1" max="20" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="maxvalue" [ngModelOptions]="{standalone: true}"></mat-slider>
                           </div>
                         </div>
                           <div class="" *ngIf="datefieldattr">
                               <div class="form-check">
-                                  <input class="" type="checkbox" value = "  "id="defaultCheck2" [(ngModel)]="daterange" [ngModelOptions]="{standalone: true}" >
-                                  <label class="" for="defaultCheck2">
+                                  <input class="" type="checkbox" value = "" class="fieldlabel" id="defaultCheck2" [(ngModel)]="daterange" [ngModelOptions]="{standalone: true}" >
+                                  <label class="fieldlabel" for="defaultCheck2">
                                     Range
                                   </label>
                                 </div>
-                                <div *ngIf="daterange"><label >Min Date</label><input type="date" [(ngModel)]="datemin"  (change)="datevalidationmin(datemin)"  [ngModelOptions]="{standalone: true}"  class="form-control" id="min" value="11-08-2012"></div>&nbsp;
-                                <div *ngIf="daterange"><label>Max Date</label><input type="date"  [(ngModel)]="datemax" (change)="datevalidationmax(datemax)" [ngModelOptions]="{standalone: true}" class="form-control" id="max" min="{{datemin}}" value="11-08-2012"></div>
+                                <div *ngIf="daterange"><label  class="fieldlabel">Min Date</label><input type="date" [(ngModel)]="datemin" class="mindate" (change)="datevalidationmin(datemin)"  [ngModelOptions]="{standalone: true}"  class="form-control" id="min" value="11-08-2012" style='width: 168px;height:27px;font-size:12px;'></div>
+                                <div *ngIf="daterange"><label  class="fieldlabel">Max Date</label><input type="date"  [(ngModel)]="datemax" class="mindate" (change)="datevalidationmax(datemax)" [ngModelOptions]="{standalone: true}" class="form-control" id="max" min="{{datemin}}" value="11-08-2012" style='width: 168px;height:27px;font-size:12px;'></div>
                            </div>
                            <div class="" *ngIf="currencyfieldattr">
                               <div >
-                                  <label class="" for="defaultCheck2">
-                                    Type
-                                  </label>
+                                  <!-- <label class="" for="defaultCheck2">Type</label> -->
                                 </div>
                                 <div >
-                                    <input type="radio" name="typeofnumber"  value='specific'  [(ngModel)]='typeofcurrency'  [ngModelOptions]="{standalone: true}"> <label>Specific</label>&nbsp;
-                                    <input type="radio" name='typeofnumber' value='any'  [(ngModel)]='typeofcurrency' (change)='selectcurrencyany(typeofcurrency)' [ngModelOptions]="{standalone: true}"> <label>Any</label>
+                                    <input type="radio" name="typeofnumber"  value='specific'  [(ngModel)]='typeofcurrency'  [ngModelOptions]="{standalone: true}"> <label class="fieldlabel">Specific</label>
+                                    <input type="radio" name='typeofnumber' value='any'  [(ngModel)]='typeofcurrency' (change)='selectcurrencyany(typeofcurrency)' [ngModelOptions]="{standalone: true}"> <label class="fieldlabel">Any</label>
                                   </div>
                                   <div *ngIf="typeofcurrency=='specific'">
                                     <!-- <label>Choose Currency</label> -->
-                                    <select [(ngModel)]='currencyval'  [ngModelOptions]="{standalone: true}" class="form-control" (change)='selectcurrency(currencyval)' >
-                                      <option value="">Choose Currency</option>
+                                    <select [(ngModel)]='currencyval'  class="inputfieldlabel" [ngModelOptions]="{standalone: true}" class="form-control" (change)='selectcurrency(currencyval)' >
+                                      <option value="" class="fieldlabel">Choose Currency</option>
                                       <option *ngFor="let val of currencysymbol" value={{val}}>{{val}}</option>
                                     </select>
                                   </div>
@@ -125,7 +114,7 @@
                            <div   *ngIf="multibox">
                               <div class="form-check">
                                   <input class="" type="checkbox" value = "  "id="multiselect" [(ngModel)]="multiselect" [ngModelOptions]="{standalone: true}" >
-                                  <label class="" for="multiselect">
+                                  <label class="fieldlabel" for="multiselect">
                                     Multiselect
                                   </label>
                                 </div>
@@ -133,9 +122,9 @@
                            <div formArrayName="items" *ngFor="let item of  customForm.controls.items.controls; let i=index">
                              <div [formGroupName]="i" class="form-group">
                                <div class="input-group">
-                                  <input formControlName="name" placeholder="option name" (change)='multipulinputvalue()'>
+                                  <input formControlName="name" placeholder="Option name" class="inputfieldlabel" (change)='multipulinputvalue()'>
                                   <span  class="input-group-text"
-                                  *ngIf="customForm.controls.items.controls.length > 1"  (click)="deleteRow(i)"><i class="fa fa-trash delete"></i></span>
+                                  *ngIf="customForm.controls.items.controls.length > 1"  (click)="deleteRow(i)" style='margin-top: -7px;'><i class="fa fa-trash delete"></i></span>
 
                                </div>
 
@@ -144,7 +133,7 @@
                         </div>
                         </form>
                         <!-- <pre>{{customForm.value | json}}</pre> -->
-                        <div class="" style="padding-top:30px;text-align:center;">
+                        <div class="addbutton">
                             <button class="btn btn-primary btn-sm" id="okbtn" [ngClass]={disabled:isBtnDisableddiv} (click)="custommodal()">Add To Form</button>
                           </div>
                  </div>
@@ -156,8 +145,8 @@
                 <div class="card-body">
                     <mat-accordion>
                         <mat-expansion-panel class="panel1">
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
+                          <mat-expansion-panel-header  (click)='pecfdisable()' >
+                            <mat-panel-title >
                                 Primary Eye Care Facility(PECF)
                             </mat-panel-title>
                           </mat-expansion-panel-header>
@@ -168,65 +157,61 @@
                            <div class="col-md-10">
                               <div class="row">
                                   <div class="col-md-3">
-
-                                    <mat-slide-toggle class="example-margin btn-xs" [(ngModel)]="hospServciesGender" (change)="changetoggles()">Enable Gender </mat-slide-toggle>
+                                    <mat-slide-toggle class="example-margin btn-xs fieldlabel" [(ngModel)]="hospServciesGender" (change)="changetoggles()">Enable Gender </mat-slide-toggle>
                                   </div>
                                   <div class="col-md-3">
-                                     <mat-slide-toggle class="example-margin" [(ngModel)]="hospServciesOther" (change)="changetoggles()">Enable Other </mat-slide-toggle>
+                                     <mat-slide-toggle class="example-margin fieldlabel" [(ngModel)]="hospServciesOther" (change)="changetoggles()">Enable Other </mat-slide-toggle>
                                    </div>
                                    <div class="col-md-3">
-
-                                       <mat-slide-toggle class="example-margin" [(ngModel)]="hospServicesChild" (change)="changetoggles()">Enable Child </mat-slide-toggle>
+                                       <mat-slide-toggle class="example-margin fieldlabel" [(ngModel)]="hospServicesChild" (change)="changetoggles()">Enable Child </mat-slide-toggle>
                                    </div>
                                    <div class="col-md-3">
-
-                                       <mat-slide-toggle class="example-margin" [(ngModel)]="hospServicesTotal" (change)="changetoggles()">Enable Total</mat-slide-toggle>
+                                       <mat-slide-toggle class="example-margin fieldlabel" [(ngModel)]="hospServicesTotal" (change)="changetoggles()">Enable Total</mat-slide-toggle>
                                    </div>
                                  </div>
                             </div>
                          </div>
-                         <label class="control-label text-warning" style="padding-left:15px;"> <input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospSAervicesSelectall" (change)="changetoggles()"><span ><strong>Select All</strong></span></label>
+                         <label class="control-label text-warning" style="padding-left:15px;"> <input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospSAervicesSelectall" (change)="changetoggles()"><span class="fieldlabel" ><strong>Select All</strong></span></label>
                          <div id="hospFormData">
-                         <section>
-
+                         <section  [ngClass]={disabled:isselectedrowgenders1} >
                          <div class="row">
                            <div class="col-md-3" style="padding-top:25px;">
-                              <label class="control-label checkbox-inline"> <input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospNewPatient"><span >New Patients Seen</span></label>
+                              <label class="control-label checkbox-inline"> <input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospNewPatient"><span class="fieldlabel" >New Patients Seen</span></label>
                            </div>
                         <div class="col-md-9">
                             <div class="row">
                                 <div class="col-sm-2" *ngIf="hospgenderFields">
-                                    <label class="labelCenter control-label">AM</label>
+                                    <label class="labelCenter control-label fieldlabel">AM</label>
                                     <input type="number"  value = "  "class="form-control SmallInput getval" />
                                   </div>
                                  <div class="col-sm-2"  *ngIf="hospgenderFields">
-                                    <label class="labelCenter control-label">AF</label>
+                                    <label class="labelCenter control-label fieldlabel">AF</label>
                                     <input type="number" value = "  " class="form-control  SmallInput getval" />
                                    </div>
                                    <div class="col-md-2"   *ngIf="hospotherFields">
-                                      <label class="labelCenter control-label">OT</label>
+                                      <label class="labelCenter control-label fieldlabel">OT</label>
                                       <input type="number"  value = "  "class="form-control  SmallInput getval" />
                                      </div>
                                      <div class="col-md-2"  *ngIf="hospchildFields">
-                                        <label class="labelCenter control-label">CM</label>
+                                        <label class="labelCenter control-label fieldlabel">CM</label>
                                         <input type="number" value = "  "class="form-control  SmallInput getval" />
                                       </div>
                                       <div class="col-md-2"  *ngIf="hospchildFields">
-                                          <label class=" labelCenter control-label">CF</label>
+                                          <label class=" labelCenter control-label fieldlabel">CF</label>
                                           <input type="number" value = "  "class="form-control  SmallInput getval" />
                                       </div>
                                       <div class="col-md-2"  *ngIf="hosptotalFields">
-                                            <label class="labelCenter control-label">Total</label>
+                                            <label class="labelCenter control-label fieldlabel">Total</label>
                                             <input type="number" value = "  "class="form-control  SmallInput getval" />
                                       </div>
                                   </div>
                             </div>
                          </div>
                         </section>
-                        <section>
+                        <section [ngClass]={disabled:isselectedrowgenders2}>
                             <div class="row">
                               <div class="col-md-3" style="padding-top:15px;">
-                                 <label class="control-label">  <input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospReviewPatients"><span >Review Patients</span></label>
+                                 <label class="control-label">  <input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospReviewPatients"><span class="fieldlabel" >Review Patients</span></label>
                               </div>
                            <div class="col-md-9">
                                <div class="row">
@@ -258,10 +243,10 @@
                                </div>
                             </div>
                            </section>
-                           <section>
+                           <section [ngClass]={disabled:isselectedrowgenders3}>
                               <div class="row">
                                 <div class="col-md-3" style="padding-top:15px;">
-                                   <label class="control-label" ><input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospglassPrescribe"><span >Glasses Prescribed</span></label>
+                                   <label class="control-label" ><input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospglassPrescribe"><span class="fieldlabel">Glasses Prescribed</span></label>
                                 </div>
                              <div class="col-md-9">
                                  <div class="row">
@@ -293,10 +278,10 @@
                                  </div>
                               </div>
                              </section>
-                             <section>
+                             <section [ngClass]={disabled:isselectedrowgenders4}>
                          <div class="row">
                            <div class="col-md-3" style="padding-top:15px;">
-                              <label class="control-label"> <input  class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospglassesDistrbuted"><span >Glasses Distributed</span></label>
+                              <label class="control-label"> <input  class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospglassesDistrbuted"><span class="fieldlabel">Glasses Distributed</span></label>
                            </div>
                         <div class="col-md-9">
                             <div class="row">
@@ -328,11 +313,10 @@
                             </div>
                          </div>
                         </section>
-                        <section>
+                        <section id="mainParenttag" [ngClass]={disabled:isselectedrowgenders5}>
                             <div class="row">
                               <div class="col-md-3" style="padding-top:15px;">
-
-                                 <label class="control-label"> <input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospCatracts"><span >Catracts Advised</span></label>
+                                 <label class="control-label"> <input class="hideele checkboxVal" type="checkbox" name="labelCheckbox" [(ngModel)]="hospCatracts"><span class="fieldlabel">Catracts Advised</span></label>
                               </div>
                            <div class="col-md-9">
                                <div class="row">
@@ -375,28 +359,14 @@
                               <div id="testinghtml">
 
                               </div>
-
-                              <!-- <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                     <label class="customlabel">testidfnnssssssss</label>
-                                    </div>
-                                    <div class="col-sm-9">
-                                      <div class="input-group">
-                                          <input class="form-control form-control-sm">
-                                          <span><i class="fa fa-trash delete"></i></span>
-                                      </div>
-                                    </div>
-                                </div>
-                              </div> -->
                            </section>
                            </div>
                             <section>
                               <div style="padding-top:20px;text-align:center;">
-                                <button class="btn btn-sm btn-primary" (click)="addComponent('pecf')">Clone Row</button>
-                                <button class="btn btn-sm btn-primary" (click)="addCustomField()">Add Custom Row</button>
-                                <button class="btn btn-sm btn-primary" (click)="openformlabel('pecf')">Save Templete</button>
-                                <button class="btn btn-sm btn-primary" >Reset</button>
+                                <button class="btn btn-sm btn-primary fieldlabel" (click)="addComponent('pecf')">Clone Row</button>
+                                <button class="btn btn-sm btn-primary fieldlabel" (click)="addCustomField()">Add Custom Row</button>
+                                <button class="btn btn-sm btn-primary fieldlabel" (click)="openformlabel('pecf')">Save Templete</button>
+                                <button class="btn btn-sm btn-primary fieldlabel" >Reset</button>
                               </div>
                             </section>
                         </mat-expansion-panel>
@@ -1299,9 +1269,9 @@
            </mat-form-field>
       </div>
       <div class="modal-footer">
-        <button type="button "  class="btn btn-sm btn-primary common_btn addbtn mr-auto"  data-dismiss="modal">cancel</button>
         <button type="button " class="btn btn-sm btn-primary common_btn addbtn" id="okbtnform" (click)="saveTempData();">OK</button>
-      </div>
+        <button type="button "  class="btn btn-sm btn-primary common_btn addbtn mr-auto"  data-dismiss="modal">cancel</button>
+    </div>
     </div>
   </div>
  </div>
@@ -1314,7 +1284,7 @@
       <div class="modal-header ">
         <div><p>Form Created Successfully</p></div>
       </div>
-      <div class="" style="text-align:center;">
+      <div class="" style='margin:15px;'>
         <button type="button"  routerLink="/Tempaltes" class="btn btn-primary btn-sm common_btn addbtn" data-dismiss="modal" >OK</button>
       </div>
     </div>

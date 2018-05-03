@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import { Headers, Http, HttpModule, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-const API_URL = 'https://sdp1devapp3.azurewebsites.net/api';
+const API_URL = 'http://sdp1devapp3.azurewebsites.net/api';
 @Injectable()
 export class RestcallsService {
  options ;
@@ -57,4 +57,22 @@ export class RestcallsService {
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }
     /* update Call Ends */
+
+
+    /* deteteformdata call Starts */
+    deleteformdata(urlval , data): Observable<any[]> {
+      return this._http.delete(API_URL + urlval + data)
+        .map((res: Response) => res)
+        .catch((error: any) => Observable.throw(error || 'Server error'));
+    }
+    /* deteteformdata Call Ends */
+
+    /* deteteformdata call Starts */
+    deleteform(urlval , data): Observable<any[]> {
+      return this._http.delete(API_URL + urlval + data)
+        .map((res: Response) => res)
+        .catch((error: any) => Observable.throw(error || 'Server error'));
+    }
+    /* deteteformdata Call Ends */
+
 }

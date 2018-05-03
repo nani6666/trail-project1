@@ -29,6 +29,80 @@ a {
   border: 2px solid red ;
 }
 
+.sideheading{
+  width: 193px;
+  padding: 0px;
+  margin-left: 38px;
+  margin-top: -20px;
+  margin-bottom: 12px;
+}
+/* .maincard-body{
+  margin-right: -200px;
+} */
+
+/* .maincard{
+padding: 0px;
+} */
+
+.sub-con{
+  padding: 0px;
+  cursor: pointer;
+}
+editicon{
+  margin-left: 5px;
+  color: red;
+}
+.formeditdata{
+  margin-left: 25px;
+}
+.fmdataname{
+  margin-bottom: 10px;
+}
+.deleteicon{
+  margin-left: 2px;
+  color: red;
+}
+.card-text{
+  font-size: 14px;
+}
+.subcont{
+  padding-left: 12px;
+}
+.maincard{
+  height:auto;
+  margin-bottom: 15px;
+  margin-top:20px;
+  margin-left: 10px; 
+}
+.sinlinealign{
+float: left;
+}
+.fa {
+  font-size: 12px;
+}
+
+.card-group {
+  -ms-flex-flow: row wrap;
+  flex-flow: initial;
+}
+.container-fluid{
+overflow: scroll !important;
+}
+.imageicon{
+  text-align: center;
+   width: 45px; 
+   height: 45px; 
+   margin-left: 7px; 
+   margin-top: -45px;
+}
+.modal-content{
+  padding: 10px;
+}
+
+.modal-footer{
+  border: none;
+  display: block;
+}
 
 
 /* :host ::ng-deep input:valid {

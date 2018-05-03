@@ -17,6 +17,65 @@
   background-color: #DDDBD7;
 }
 
+.cusfldlabel{
+  padding: 0px 16px 10px 16px;
+}
+.cardheading{
+  font-size: 12px;
+  padding :5px 2px 0px 2px;
+  flex: 0 0 19%;
+  height: 0px;
+  max-width: 20%
+}
+.mainformgroup{
+  margin-bottom: 12px;
+  margin-top: 15px;
+
+}
+.fieldlabel{
+  font-size: 12px;
+}
+.inputfieldlabel{
+  font-size: 12px;
+    width: 179px;
+    border-radius: 4px;
+}
+label {
+  display: inline-block;
+  margin-bottom: 0rem;
+}
+
+.form-check {
+  position: relative;
+  display: block;
+  margin-bottom:0px;
+}
+.mat-form-field {
+  font-size: small;
+  font-weight: 400;
+  line-height: 1.125;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+
+.custcardtitle{
+  margin: 0px;
+  padding: 8px;
+}
+.mat-slide-toggle-content{
+  font-size: 12px;
+}
+.mindate{
+  width: 230px;
+  height: 28px;
+  font-size: 12px;
+}
+select.form-control:not([size]):not([multiple]) {
+  /* height: calc(2.25rem + 2px); */
+  height: 31px;
+  font-size: 12px;
+  margin-top: 15px;
+}
 
 a , .btn {
   cursor: pointer;
@@ -37,28 +96,52 @@ a , .btn {
   padding-top:8px;
   white-space:normal;
   font-size: 12px;
+  margin-left: 5px;
+}
+
+
+.myclass{
+color: #dc3545!important;
 }
 
 
 ::ng-deep .delete{
-   font-size: 18px;
+   font-size: 15px;
    color : red ;
    padding: 5px 0px 0px 15px;
    cursor: pointer;
+   padding:0px;
+   margin-left:7px;
+   margin-top: -5px
  }
+ .addbutton{
+  padding-bottom:15px;
+  padding-top:10px;
+  text-align:center;
+ }
+
+ ::ng-deep .edit{
+  font-size: 15px;
+  color : #0069D9;
+  padding: 5px 0px 0px 9px;
+  cursor: pointer;
+  margin-left:0px;
+  margin-top: -5px;
+}
 
  ::ng-deep .inputPadding{
   padding: 0px 0px 0px  31px;
  }
 
  .btn-circle {
-  width: 30px;
-  height: 30px;
-  padding: 6px 0px;
-  border-radius: 15px;
-  text-align: center;
-  font-size: 12px;
-  line-height: 1.42857;
+  width: 15px !important;
+  height: 15px !important;
+  padding: 0px 0px !important;
+  margin-right: 55px !important;
+  margin-bottom: 7px !important;
+  text-align: center !important;
+  font-size: 9px !important;
+  line-height: 1.42857 !important;
 }
 
 :host ::ng-deep .labelCenter{
@@ -90,6 +173,18 @@ padding-left: 5px;
   padding: 0px !important;
 }
 
+.modal-header{
+  border-bottom: none;
+}
+
+.modal-footer{
+  border-top: none;
+  display: block;
+}
+.addbtn{
+  width:70px;
+}
+
 .btn-circle[_ngcontent-c1] {
   width: 20px;
   height: 20px;
@@ -105,6 +200,9 @@ padding-left: 5px;
 .label{
   margin-left:4px !important;
 }
+
+
+
 ::ng-deep .mat-slider-min-value.mat-slider-thumb-label-showing .mat-slider-thumb, .mat-slider-min-value.mat-slider-thumb-label-showing .mat-slider-thumb-label {
   background-color: rgba(13, 69, 223, 0.87) ;
 }

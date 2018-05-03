@@ -17,6 +17,14 @@ declare const jQuery: any;
   styleUrls: ['./main-form.component.css']
 })
 export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
+  isselectedrowgenders5: boolean;
+  isselectedrowgenders4: boolean;
+  isselectedrowgenders3: boolean;
+  isselectedrowgenders2: boolean;
+  isselectedrowgenders1: boolean;
+  custonclonefunc: boolean;
+  customSectiontoggel: boolean;
+  applyclass: boolean;
   @ViewChild('parent', { read: ViewContainerRef }) container: ViewContainerRef;
   @ViewChild('parent1', { read: ViewContainerRef }) container1: ViewContainerRef;
   @ViewChild('parent2', { read: ViewContainerRef }) container2: ViewContainerRef;
@@ -27,7 +35,6 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   seletvalues: boolean;
   selecdate: any;
   selectmindate: any;
-  selectedfield: any;
   isBtnDisableddiv: boolean;
   applycolor: boolean;
   CustomElements: string;
@@ -156,14 +163,10 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   constructor(private _fb: FormBuilder , private _cfr: ComponentFactoryResolver,
        private renderer: Renderer2 , private serviceCall: RestcallsService ) { }
        ngAfterViewInit() {
-        // console.log(this.data1.nativeElement);
       }
   ngOnInit() {
-  //   this.startTime();
-  // this.id = setInterval(() => {
-  //   this.startTime();
-  // }, 500);
-  //  this.presentdate = new Date();
+    this.customSectiontoggel = true;
+    this.custonclonefunc = true;
     this.hospServicesTotal = true ;
     this.hospServciesGender = true ;
     this.hospServciesOther = true ;
@@ -178,6 +181,11 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     this.currencyApi();
     this.currencyval = '';
     this.createionform() ;
+    this.isselectedrowgenders1 = false;
+    this.isselectedrowgenders2 = false;
+    this.isselectedrowgenders3 = false;
+    this.isselectedrowgenders4 = false;
+    this.isselectedrowgenders5 = false;
   }
 
   ngOnDestroy() {
@@ -197,6 +205,8 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     });
   }
 
+  // this.customForm.controls.items.value["0"].name
+
   deleteRow(index: number) {
     const control = <FormArray>this.customForm.controls['items'];
     control.removeAt(index);
@@ -206,9 +216,16 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       control.push(this.createItem());
   }
 
-  addCustomField(val) {
+  addCustomField() {
     this.isBtnDisableddiv = true;
     this.customSection = true ;
+    this.applyclass = true;
+    this.gettingFormElements('Text');
+  }
+
+  accordionfun() {
+    this.customSection = true ;
+    this.applyclass = true;
     this.gettingFormElements('Text');
   }
 
@@ -219,11 +236,9 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
        for ( let i = 0; i < checkboxelement.length; i++) {
         aryele [i] =  (<any>checkboxelement[i]).checked;
         }
-        console.log(aryele);
         if (aryele.includes(true)) {
           this.accordionName = val ;
          const el = document.getElementById('hospFormData') ;
-       // this.htmlContent = JSON.stringify(el.outerHTML);
          this.htmlContent = el.outerHTML;
          document.getElementById('formId').click();
         } else {
@@ -235,13 +250,38 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 /* open label starts */
    saveTempData() {
 
-    //  const checkboxes = document.getElementsByName('labelCheckbox');
-    //  if (checkboxes.item){
-    //   alert ('something is checked');
-    //  } else {
-    //   alert (' nothing checked ');
-    //  }
-     if (this.formname == '') {
+
+    if (this.hospNewPatient === true ) {
+      this.isselectedrowgenders1 = false;
+    } else {
+      this.isselectedrowgenders1 = true;
+    }
+
+    if (this.hospReviewPatients === true ){
+      this.isselectedrowgenders2 = false;
+    } else {
+      this.isselectedrowgenders2 = true;
+    }
+
+    if (this.hospglassPrescribe === true){
+      this.isselectedrowgenders3 = false;
+    } else {
+      this.isselectedrowgenders3 = true;
+    }
+
+    if ( this.hospglassesDistrbuted === true ) {
+      this.isselectedrowgenders4 = false;
+    } else {
+      this.isselectedrowgenders4 = true;
+    }
+
+    if ( this.hospCatracts === true ) {
+      this.isselectedrowgenders5 = false;
+    } else {
+      this.isselectedrowgenders5 = true;
+    }
+
+     if (this.formname === '' || this.formname === undefined) {
       alert('please Enter Form Name');
      } else {
        document.getElementById('okbtnform').setAttribute('data-dismiss', 'modal') ;
@@ -254,8 +294,10 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
         'enableTotal': this.hospServicesTotal,
         'htmlContent': this.htmlContent
           };
+
+
           this.serviceCall.PostCall('/DynamicForm/CreateForm' , obj).subscribe(data => {
-           // console.log(JSON.parse((<any>data)._body));
+            // console.log(JSON.parse((<any>data)._body));
             if (JSON.parse((<any>data)._body).message == 'Success') {
              document.getElementById('alertPopup').click();
             } else {
@@ -264,8 +306,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
           },
           err => {
             console.log('error');
-          }
-        );
+          });
      }
 
     }
@@ -289,11 +330,21 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 /* live time method Ends */
 
   gettingFormElements(val) {
-   // console.log(val);
-   this.CustomElements = val + ' ' + 'field' ;
-    this.selectedfield = val;
+    this.customForm.controls.items.controls.length = 1;
+    this.customElement = val;
     this.labelVal = '';
-    this.currencyval ='';
+    this.currencyval = '';
+    this.requiredField = false;
+    this.multilineText = false;
+    this.typeofnumber = false;
+    this.typeofcurrency = false;
+    this.daterange = false;
+    this.multiselect = false;
+    this.lengthChars = '';
+    this.minvalue = '';
+    this.maxvalue = '';
+    this.datemin = '';
+    this.datemax = '';
     if (val == 'Text') {
       this.titleOfSelector = 'Text Field';
       this.labelVal = '';
@@ -301,12 +352,14 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.customlabelfield =  true ;
       this.textfieldattr = true ;
       this.sizeoffield = true ;
+      this.applyclass = true;
       this.numberfieldattr = false ;
       this.datefieldattr =  false ;
       this.currencyfieldattr = false ;
       this.multibox = false ;
     //  document.getElementById('textfield').classList.remove('text-info');
-      document.getElementById('textfield').classList.add('text-danger');
+      const ele = document.getElementById('textfield');
+      ele.classList.add('text-danger');
       document.getElementById('numberfield').classList.remove('text-danger');
       document.getElementById('datefield').classList.remove('text-danger');
       document.getElementById('currencyfield').classList.remove('text-danger');
@@ -322,6 +375,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       document.getElementById('currencyfield').classList.remove('text-danger');
       document.getElementById('multiplefield').classList.remove('text-danger');
       this.customlabelfield =  true ;
+      this.applyclass = false;
       this.textfieldattr = false ;
       this.sizeoffield = true ;
       this.numberfieldattr = true ;
@@ -341,6 +395,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.customlabelfield =  true ;
       this.textfieldattr = false ;
       this.sizeoffield = false ;
+      this.applyclass = false;
       this.numberfieldattr = false ;
       this.datefieldattr =  true ;
       this.currencyfieldattr = false ;
@@ -358,6 +413,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.customlabelfield =  true ;
       this.textfieldattr = false ;
       this.sizeoffield = false ;
+      this.applyclass = false;
       this.numberfieldattr = false ;
       this.datefieldattr =  false ;
       this.currencyfieldattr = true ;
@@ -375,16 +431,18 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
       this.customlabelfield =  true ;
       this.textfieldattr = false ;
       this.sizeoffield = false ;
+      this.applyclass = false;
       this.numberfieldattr = false ;
       this.datefieldattr =  false ;
       this.currencyfieldattr = false ;
       this.multibox = true ;
     }
-    this.customElement = val;
   }
 
 
  custommodal() {
+  this.customSectiontoggel = false;
+  this.custonclonefunc = false;
   if (this.customElement === undefined) {
   alert('Please Choose one of element');
   } else if (this.labelVal === ' ') {
@@ -406,16 +464,22 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     this.creatingElements(this.labelVal);
    }
 }
-     let children = document.getElementsByClassName('mylink');
+     const children = document.getElementsByClassName('mylink');
      for (let i = 0; i < children.length; i++) {
      children[i].addEventListener('click', (event: Event) => {
-      //  console.log((<any>event).target);
-      //  console.log((<any>event).target.closest('div .form-group')) ;
        const delobj = (<any>event).target.closest('div .form-group') ;
        delobj.remove();
-      // this.removeObject();
     });
   }
+
+  const edit = document.getElementsByClassName('editlink');
+  for ( let i = 0; i < edit.length; i++) {
+  edit[i].addEventListener('click', (event: Event) => {
+  const editobj = (<any>event).target.closest('div .input-group');
+   const finalEle = editobj.nativeElement;
+  console.log(finalEle);
+ });
+}
 
  }
 
@@ -436,7 +500,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 
 datevalidationmin(data) {
   this.selectmindate = data;
-  if( this.selectedfield === 'Date') {
+  if( this.customElement === 'Date') {
     if (this.selecdate !== undefined && this.selecdate.length !== 0 && this.labelVal.length > 0
       && this.selectmindate !== undefined  && this.selectmindate.length !== 0  ) {
       this.isBtnDisableddiv = false;
@@ -448,7 +512,7 @@ datevalidationmin(data) {
 
   datevalidationmax(data) {
     this.selecdate = data;
-    if( this.selectedfield === 'Date') {
+    if (this.customElement === 'Date') {
     if (this.selecdate !== undefined && this.selecdate.length !== 0 && this.labelVal.length > 0
        && this.selectmindate !== undefined  && this.selectmindate.length !== 0  ) {
       this.isBtnDisableddiv = false;
@@ -459,19 +523,19 @@ datevalidationmin(data) {
   }
 
   selectcurrencyany(typeofcurrency) {
-    if (this.selectedfield === 'Currency' && typeofcurrency === 'any' && this.labelVal.length > 0) {
+    if (this.customElement === 'Currency' && typeofcurrency === 'any' && this.labelVal.length > 0) {
     this.isBtnDisableddiv = false;
   } else {
     this.isBtnDisableddiv = true;
   }
-  if (this.selectedfield === 'Currency' && typeofcurrency === 'specific' && this.labelVal.length > 0) {
+  if (this.customElement === 'Currency' && typeofcurrency === 'specific' && this.labelVal.length > 0) {
     this.isBtnDisableddiv = true;
   }
   }
 
   selectcurrency(val){
     console.log(val , 'jjhkhkhkkhkhkhk');
-    if ( this.selectedfield === 'Currency') {
+    if ( this.customElement === 'Currency') {
       if (val !== undefined) {
       this.isBtnDisableddiv = false;
     } else {
@@ -484,19 +548,19 @@ datevalidationmin(data) {
  onlabel(labelvalue: any) {
   // console.log(labelvalue);
   this.labelVal = labelvalue ;
-  if ( this.selectedfield === 'Text') {
+  if( this.customElement === 'Text') {
     if (this.labelVal.length > 0 ) {
     this.isBtnDisableddiv = false;
    } else {
     this.isBtnDisableddiv = true;
    }
-  } else if( this.selectedfield === 'Number') {
+  } else if ( this.customElement === 'Number') {
     if (this.labelVal.length > 0 ) {
     this.isBtnDisableddiv = false;
   } else {
     this.isBtnDisableddiv = true;
    }
-  } else if( this.selectedfield === 'Date') {
+  } else if ( this.customElement === 'Date') {
     if (this.selecdate !== undefined && this.labelVal.length > 0 && this.selectmindate !== undefined  ) {
       this.isBtnDisableddiv = false;
     } else {
@@ -507,26 +571,21 @@ datevalidationmin(data) {
 
   addComponent(val) {
     // document.getElementById('labelid').click();
+    console.log(val , 'ddddddddddddddd');
     const comp = this._cfr.resolveComponentFactory(DynamicFormsComponent);
-    if (val == 'hosp') {
+    if(this.custonclonefunc === true) {
+      const ele = document.getElementById('mainParenttag').lastElementChild ;
+      const cln = ele.cloneNode(true);
+      this.data1.nativeElement.appendChild(cln) ;
+    } else if (val == 'hosp') {
       const ele = document.getElementById('mainParent').lastElementChild ;
       const cln = ele.cloneNode(true);
-      console.log(document.getElementById('mainParent').lastElementChild);
-      // const expComponent = this.container.createComponent(comp);
-      // expComponent.instance._ref = expComponent;
-      // expComponent.instance.modal();
       this.data1.nativeElement.appendChild(cln) ;
     } else if (val == 'pecf' ) {
       const ele = document.getElementById('mainParent').lastElementChild ;
       const cln = ele.cloneNode(true);
-      console.log(document.getElementById('mainParent').lastElementChild);
-      // const expComponent = this.container.createComponent(comp);
-      // expComponent.instance._ref = expComponent;
-      // expComponent.instance.modal();
-      // this.data1.nativeElement.appendChild(cln) ;
-      // const expComponent = this.container1.createComponent(comp);
-      // expComponent.instance._ref = expComponent;
       this.data1.nativeElement.appendChild(cln) ;
+      console.log(document.getElementById('mainParent').lastElementChild);
     } else if (val == 'outreach' ) {
       const expComponent = this.container2.createComponent(comp);
       expComponent.instance._ref = expComponent;
@@ -547,17 +606,24 @@ creatingElements(labelval) {
         divele3 = document.createElement('div') ,
         divele4 = document.createElement('div') ,
         inputgroupdiv = document.createElement('div') ,
+
+        chebox  = document.createElement('input') ,
         labelele  = document.createElement('label') ,
         inputele =  document.createElement('input'),
         textareaele = document.createElement('textarea'),
         selectele = document.createElement('select'),
         optionele = document.createElement('option'),
         spanele =   document.createElement('span') ,
+        editspan =   document.createElement('span') ,
         anchortag = document.createElement('a') ,
+        editicon = document.createElement('i') ,
         deletetrash = document.createElement('i') ;
-        divele1.setAttribute('class' , 'form-group');
-        divele2.setAttribute('class' , 'row');
-        divele3.setAttribute('class' , 'col-sm-3');
+        divele1.setAttribute('class' , 'form-group ');
+        divele1.setAttribute('style' , 'margin-top:15px');
+        divele2.setAttribute('class' , 'row ');
+        divele3.setAttribute('class' , 'col-sm-3 inpulabel');
+        chebox.setAttribute('value' , ' ');
+        chebox.setAttribute('type' , 'checkbox');
         inputele.setAttribute('value' , ' ');
         textareaele.setAttribute('value' , ' ');
         selectele.setAttribute('value' , ' ');
@@ -582,8 +648,10 @@ creatingElements(labelval) {
         }
 
         inputgroupdiv.setAttribute('class' , 'input-group');
-        inputgroupdiv.setAttribute('style' , 'width:408px;height:20px');
+        inputgroupdiv.setAttribute('style' , 'width:450px;height:20px');
+        labelele.setAttribute('class' , 'customcheckbox') ;
         labelele.setAttribute('class' , 'customlabel') ;
+        labelele.setAttribute('style' , 'margin-left:5px;') ;
         labelele.textContent = labelval ;
         inputele.setAttribute('class' , 'form-control form-control-sm getval') ;
         inputele.setAttribute('style' , 'border-radius:4px') ;
@@ -592,23 +660,27 @@ creatingElements(labelval) {
         divele1.appendChild(divele2);
         divele2.appendChild(divele3);
         divele2.appendChild(divele4);
+        divele3.appendChild(chebox);
         divele3.appendChild(labelele);
         divele4.appendChild(inputgroupdiv);
          if (this.customElement == 'Text') {
            if ( this.multilineText == true) {
             inputgroupdiv.appendChild(textareaele);
+            inputgroupdiv.appendChild(editspan);
             inputgroupdiv.appendChild(spanele);
            } else {
             inputgroupdiv.appendChild(inputele);
+            inputgroupdiv.appendChild(editspan);
             inputgroupdiv.appendChild(spanele);
-
             inputele.setAttribute('type' , 'text') ;
+            chebox.setAttribute('type' , 'checkbox') ;
             inputele.setAttribute('maxlength' , this.lengthChars) ;
            }
 
         } else if (this.customElement == 'Number' ) {
           inputele.setAttribute('type' , 'number') ;
           inputgroupdiv.appendChild(inputele);
+          inputgroupdiv.appendChild(editspan);
           inputgroupdiv.appendChild(spanele);
           inputele.setAttribute('min' , this.minvalue) ;
           inputele.setAttribute('max' , this.maxvalue) ;
@@ -620,12 +692,14 @@ creatingElements(labelval) {
         } else if (this.customElement == 'Date') {
           if (this.daterange == true ) {
           inputgroupdiv.appendChild(inputele);
+          inputgroupdiv.appendChild(editspan);
           inputgroupdiv.appendChild(spanele);
           inputele.setAttribute('type' , 'date') ;
           inputele.setAttribute('min' , this.datemin) ;
           inputele.setAttribute('max' ,  this.datemax) ;
           } else {
           inputgroupdiv.appendChild(inputele);
+          inputgroupdiv.appendChild(editspan);
           inputgroupdiv.appendChild(spanele);
           inputele.setAttribute('type' , 'date') ;
           }
@@ -636,8 +710,9 @@ creatingElements(labelval) {
 
           if (this.typeofcurrency == 'specific') {
             inputgroupdiv.appendChild(spanele);
-            spanele.setAttribute('style' , 'padding-right:30px');
-            spanele.textContent =  '  (' + this.currencyval + ' )';
+            editspan.setAttribute('style' , 'padding-right:30px');
+            spanele.textContent =  '  (' + ' ' + this.currencyval + ' )';
+            inputgroupdiv.appendChild(editspan);
             inputgroupdiv.appendChild(spanele);
           } else {
             inputgroupdiv.appendChild(selectele);
@@ -650,11 +725,11 @@ creatingElements(labelval) {
                 opt.value = this.currencyval;
               selectele.appendChild(opt);
               });
+              inputgroupdiv.appendChild(editspan);
               inputgroupdiv.appendChild(spanele);
           }
 
         } else if (this.customElement == 'multiple') {
-          console.log(this.customForm.value.items);
           if (this.multiselect === true ) {
             this.customForm.value.items.forEach(ele => {
             const checkelement = document.createElement('div') ;
@@ -690,30 +765,43 @@ creatingElements(labelval) {
           }
 
 
+          inputgroupdiv.appendChild(editspan);
           inputgroupdiv.appendChild(spanele);
         }
+
+        editspan.setAttribute('class' , 'editlink') ;
+        editicon.setAttribute('class' , 'fa fa-pencil edit') ;
+        editspan.appendChild(editicon);
+
         spanele.setAttribute('class' , 'mylink') ;
-        spanele.setAttribute('style' , 'margin-left:6px') ;
         deletetrash.setAttribute('class' , 'fa fa-trash delete') ;
-        deletetrash.setAttribute('style' , 'padding:0px;') ;
+        spanele.appendChild(deletetrash);
 
 
       //  spanele.appendChild(anchortag);
-        spanele.appendChild(deletetrash);
+
         this.data1.nativeElement.appendChild(divele1);
 }
+
+    hidefunction() {
+      this.customSection = !this.customSection;
+      this.gettingFormElements('Text');
+    }
+
+    pecfdisable() {
+      this.customSectiontoggel = false;
+      this.custonclonefunc = true;
+    }
 
    changeCurrencyval(val) {
     const elem = document.getElementById('currencyId') ;
    }
+
 /*creating Elements Ends */
 
-
-multipulinputvalue(){
-  console.log(this.customForm.value.items);
-  for (let i = 0 ; i < this.customForm.value.items.length ; i++){
-    if (this.customForm.value.items[i].name === '' || this.customForm.value.items[i].name === undefined
-        && this.labelVal.length > 0){
+multipulinputvalue() {
+  for (let i = 0 ; i < this.customForm.value.items.length ; i++) {
+    if (this.customForm.value.items[i].name === '' || this.customForm.value.items[i].name === undefined && this.labelVal.length > 0) {
         this.seletvalues = true;
         break;
     } else {

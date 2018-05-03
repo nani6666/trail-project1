@@ -1,90 +1,86 @@
-<div class="container-fluid" style="padding-top:50px;">
+<div class="container-fluid" style="margin-top:20px;">
   <div class="row">
-    <div class="col-sm-10">
-        <div class="card" style="background-color: #DDDBD7">
-            <div class="card-body">
+    <div class=" maincard">
+        <div class=" card maindiv" style="background-color: #DDDBD7;">
+            <div class="card-body maincard-body">
                 <div class="row card-group">
-                    <div class="col-sm-3" *ngFor="let forms of formstemplatesArr">
-                        <div class="card" style="width: 200px ;">
-                            <div class="card-body">
-                                <div class="row">
-                                <img class="card-img-top"  style="text-align:center;width: 30px ; height:30px"
-                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6IxpIZQ3sd7TNkzSSmWR-YmBLnY1gupyKBlEqGWlWR4_W33gH" >
-                                    <div class="col">
-                                        <a class="card-title" (click)="gettemplateData(forms.id)">{{forms.formName}} </a>
+                    <div class="sinlinealign" *ngFor="let forms of formstemplatesArr; let j = index"  style='float: left;' >
+                        <div class="card maincard" style='width: 225px;height: 175px;'>
+                            <div class="card-body" >
+                                <div class="row" >                                    
+                                <img class="card-img-top imageicon"
+                                 src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/12.File-128.png" >
+                                </div>
+                                 <div class="col sideheading">
+                                        <a class="card-title" ><span style="margin-bottom: 25px;color: #145da0" (click)="gettemplateData(forms.id)" ><b>{{forms.formName}}</b></span>  
+                                            <span (click)="gettemplateData(forms.id)"  class="editicon" style="color:red"><i class="fa fa-plus"></i></span> 
+                                               <span (click)='deleteform(j,forms.formName)'  class="deleteicon"><i class="fa fa-trash delete"></i></span> </a>
                                     </div>
-                                    <div class="col">
+                                    <div class="col sub-con">
                                         <div class="card-text">
-                                            <ul>
-                                              <li *ngFor="let formsaveData of forms.formData"><a (click)="getformData(formsaveData.formDataId)">{{formsaveData.formDataName}}</a></li>
+                                            <ul class='subcont'>
+                                              <li *ngFor="let formsaveData of forms.formData; let i=index" (click)="getformData(formsaveData.formDataId)"  ><a >{{formsaveData.formDataName}}</a> 
+                                                <span (click)="getformData(formsaveData.formDataId)"  class="editicon" style="color:red"><i class="fa fa-plus edit"></i></span> 
+                                                <span (click)='deleteformdata(i  ,forms.formName , formsaveData.formDataName)'  data-toggle="modal" data-target="#formdeletemodel" class="deleteicon"><i class="fa fa-trash delete"></i></span></li>                                              
                                             </ul>
                                          </div>
-                                    </div>
-                                     </div>
+                                    </div>                                     
                               </div>
                           </div>
                     </div>
                 </div>
-
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <div class="col-sm-10">
 
     </div>
-  </div>
+    
+    <div class="modal fade" id="formdeletemodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true "
+    data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog " role="document " style="width:320px">
+      <div class="modal-content ">
+        <span style="font-size:12px;"><strong>Are you sure you want to delete?</strong></span>
+        <div class="modal-footer">
+          <button type="button " class="btn btn-sm btn-primary common_btn addbtn" id="okbtnform"  data-dismiss="modal" (click)="formdatadelete();">Yes</button>
+          <button type="button "  class="btn btn-sm btn-primary common_btn addbtn mr-auto"  data-dismiss="modal">cancel</button>        
+        </div>
+      </div>
+    </div>
+   </div>
 
 
 
-      <!-- <div class="card ">
-          <h6>
-          saved Forms
-          </h6>
-         <div class="card-body">
-            <mat-accordion>
-                <mat-expansion-panel  *ngFor="let forms of formsArray">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                     {{forms}}
-                    </mat-panel-title>
-                    <mat-panel-description>
-
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                </mat-expansion-panel>
-              </mat-accordion>
-         </div>
-        </div> -->
-
-
-<div class="row" style="padding-top:25px;">
-  <div class="col-sm-8">
-      <div class="card"  *ngIf="htmlcontentdiv">
-
+<div class="row" style='padding: 25px;' *ngIf="htmlcontentdiv">
+  <div class="col-sm-8" >
+        <div class="card-title" id="titleNone">{{templatename}}</div>
+      <div class="card">
           <div class="card-body ">
-            <div class="card-title" id="titleNone">{{templatename}}</div>
             <form ngNativeValidate id="formDataHtml">
             <div #htmlcontent [innerHtml]="testhtml | sanitizeHtml" >
             </div>
            </form>
-            <div class="createForm"  id="createForm" style="text-align:center;"  *ngIf="createbutton">
+            <div class="createForm"  id="createForm" style="text-align:center;margin-right: 35%;"  *ngIf="createbutton">
                 <button type="button" class="btn btn-success btn-sm" id="formdatpopId" (click)="formDatabyname('save')">Save</button>
+                <button type="button" class="btn btn-success btn-sm" id="formdatpopId" (click)="formDatabynamecancel()">Cancel</button>
               </div>
           </div>
-
     </div>
   </div>
 </div>
 
-<div class="row" style="padding-top:25px;">
-<div class="col-sm-8"  >
-    <div class="card"  *ngIf="formhtmlcontentdiv">
+<div class="row" style='padding: 25px;' *ngIf="formhtmlcontentdiv" >
+<div class="col-sm-8 "  >
+    <div><span class="card-title fmdataname" >{{formRecordname}}</span></div>
+        <div class="card"  *ngIf="formhtmlcontentdiv">
         <div class="card-body ">
-     <span class="card-title">{{formRecordname}}</span>
       <div    [innerHtml]="formrecordhtml | sanitizeHtml">
       </div>
-      <div  style="text-align:center;"  *ngIf="updateButton">
-          <button type="button" class="btn btn-success btn-sm" id="formupdateById" (click)="formDatabyname('update')">Update</button>
+      <div  style="text-align:center;margin-right: 35%;"  *ngIf="updateButton">
+          <button type="button" class="btn btn-success btn-sm" id="formupdateById" (click)="formDatabyname('update')">save</button>
+          <button type="button" class="btn btn-success btn-sm" id="formupdateById" (click)="formDatabycancel()">cancel</button>
       </div>
   </div>
 </div>
@@ -102,8 +98,8 @@
       </mat-form-field>
       <span *ngIf="validFormDataName" style="color: red;font-size:12px;"><strong>Please Enter Form Name</strong></span>
       <div class="modal-footer">
-        <button type="button "  class="btn btn-sm btn-primary common_btn addbtn mr-auto"  data-dismiss="modal">cancel</button>
-        <button type="button " class="btn btn-sm btn-primary common_btn addbtn" id="okbtnform" (click)="saveFormData();">Save</button>
+        <button type="button " class="btn btn-sm btn-primary common_btn addbtn" id="okbtnform" data-dismiss="modal" (click)="saveFormData();">Save</button>
+        <button type="button "  class="btn btn-sm btn-primary common_btn addbtn mr-auto"  data-dismiss="modal">cancel</button>        
       </div>
     </div>
   </div>
