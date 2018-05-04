@@ -249,21 +249,19 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
  /* open label Ends */
 /* open label starts */
    saveTempData() {
-
-
     if (this.hospNewPatient === true ) {
       this.isselectedrowgenders1 = false;
     } else {
       this.isselectedrowgenders1 = true;
     }
 
-    if (this.hospReviewPatients === true ){
+    if (this.hospReviewPatients === true ) {
       this.isselectedrowgenders2 = false;
     } else {
       this.isselectedrowgenders2 = true;
     }
 
-    if (this.hospglassPrescribe === true){
+    if (this.hospglassPrescribe === true) {
       this.isselectedrowgenders3 = false;
     } else {
       this.isselectedrowgenders3 = true;
@@ -294,8 +292,6 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
         'enableTotal': this.hospServicesTotal,
         'htmlContent': this.htmlContent
           };
-
-
           this.serviceCall.PostCall('/DynamicForm/CreateForm' , obj).subscribe(data => {
             // console.log(JSON.parse((<any>data)._body));
             if (JSON.parse((<any>data)._body).message == 'Success') {

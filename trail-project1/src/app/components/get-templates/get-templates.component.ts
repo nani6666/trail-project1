@@ -135,7 +135,7 @@ export class GetTemplatesComponent implements OnInit {
            }
          }
      }
-        console.log(ary);
+       // console.log(ary);
         this.formDataArrays = ary ;
     document.getElementById('formdataNameId').click();
     this.saveorUpdate = val ;
@@ -150,8 +150,6 @@ export class GetTemplatesComponent implements OnInit {
       this.formhtmlcontentdiv = false ;
       }
     /*save Formdata   starts */
-
-
     saveFormData() {
      // console.log(this.templateId);
       if (this.formdataname === undefined) {
@@ -210,18 +208,18 @@ export class GetTemplatesComponent implements OnInit {
     /*Formdata Get Ends */
 
 
-
+ /* Delete Template Starts */
     deleteform(inde, formname) {
       this.htmlcontentdiv = false ;
       this.formhtmlcontentdiv = false ;
-      console.log(inde  , 'kllkkllklklklklklklklklk' , formname);
+      // console.log(inde  , 'kllkkllklklklklklklklklk' , formname);
       for (let i = 0; i < this.formstemplatesArr.length; i++ ) {
         if (formname === this.formstemplatesArr[i].formName) {
           if (this.formstemplatesArr[i].formData.length > 0) {
             alert('Please Delete the form after we delete template') ;
           } else {
             this.deleteformid =  this.formstemplatesArr[i].id;
-            console.log(this.deleteformid , 'hhhhhhhhhhhhhhh');
+            // console.log(this.deleteformid , 'hhhhhhhhhhhhhhh');
             this.formstemplatesArr.splice(inde, 1);
              this.serviceCall.deleteform('/DynamicForm/DeleteForm/' , this.deleteformid).subscribe(data => {
                   console.log(data , 'hgkdfghkdfsgksj');
@@ -231,22 +229,19 @@ export class GetTemplatesComponent implements OnInit {
       }
 
     }
-
-
-
-
-
-
+/* Delete Template Ends */
+/* Delete Template control Starts */
     deleteformdata(index , tempname , fmname) {
-      console.log(index , 'ghdksdhfgksdfhgkdsfghksd', tempname , 'dfdjghdkfhgkdfhg'  , fmname);
-      console.log(this.formstemplatesArr , 'sadkjbsjafbhdsjf');
+      // console.log(index , 'ghdksdhfgksdfhgkdsfghksd', tempname , 'dfdjghdkfhgkdfhg'  , fmname);
+      // console.log(this.formstemplatesArr , 'sadkjbsjafbhdsjf');
       this.htmlcontentdiv = false;
       this.formhtmlcontentdiv = false ;
       this.idex = index;
       this.tempname = tempname;
       this.formname = fmname;
     }
-
+/* Delete Template control Ends */
+/* Delete Forms and Data Starts */
     formdatadelete() {
       this.htmlcontentdiv = false;
       this.formhtmlcontentdiv = false ;
@@ -257,7 +252,7 @@ export class GetTemplatesComponent implements OnInit {
                 this.deleteddataid = this.formstemplatesArr[i].formData[k].formDataId;
                 this.formstemplatesArr[i].formData.splice(this.idex, 1);
                  this.serviceCall.deleteformdata('/DynamicForm/DeleteFormData/', this.deleteddataid).subscribe(data => {
-                  console.log(data , 'hgkdfghkdfsgksj');
+               //   console.log(data , 'hgkdfghkdfsgksj');
                  });
               }
           }
@@ -266,7 +261,7 @@ export class GetTemplatesComponent implements OnInit {
       }
 
     }
-
+/* Delete Forms and Data Ends */
 
 
 
