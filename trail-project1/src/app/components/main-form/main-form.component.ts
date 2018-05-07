@@ -43,7 +43,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   countVal = 0;
   items: any[] = [];
   hospServciesGender: any;
-  titleOfSelector:any ;
+  titleOfSelector: any ;
   customForm: FormGroup;
   hospServciesOther: any;
   hospServicesChild: any;
@@ -118,6 +118,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   otherNewPatient: boolean ;
   countervaluehosp: number ;
   customlabel: any;
+  positionOfElement: any ;
   customElement: any ;
   currencysymbol: any ;
   labelVal: any ;
@@ -131,9 +132,10 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   customSection: boolean;
   customlabelfield: boolean;
   formname: any;
+  editelement: boolean ;
   accordionName: any;
   id: any ;
-  inputvalue:any;
+  inputvalue: any;
   public invoiceForm: FormGroup;
    /* fields properties  Starts */
    sizeoffield: boolean ;
@@ -165,6 +167,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
        ngAfterViewInit() {
       }
   ngOnInit() {
+    this.editelement = false ;
     this.customSectiontoggel = true;
     this.custonclonefunc = true;
     this.hospServicesTotal = true ;
@@ -217,6 +220,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   }
 
   addCustomField() {
+    this.editelement =  false;
     this.isBtnDisableddiv = true;
     this.customSection = true ;
     this.applyclass = true;
@@ -437,7 +441,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   }
 
 
- custommodal() {
+ custommodal(val) {
   this.customSectiontoggel = false;
   this.custonclonefunc = false;
   if (this.customElement === undefined) {
@@ -448,35 +452,105 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   this.customSection =  false ;
    this.countVal++ ;
    if (this.customElement == 'Text') {
-      this.creatingElements(this.labelVal);
+      this.creatingElements(this.labelVal , val);
    } else if (this.customElement == 'Number') {
-    this.creatingElements(this.labelVal);
+    this.creatingElements(this.labelVal , val);
    } else if (this.customElement == 'Date') {
-    this.creatingElements(this.labelVal);
+    this.creatingElements(this.labelVal , val);
    } else if (this.customElement == 'textarea') {
-    this.creatingElements(this.labelVal);
+    this.creatingElements(this.labelVal , val);
    } else if (this.customElement == 'Currency') {
-    this.creatingElements(this.labelVal);
+    this.creatingElements(this.labelVal , val);
    } else if (this.customElement == 'multiple') {
-    this.creatingElements(this.labelVal);
+    this.creatingElements(this.labelVal , val);
    }
 }
      const children = document.getElementsByClassName('mylink');
      for (let i = 0; i < children.length; i++) {
      children[i].addEventListener('click', (event: Event) => {
-
        const delobj = (<any>event).target.closest('div .form-group') ;
        delobj.remove();
     });
   }
 
   const edit = document.getElementsByClassName('editlink');
+
+ // const leftPos = edit.getBoundingClientRect().left + window.scrollX;
   for ( let i = 0; i < edit.length; i++) {
   edit[i].addEventListener('click', (event: Event) => {
+   // const topPos = edit.offsetTop ;
+    const logo1: HTMLElement = document.getElementById('test') ;
+
+    this.editelement = true;
     this.customSection = true ;
+    const editobjss = (<any>event).target.closest('div .form-group') ;
     const editobj = (<any>event).target.closest('div .form-group .row') ;
-    console.log(editobj.parentNode.childNodes[0].childNodes[1].childNodes[0].childNodes[0].attributes);
-    console.log(editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML);
+    console.log(editobjss.offsetLeft);
+    console.log(editobj.offsetTop);
+    const logo1TextRectangle: ClientRect = editobj.getBoundingClientRect();
+    console.log(logo1TextRectangle);
+    this.positionOfElement = logo1TextRectangle ;
+    const attr = editobj.parentNode.childNodes[0].childNodes[1].childNodes[0].childNodes ;
+
+    // console.log(editobj.parentNode.childNodes[0].childNodes[1].childNodes[0].childNodes[0].attributes);
+    // console.log(editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML);
+    console.log(this.labelVal);
+    attr.forEach(ele => {
+     console.log(ele.tagName);
+     if (ele.tagName == 'INPUT') {
+      if (ele.type == 'text') {
+       this.gettingFormElements('Text');
+       if (ele.required === true) {
+        this.requiredField = true ;
+       } else {
+        this.requiredField = false ;
+       }
+       this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
+      } else if (ele.type == 'number') {
+        this.gettingFormElements('Number');
+        if (ele.required === true) {
+          this.requiredField = true ;
+         } else {
+          this.requiredField = false ;
+         }
+        this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
+      } else if (ele.type == 'checkbox') {
+        this.gettingFormElements('multiple');
+        if (ele.required === true) {
+          this.requiredField = true ;
+         } else {
+          this.requiredField = false ;
+         }
+        this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
+      }  else if (ele.type == 'radio') {
+        this.gettingFormElements('multiple');
+        if (ele.required === true) {
+          this.requiredField = true ;
+         } else {
+          this.requiredField = false ;
+         }
+        this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
+      } else if (ele.type == 'date') {
+        this.gettingFormElements('Date');
+        if (ele.required === true) {
+          this.requiredField = true ;
+         } else {
+          this.requiredField = false ;
+         }
+        this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
+      }
+    } else if (ele.tagName == 'TEXTAREA') {
+      this.gettingFormElements('Text');
+      if (ele.required === true) {
+        this.requiredField = true ;
+       } else {
+        this.requiredField = false ;
+       }
+      this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
+      this.multilineText = true ;
+    }
+    });
+
   //  console.log(editobj.parentNode.childNodes[0].childNodes[0].childNodes[0].label[0].innerHTML);
  });
 }
@@ -500,7 +574,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 
 datevalidationmin(data) {
   this.selectmindate = data;
-  if( this.customElement === 'Date') {
+  if ( this.customElement === 'Date') {
     if (this.selecdate !== undefined && this.selecdate.length !== 0 && this.labelVal.length > 0
       && this.selectmindate !== undefined  && this.selectmindate.length !== 0  ) {
       this.isBtnDisableddiv = false;
@@ -509,6 +583,11 @@ datevalidationmin(data) {
     }
   }
   }
+
+   cancelofedit() {
+    this.editelement = false;
+    this.customSection = false ;
+   }
 
   datevalidationmax(data) {
     this.selecdate = data;
@@ -571,9 +650,9 @@ datevalidationmin(data) {
 
   addComponent(val) {
     // document.getElementById('labelid').click();
-    console.log(val , 'ddddddddddddddd');
+    // console.log(val , 'ddddddddddddddd');
     const comp = this._cfr.resolveComponentFactory(DynamicFormsComponent);
-    if(this.custonclonefunc === true) {
+    if (this.custonclonefunc === true) {
       const ele = document.getElementById('mainParenttag').lastElementChild ;
       const cln = ele.cloneNode(true);
       this.data1.nativeElement.appendChild(cln) ;
@@ -600,7 +679,7 @@ datevalidationmin(data) {
 }
 
 /*creating Elements starts*/
-creatingElements(labelval) {
+creatingElements(labelval , isedit_add) {
   const divele1 = document.createElement('div') ,
         divele2 = document.createElement('div') ,
         divele3 = document.createElement('div') ,
@@ -619,6 +698,27 @@ creatingElements(labelval) {
         editicon = document.createElement('i') ,
         deletetrash = document.createElement('i') ;
         divele1.setAttribute('class' , 'form-group ');
+       if (isedit_add == 'edit') {
+        const child = document.getElementById('mainParent').querySelectorAll('.form-group');
+       console.log('Edit') ;
+     const previous = document.getElementById('mainParent').parentNode.childNodes[3].childNodes;
+       console.log(previous);
+    //    while (previous && previous.nodeType !== 1) {
+    //     previous = previous.previousSibling;
+    //    }
+    // // if there is a sibling, remove it
+    //    if (previous) {
+    //     previous.parentNode.removeChild(previous);
+    //    }
+       divele1.style.bottom =  this.positionOfElement.bottom ;
+       divele1.style.height =  this.positionOfElement.height ;
+       divele1.style.left =  this.positionOfElement.left ;
+       divele1.style.right =  this.positionOfElement.right ;
+       divele1.style.top =  this.positionOfElement.top ;
+       divele1.style.width =  this.positionOfElement.width ;
+       divele1.style.backgroundPositionX =  this.positionOfElement.x ;
+       divele1.style.backgroundPositionY =  this.positionOfElement.y ;
+       }
         divele1.setAttribute('style' , 'margin-top:15px');
         divele2.setAttribute('class' , 'row ');
         divele3.setAttribute('class' , 'col-sm-3 inpulabel');

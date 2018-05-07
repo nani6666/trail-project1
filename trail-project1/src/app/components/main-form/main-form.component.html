@@ -3,14 +3,14 @@
       <div class="col-md-3">
           <div class="card">
               <div class="card-body cusfldlabel">
-                  <div class="card-title custcardtitle">&nbsp; Custom Fields Designer 
+                  <div class="card-title custcardtitle">&nbsp; Custom Fields Designer
                       <span [ngClass]={disabled:customSectiontoggel}  style='cursor: pointer;' >
                       <span *ngIf="customSection === undefined || customSection === false" (click)='hidefunction()'><i class="fa fa-angle-down"></i></span>
                       <span  *ngIf="customSection === true" (click)='hidefunction()'><i class="fa fa-angle-up"></i></span>
                       </span>
-                    </div> 
+                    </div>
                   <div class="card container" style="background-color: #fff;" *ngIf="customSection">
-                  <form [formGroup]="customForm" id="customForm">
+                  <form [formGroup]="customForm" id="customForm" autocomplete="off">
                     <div class="form-group mainformgroup" >
                        <div class="row ">
                          <div class="col-sm-3 cardheading" >
@@ -31,9 +31,9 @@
                                  <i id="currencyfield" class="fa fa-money fa-lg text-info" aria-hidden="true"></i>
                              </span>
                           </a>
-                        </div>                        
+                        </div>
                          <div class="form-group" >
-                            <div class="row">    
+                            <div class="row">
                              <div class="col-sm-3 cardheading" >
                                 <a  matTooltip="Multiple Choice"  (click)="gettingFormElements('multiple')" >
                                    <span >
@@ -47,7 +47,7 @@
                 </div>
                      <div class="" *ngIf="customlabelfield">
                         <mat-form-field class="example-full-width">
-                            <input type="text" matInput placeholder="Label of Input" [value]='labelVal' (input)="onlabel($event.target.value)" >
+                            <input type="text" matInput placeholder="Label of Input" [value]='labelVal' value="{{labelVal}}" (input)="onlabel($event.target.value)" >
                           </mat-form-field>
                         <div class="form-check">
                             <input class="" type="checkbox" value = "  " [(ngModel)]="requiredField"  [ngModelOptions]="{standalone: true}" id="defaultCheck1">
@@ -133,8 +133,12 @@
                         </div>
                         </form>
                         <!-- <pre>{{customForm.value | json}}</pre> -->
-                        <div class="addbutton">
-                            <button class="btn btn-primary btn-sm" id="okbtn" [ngClass]={disabled:isBtnDisableddiv} (click)="custommodal()">Add To Form</button>
+                        <div class="addbutton" *ngIf="!editelement">
+                            <button class="btn btn-primary btn-sm " id="okbtn" [ngClass]={disabled:isBtnDisableddiv} (click)="custommodal('add')">Add To Form</button>
+                          </div>
+                          <div *ngIf="editelement">
+                              <button class="btn btn-warning btn-sm float-left" id="cancelbtn" (click)="cancelofedit()">Cancel</button>
+                              <button class="btn btn-primary btn-sm float-right" id="editbtn" [ngClass]={disabled:isBtnDisableddiv} (click)="custommodal('edit')" >Edit Form</button>
                           </div>
                  </div>
               </div>
