@@ -3,10 +3,10 @@
       <div class="col-md-3">
           <div class="card">
               <div class="card-body cusfldlabel">
-                  <div class="card-title custcardtitle">&nbsp; Custom Fields Designer
+                  <div class="card-title custcardtitle">&nbsp; Custom Fields Designer &nbsp;
                       <span [ngClass]={disabled:customSectiontoggel}  style='cursor: pointer;' >
-                      <span *ngIf="customSection === undefined || customSection === false" (click)='hidefunction()'><i class="fa fa-angle-down"></i></span>
-                      <span  *ngIf="customSection === true" (click)='hidefunction()'><i class="fa fa-angle-up"></i></span>
+                      <span *ngIf="customSection === undefined || customSection === false" (click)='hidefunction()'><i class="fa fa-angle-double-down"></i></span>
+                      <span  *ngIf="customSection === true" (click)='hidefunction()'><i class="fa fa-angle-double-up"></i></span>
                       </span>
                     </div>
                   <div class="card container" style="background-color: #fff;" *ngIf="customSection">
@@ -28,7 +28,7 @@
                          <div class="col-sm-3 cardheading" >
                           <a  matTooltip="Currency field"   (click)="gettingFormElements('Currency')" >
                              <span >
-                                 <i id="currencyfield" class="fa fa-money fa-lg text-info" aria-hidden="true"></i>
+                                 <i id="currencyfield" class="fa fa-money fa-2x text-info" aria-hidden="true"></i>
                              </span>
                           </a>
                         </div>
@@ -71,8 +71,8 @@
 
                       <div *ngIf="numberfieldattr" >
                          <!-- <label class="control-label">Type</label> -->
-                      <div >
-                        <input type="radio" name="typeofnumber"  value='range'  [(ngModel)]='typeofnumber'  [ngModelOptions]="{standalone: true}"> <label class="fieldlabel">Range</label>&nbsp;
+                      <div style="padding-top:4px;">
+                        <label class="fieldlabel"><input type="radio" name="typeofnumber"  value='range'  [(ngModel)]='typeofnumber'  [ngModelOptions]="{standalone: true}"> Range</label>&nbsp;
                         <input type="radio" name='typeofnumber' value='Decimal'  [(ngModel)]='typeofnumber' [ngModelOptions]="{standalone: true}"> <label class="fieldlabel">Decimal</label>
                       </div>
 
@@ -82,7 +82,7 @@
                         </div>
                         <div class="" *ngIf="typeofnumber == 'range'" >
                             <label  class="control-label fieldlabel" >Max</label>
-                             <mat-slider   min="1" max="20" step="1" value="0" thumbLabel tickInterval="auto" [(ngModel)]="maxvalue" [ngModelOptions]="{standalone: true}"></mat-slider>
+                             <mat-slider   min="{{minvalue}}" max="20" step="any" value="0" thumbLabel tickInterval="auto" [(ngModel)]="maxvalue" [ngModelOptions]="{standalone: true}"></mat-slider>
                           </div>
                         </div>
                           <div class="" *ngIf="datefieldattr">
@@ -99,7 +99,7 @@
                               <div >
                                   <!-- <label class="" for="defaultCheck2">Type</label> -->
                                 </div>
-                                <div >
+                                <div style="padding-top:4px;">
                                     <input type="radio" name="typeofnumber"  value='specific'  [(ngModel)]='typeofcurrency'  [ngModelOptions]="{standalone: true}"> <label class="fieldlabel">Specific</label>
                                     <input type="radio" name='typeofnumber' value='any'  [(ngModel)]='typeofcurrency' (change)='selectcurrencyany(typeofcurrency)' [ngModelOptions]="{standalone: true}"> <label class="fieldlabel">Any</label>
                                   </div>
@@ -135,10 +135,14 @@
                         <!-- <pre>{{customForm.value | json}}</pre> -->
                         <div class="" *ngIf="!editelement" style="padding-top:20px;">
                             <button class="btn btn-primary btn-sm " id="okbtn" [ngClass]={disabled:isBtnDisableddiv} (click)="custommodal('add')">Add To Form</button>
+                            <button class="btn btn-warning btn-sm " id="cancelbtn" (click)="cancelofedit()">Cancel</button>
                           </div>
                           <div *ngIf="editelement" style="padding-top:20px;">
                               <button class="btn btn-primary btn-sm" id="editbtn" [ngClass]={disabled:isBtnDisableddiv} (click)="custommodal('edit')" >Save Changes</button>
                               <button class="btn btn-warning btn-sm " id="cancelbtn" (click)="cancelofedit()">Cancel</button>
+
+                          </div>
+                          <div>
 
                           </div>
                  </div>
