@@ -31,6 +31,18 @@ a {
   border: 2px solid red ;
 }
 
+:host ::ng-deep .customlabel {
+  float: left;
+  width:120px;
+  padding-top:8px;
+  white-space:normal;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+:host ::ng-deep .fieldlabel{
+  font-size: 12px;
+}
 .sideheading{
   width: 193px;
   padding: 0px;
@@ -87,15 +99,15 @@ float: left;
   -ms-flex-flow: row wrap;
   flex-flow: initial;
 }
-.container-fluid{
-overflow: scroll !important;
-}
+/* .container-fluid{
+overflow-y: scroll !important;
+} */
 .imageicon{
   text-align: center;
-   width: 45px;
-   height: 45px;
+   width: 35px;
+   height: 35px;
    margin-left: 7px;
-   margin-top: -45px;
+   margin-top: -30px;
 }
 .modal-content{
   padding: 10px;

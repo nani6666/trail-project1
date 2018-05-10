@@ -154,6 +154,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
  typeofnumber: any ;
  /* number field properties  Ends */
  datefieldattr: boolean ;
+ disablesavetempbtn: boolean ;
  daterange: any ;
  datemin: any ;
  datemax: any ;
@@ -175,6 +176,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
        ngAfterViewInit() {
       }
   ngOnInit() {
+    this.disablesavetempbtn =  false ;
     this.editelement = false ;
     this.customSectiontoggel = true;
     this.custonclonefunc = true;
@@ -886,22 +888,11 @@ creatingElements(labelval , isedit_add) {
        const previous = document.getElementById('mainParent').parentNode.childNodes[3].childNodes[this.indexofcustomElement + 1];
       //  console.log(previous);
       previous.parentNode.replaceChild(divele1, previous);
-    //    while (previous && previous.nodeType !== 1) {
-    //     previous = previous.previousSibling;
-    //    }
-    // // if there is a sibling, remove it
-    //    if (previous) {
-    //     previous.parentNode.removeChild(previous);
-    //    }
-     //  divele1.style.position = 'absolute';
-     //  divele1.style.bottom =  this.positionOfElement.bottom ;
-      //  divele1.style.height =   this.offsetheight ;
-      //  divele1.style.left =  this.offsetleft ;
-     //  divele1.style.right =  this.positionOfElement.right ;
-      //  divele1.style.top =   this.offsetbottom ;
-      //  divele1.style.width =  this.offsetwidth ;
+      this.changetoggles();
        } else {
+
         this.data1.nativeElement.appendChild(divele1);
+        this.changetoggles();
        }
 
 }
@@ -962,18 +953,30 @@ multipulinputvalue() {
    } else {
     this.hosptotalFields = false ;
    }
-   if (this.hospSAervicesSelectall == true) {
-    this.hospCatracts = true ;
-    this.hospglassesDistrbuted = true ;
-    this.hospglassPrescribe = true ;
-    this.hospReviewPatients = true ;
-    this.hospNewPatient = true ;
+   if (this.hospServciesGender == false  && this.hospServicesTotal == false && this.hospServicesChild == false &&
+                  this.hospServciesOther == false) {
+     this.disablesavetempbtn =  true ;
    } else {
-    this.hospCatracts = false ;
-    this.hospglassesDistrbuted = false ;
-    this.hospglassPrescribe = false ;
-    this.hospReviewPatients = false ;
-    this.hospNewPatient = false ;
+    this.disablesavetempbtn =  false ;
+   }
+   if (this.hospSAervicesSelectall == true) {
+    const checkboxelement =  document.getElementsByClassName('checkboxVal');
+    for ( let i = 0; i < checkboxelement.length; i++) {
+        const check = checkboxelement[i];
+        if ((<any>check).checked == false) {
+          (<any>check).checked = true;
+          }
+        // aryele [i] =  (<any>checkboxelement[i]).checked;
+        }
+   } else {
+    const checkboxelement =  document.getElementsByClassName('checkboxVal');
+    for ( let i = 0; i < checkboxelement.length; i++) {
+        const check = checkboxelement[i];
+        if ((<any>check).checked) {
+          (<any>check).checked = false;
+          }
+        // aryele [i] =  (<any>checkboxelement[i]).checked;
+        }
    }
    /* hospital services section Ends*/
     /* PECF services section starts*/
