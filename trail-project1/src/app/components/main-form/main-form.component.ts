@@ -121,6 +121,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   positionOfElement: any ;
   customElement: any ;
   currencysymbol: any ;
+  indexofcustomElement: any;
   labelVal: any ;
   deletecustomelement: any;
   currencyData: any ;
@@ -129,6 +130,11 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   lengthChars: any;
   sizeOfField: any ;
   presentdate: Date;
+  offsetheight: any ;
+  offsetbottom: any ;
+  offsetleft: any;
+  offsetwidth: any;
+  offsetright: any;
   customSection: boolean;
   customlabelfield: boolean;
   formname: any;
@@ -151,6 +157,8 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
  daterange: any ;
  datemin: any ;
  datemax: any ;
+ originaleditArray: any ;
+ discardEditArray: any;
   /* currency field properties  Starts */
   currencyfieldattr: boolean ;
   currencyval: any ;
@@ -338,7 +346,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     this.requiredField = false;
     this.multilineText = false;
     this.typeofnumber = false;
-    this.typeofcurrency = false;
+    this.typeofcurrency = '';
     this.daterange = false;
     this.multiselect = false;
     this.lengthChars = '';
@@ -442,6 +450,8 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 
 
  custommodal(val) {
+   this.originaleditArray = [];
+   this.discardEditArray = [];
   this.customSectiontoggel = false;
   this.custonclonefunc = false;
   if (this.customElement === undefined) {
@@ -478,6 +488,8 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
  // const leftPos = edit.getBoundingClientRect().left + window.scrollX;
   for ( let i = 0; i < edit.length; i++) {
   edit[i].addEventListener('click', (event: Event) => {
+    console.log(i);
+    this.indexofcustomElement = i ;
    // const topPos = edit.offsetTop ;
     const logo1: HTMLElement = document.getElementById('test') ;
 
@@ -485,18 +497,18 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     this.customSection = true ;
     const editobjss = (<any>event).target.closest('div .form-group') ;
     const editobj = (<any>event).target.closest('div .form-group .row') ;
-    console.log(editobjss.offsetLeft);
-    console.log(editobj.offsetTop);
-    const logo1TextRectangle: ClientRect = editobj.getBoundingClientRect();
-    console.log(logo1TextRectangle);
-    this.positionOfElement = logo1TextRectangle ;
+    // const logo1TextRectangle: ClientRect = editobjss.getBoundingClientRect();
+    // console.log(logo1TextRectangle);
+    // this.positionOfElement = logo1TextRectangle ;
     const attr = editobj.parentNode.childNodes[0].childNodes[1].childNodes[0].childNodes ;
-
+   // console.log(editobjss.parentNode.childNodes);
+    // this.discardEditArray.push(editobjss.parentNode.childNodes);
+    // console.log(this.discardEditArray);
     // console.log(editobj.parentNode.childNodes[0].childNodes[1].childNodes[0].childNodes[0].attributes);
     // console.log(editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML);
-    console.log(this.labelVal);
+    // console.log(this.labelVal);
     attr.forEach(ele => {
-     console.log(ele.tagName);
+    // console.log(ele.tagName);
      if (ele.tagName == 'INPUT') {
       if (ele.type == 'text') {
        this.gettingFormElements('Text');
@@ -507,12 +519,19 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
        }
        this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
       } else if (ele.type == 'number') {
-        this.gettingFormElements('Number');
+     //   console.log(this.typeofnumber);
         if (ele.required === true) {
           this.requiredField = true ;
          } else {
           this.requiredField = false ;
          }
+         if (ele.step == 'any') {
+          this.gettingFormElements('Currency');
+         } else {
+          this.gettingFormElements('Number');
+        }
+
+
         this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
       } else if (ele.type == 'checkbox') {
         this.gettingFormElements('multiple');
@@ -612,7 +631,7 @@ datevalidationmin(data) {
   }
   }
 
-  selectcurrency(val){
+  selectcurrency(val) {
     console.log(val , 'jjhkhkhkkhkhkhk');
     if ( this.customElement === 'Currency') {
       if (val !== undefined) {
@@ -627,7 +646,7 @@ datevalidationmin(data) {
  onlabel(labelvalue: any) {
   // console.log(labelvalue);
   this.labelVal = labelvalue ;
-  if( this.customElement === 'Text') {
+  if ( this.customElement === 'Text') {
     if (this.labelVal.length > 0 ) {
     this.isBtnDisableddiv = false;
    } else {
@@ -698,32 +717,13 @@ creatingElements(labelval , isedit_add) {
         editicon = document.createElement('i') ,
         deletetrash = document.createElement('i') ;
         divele1.setAttribute('class' , 'form-group ');
-       if (isedit_add == 'edit') {
-        const child = document.getElementById('mainParent').querySelectorAll('.form-group');
-       console.log('Edit') ;
-     const previous = document.getElementById('mainParent').parentNode.childNodes[3].childNodes;
-       console.log(previous);
-    //    while (previous && previous.nodeType !== 1) {
-    //     previous = previous.previousSibling;
-    //    }
-    // // if there is a sibling, remove it
-    //    if (previous) {
-    //     previous.parentNode.removeChild(previous);
-    //    }
-       divele1.style.bottom =  this.positionOfElement.bottom ;
-       divele1.style.height =  this.positionOfElement.height ;
-       divele1.style.left =  this.positionOfElement.left ;
-       divele1.style.right =  this.positionOfElement.right ;
-       divele1.style.top =  this.positionOfElement.top ;
-       divele1.style.width =  this.positionOfElement.width ;
-       divele1.style.backgroundPositionX =  this.positionOfElement.x ;
-       divele1.style.backgroundPositionY =  this.positionOfElement.y ;
-       }
+
         divele1.setAttribute('style' , 'margin-top:15px');
         divele2.setAttribute('class' , 'row ');
         divele3.setAttribute('class' , 'col-sm-3 inpulabel');
         chebox.setAttribute('value' , ' ');
         chebox.setAttribute('type' , 'checkbox');
+        chebox.setAttribute('class' , 'checkboxVal hideele');
         inputele.setAttribute('value' , ' ');
         textareaele.setAttribute('value' , ' ');
         selectele.setAttribute('value' , ' ');
@@ -879,8 +879,31 @@ creatingElements(labelval , isedit_add) {
 
 
       //  spanele.appendChild(anchortag);
-
+      if (isedit_add == 'edit') {
+        const edit = document.getElementsByClassName('editlink');
+        const child = document.getElementById('mainParent').querySelectorAll('.form-group');
+        console.log(child[this.indexofcustomElement]) ;
+       const previous = document.getElementById('mainParent').parentNode.childNodes[3].childNodes[this.indexofcustomElement + 1];
+      //  console.log(previous);
+      previous.parentNode.replaceChild(divele1, previous);
+    //    while (previous && previous.nodeType !== 1) {
+    //     previous = previous.previousSibling;
+    //    }
+    // // if there is a sibling, remove it
+    //    if (previous) {
+    //     previous.parentNode.removeChild(previous);
+    //    }
+     //  divele1.style.position = 'absolute';
+     //  divele1.style.bottom =  this.positionOfElement.bottom ;
+      //  divele1.style.height =   this.offsetheight ;
+      //  divele1.style.left =  this.offsetleft ;
+     //  divele1.style.right =  this.positionOfElement.right ;
+      //  divele1.style.top =   this.offsetbottom ;
+      //  divele1.style.width =  this.offsetwidth ;
+       } else {
         this.data1.nativeElement.appendChild(divele1);
+       }
+
 }
 
     hidefunction() {
