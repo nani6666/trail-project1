@@ -133,12 +133,13 @@
                         </div>
                         </form>
                         <!-- <pre>{{customForm.value | json}}</pre> -->
-                        <div class="addbutton" *ngIf="!editelement">
+                        <div class="" *ngIf="!editelement" style="padding-top:20px;">
                             <button class="btn btn-primary btn-sm " id="okbtn" [ngClass]={disabled:isBtnDisableddiv} (click)="custommodal('add')">Add To Form</button>
                           </div>
-                          <div *ngIf="editelement">
-                              <button class="btn btn-warning btn-sm float-left" id="cancelbtn" (click)="cancelofedit()">Cancel</button>
-                              <button class="btn btn-primary btn-sm float-right" id="editbtn" [ngClass]={disabled:isBtnDisableddiv} (click)="custommodal('edit')" >Edit Form</button>
+                          <div *ngIf="editelement" style="padding-top:20px;">
+                              <button class="btn btn-primary btn-sm" id="editbtn" [ngClass]={disabled:isBtnDisableddiv} (click)="custommodal('edit')" >Save Changes</button>
+                              <button class="btn btn-warning btn-sm " id="cancelbtn" (click)="cancelofedit()">Cancel</button>
+
                           </div>
                  </div>
               </div>
