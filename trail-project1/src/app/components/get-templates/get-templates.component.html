@@ -1,46 +1,38 @@
-<div class="container-fluid" style="margin-top:20px;">
+<div  class="container-fluid">
   <div class="row">
-    <div class=" maincard">
-        <div class=" card maindiv" style="background-color: #DDDBD7;">
-            <div class="card-body maincard-body">
-                <div class="row card-group">
-                    <div class="sinlinealign" *ngFor="let forms of formstemplatesArr; let j = index"  style='float: left;' >
-                        <div class="card maincard">
-                            <div class="card-body" >
-                                <div class="row" >
-                                <img class="card-img-top imageicon"
-                                 src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/doc-document-copy-file-blue-round-512.png" >
-                                 <div class="col-sm-6">
-                                  <div style="width:180px;height:70px;">
+    <div class="col-sm-12">
+<div  class="card" style="margin-top:30px;background-color: #DDDBD7;">
+  <div class="card-body">
+      <div class="row" >
+          <div class="col-sm-2" *ngFor="let forms of formstemplatesArr; let j = index"  style="padding-top:35px;">
+              <div class="card" >
+                  <img class="card-img-top imageicon"
+                  src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/doc-document-copy-file-blue-round-512.png" >
 
-                                        <a class="card-title" ><span style="margin-bottom: 25px;color: #145da0" (click)="gettemplateData(forms.id)" ><b>{{forms.formName}}</b></span>
-                                            <span (click)="gettemplateData(forms.id)"  class="editicon" style="color:red"><i class="fa fa-plus"></i></span>
-                                               <span (click)='deleteform(j,forms.formName)'  class="deleteicon"><i class="fa fa-trash delete"></i></span> </a>
-
-                                    <div class="" style="width:150px;height:40px;overflow-y:scroll">
-                                        <div class="card-text">
-                                            <ul class='subcont'>
-                                              <li *ngFor="let formsaveData of forms.formData; let i=index" (click)="getformData(formsaveData.formDataId)"  ><a >{{formsaveData.formDataName}}</a>
-                                                <span (click)="getformData(formsaveData.formDataId)"  class="editicon" style="color:red"><i class="fa fa-plus edit"></i></span>
-                                                <span (click)='deleteformdata(i  ,forms.formName , formsaveData.formDataName)'  data-toggle="modal" data-target="#formdeletemodel" class="deleteicon"><i class="fa fa-trash delete"></i></span></li>
-                                            </ul>
-                                         </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                  <div class="card-body">
+                      <a class="card-title" ><span style="margin-bottom: 25px;color: #145da0" (click)="gettemplateData(forms.id)" ><strong>{{forms.formName}}</strong></span>
+                        <span (click)="gettemplateData(forms.id)"  class="editicon" style="color:red"><i class="fa fa-plus"></i></span>
+                           <span (click)='deleteform(j,forms.formName)'  class="deleteicon"><i class="fa fa-trash delete"></i></span> </a>
+                      <div class="card-header" style="height:50px;overflow-y:auto;">
+                               <div class="card-text">
+                                  <ol class='subcont'>
+                                    <li *ngFor="let formsaveData of forms.formData; let i=index" (click)="getformData(formsaveData.formDataId)"  ><a >{{formsaveData.formDataName}}</a>
+                                      <span (click)="getformData(formsaveData.formDataId)"  class="editicon" style="color:red"><i class="fa fa-plus edit"></i></span>
+                                      <span (click)='deleteformdata(i  ,forms.formName , formsaveData.formDataName)'  data-toggle="modal" data-target="#formdeletemodel" class="deleteicon"><i class="fa fa-trash delete"></i></span></li>
+                                  </ol>
+                               </div>
                           </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    <div class="col-sm-10">
 
-    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+   </div>
+</div>
+</div>
+
+
 
     <div class="modal fade" id="formdeletemodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true "
     data-backdrop="static" data-keyboard="false">
@@ -90,7 +82,7 @@
 </div>
 </div>
 </div>
-
+</div>
 <button style="display:none;" id="formdataNameId" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#formNameModal">Open Small Modal</button>
   <div class="modal fade" id="formNameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true "
   data-backdrop="static" data-keyboard="false">
