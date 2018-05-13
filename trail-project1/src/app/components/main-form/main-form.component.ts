@@ -117,6 +117,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   otherReviewPatients: boolean ;
   otherNewPatient: boolean ;
   countervaluehosp: number ;
+  elementsArray: any;
   customlabel: any;
   positionOfElement: any ;
   customElement: any ;
@@ -903,8 +904,25 @@ creatingElements(labelval , isedit_add) {
     }
 
     pecfdisable() {
+      this.elementsArray = [];
       this.customSectiontoggel = false;
       this.custonclonefunc = true;
+      const checks = document.getElementsByClassName('checkboxVal');
+        console.log(checks);
+        for (let i = 0; i < checks.length; i++) {
+          checks[i].addEventListener('change', (event: Event) => {
+            const checkele = checks[i];
+            if ((<any>checkele).checked == true) {
+              this.elementsArray.push((<any>event).target.closest('div'));
+              } else {
+               this.elementsArray.splice(i, 1);
+              }
+              // console.log(this.elementsArray);
+              // this.elementsArray.forEach(ele => {
+              //  console.log(ele);
+              // });
+         });
+       }
     }
 
    changeCurrencyval(val) {
