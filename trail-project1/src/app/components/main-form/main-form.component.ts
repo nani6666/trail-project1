@@ -175,6 +175,23 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   constructor(private _fb: FormBuilder , private _cfr: ComponentFactoryResolver,
        private renderer: Renderer2 , private serviceCall: RestcallsService ) { }
        ngAfterViewInit() {
+        const checks = document.getElementsByClassName('checkboxVal');
+        console.log(checks);
+        for (let i = 0; i < checks.length; i++) {
+          checks[i].addEventListener('change', (event: Event) => {
+            const checkele = checks[i];
+            if ((<any>checkele).checked == true) {
+              this.elementsArray.push((<any>event).target.closest('div .row').outerHTML);
+              } else {
+               this.elementsArray.splice(i, 1);
+              }
+              console.log(this.elementsArray);
+              //
+              // this.elementsArray.forEach(ele => {
+              //  console.log(ele);
+              // });
+         });
+       }
       }
   ngOnInit() {
     this.disablesavetempbtn =  false ;
@@ -361,8 +378,6 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     let m = today.getMinutes();
     m = m < 10 ? 0 + m : m;
     let s = today.getSeconds();
-    // m = this.checkTime(m);
-    // s = this.checkTime(s);
     document.getElementById('txt').innerHTML =
     h + ':' + m + ':' + s + ' ' + ampm;
     const t = setInterval(this.startTime, 500);
@@ -529,16 +544,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     this.customSection = true ;
     const editobjss = (<any>event).target.closest('div .form-group') ;
     const editobj = (<any>event).target.closest('div .form-group .row') ;
-    // const logo1TextRectangle: ClientRect = editobjss.getBoundingClientRect();
-    // console.log(logo1TextRectangle);
-    // this.positionOfElement = logo1TextRectangle ;
     const attr = editobj.parentNode.childNodes[0].childNodes[1].childNodes[0].childNodes ;
-   // console.log(editobjss.parentNode.childNodes);
-    // this.discardEditArray.push(editobjss.parentNode.childNodes);
-    // console.log(this.discardEditArray);
-    // console.log(editobj.parentNode.childNodes[0].childNodes[1].childNodes[0].childNodes[0].attributes);
-    // console.log(editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML);
-    // console.log(this.labelVal);
     attr.forEach(ele => {
     // console.log(ele.tagName);
      if (ele.tagName == 'INPUT') {
@@ -664,7 +670,7 @@ datevalidationmin(data) {
   }
 
   selectcurrency(val) {
-    console.log(val , 'jjhkhkhkkhkhkhk');
+    // console.log(val , 'jjhkhkhkkhkhkhk');
     if ( this.customElement === 'Currency') {
       if (val !== undefined) {
       this.isBtnDisableddiv = false;
@@ -953,23 +959,7 @@ creatingElements(labelval , isedit_add) {
       this.elementsArray = [];
       this.customSectiontoggel = false;
       this.custonclonefunc = true;
-      const checks = document.getElementsByClassName('checkboxVal');
-        console.log(checks);
-        for (let i = 0; i < checks.length; i++) {
-          checks[i].addEventListener('change', (event: Event) => {
-            const checkele = checks[i];
-            if ((<any>checkele).checked == true) {
-              this.elementsArray.push((<any>event).target.closest('div .row').outerHTML);
-              } else {
-               this.elementsArray.splice(i, 1);
-              }
-              console.log(this.elementsArray);
-              //
-              // this.elementsArray.forEach(ele => {
-              //  console.log(ele);
-              // });
-         });
-       }
+
 
     }
 
