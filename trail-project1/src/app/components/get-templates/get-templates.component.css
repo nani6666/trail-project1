@@ -106,8 +106,13 @@ overflow-y: scroll !important;
   text-align: center;
    width: 35px;
    height: 35px;
-   margin-left: 19px;
-   margin-top: -20px;
+   margin-left: -4px;
+   margin-top: -18px;
+}
+.cardTitle{
+  margin-bottom: 0px;
+  margin-top: -1.25rem;
+  margin-left: 38px;
 }
 .modal-content{
   padding: 10px;

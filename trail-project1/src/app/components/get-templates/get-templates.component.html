@@ -1,25 +1,24 @@
 <div  class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
-<div  class="card" style="margin-top:30px;background-color: #DDDBD7;">
+<div  class="card" style="margin-top:15px;background-color: #DDDBD7;">
   <div class="card-body">
       <div class="row" >
-          <div class="col-sm-2" *ngFor="let forms of formstemplatesArr; let j = index"  style="padding-top:35px;">
-              <div class="card" >
+          <div class="col-sm-2" *ngFor="let forms of formstemplatesArr; let j = index"  style="padding-top:30px;">
+              <div class="card" style="height:135px" >
                   <img class="card-img-top imageicon"
                   src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/doc-document-copy-file-blue-round-512.png" >
-
-                  <div class="card-body">
-                      <a class="card-title" ><span style="margin-bottom: 25px;color: #145da0" (click)="gettemplateData(forms.id)" ><strong>{{forms.formName}}</strong></span>
-                        <span (click)="gettemplateData(forms.id)"  class="editicon" style="color:red"><i class="fa fa-plus"></i></span>
-                           <span (click)='deleteform(j,forms.formName)'  class="deleteicon"><i class="fa fa-trash delete"></i></span> </a>
-                      <div class="card-header" style="height:50px;overflow-y:auto;">
+                  <a class="cardTitle" ><span style="margin-bottom: 25px;color: #145da0" (click)="gettemplateData(forms.id)" ><strong>{{forms.formName}}</strong></span>
+                    <span (click)="gettemplateData(forms.id)"  class="editicon" style="color:red"><i class="fa fa-plus"></i></span>
+                       <span (click)='deleteform(j,forms.formName)'  class="deleteicon"><i class="fa fa-trash delete"></i></span> </a>
+                  <div class="card-body" style="padding:0px 10px -10px 10px;">
+                      <div class="card-header" style="height:60px;overflow-y:auto;">
                                <div class="card-text">
-                                  <ol class='subcont'>
+                                  <ul class='subcont'>
                                     <li *ngFor="let formsaveData of forms.formData; let i=index" (click)="getformData(formsaveData.formDataId)"  ><a >{{formsaveData.formDataName}}</a>
                                       <span (click)="getformData(formsaveData.formDataId)"  class="editicon" style="color:red"><i class="fa fa-plus edit"></i></span>
                                       <span (click)='deleteformdata(i  ,forms.formName , formsaveData.formDataName)'  data-toggle="modal" data-target="#formdeletemodel" class="deleteicon"><i class="fa fa-trash delete"></i></span></li>
-                                  </ol>
+                                  </ul>
                                </div>
                           </div>
 

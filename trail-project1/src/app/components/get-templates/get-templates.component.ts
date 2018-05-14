@@ -68,7 +68,6 @@ export class GetTemplatesComponent implements OnInit {
        this.updateButton = false ;
        this.templateId = val ;
        this.serviceCall.getCallByParameter('/DynamicForm/GetFormById/' , val).subscribe(data => {
-       console.log(data , 'ggggggggggggggghhhhhhhhhhhhhhhhhhh');
        this.templatename = (<any>data).accordion   + ' - ' +  (<any>data).formName  ;
        this.testhtml = (<any>data).htmlContent ;
        document.getElementById('createForm').classList.remove('hideele');

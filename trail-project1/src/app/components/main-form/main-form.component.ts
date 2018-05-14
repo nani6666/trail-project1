@@ -231,11 +231,29 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   }
 
   addCustomField() {
+
     this.editelement =  false;
     this.isBtnDisableddiv = true;
     this.customSection = true ;
     this.applyclass = true;
     this.gettingFormElements('Text');
+     const checks = document.getElementsByClassName('checkboxVal');
+        console.log(checks);
+        for (let i = 0; i < checks.length; i++) {
+          checks[i].addEventListener('change', (event: Event) => {
+            const checkele = checks[i];
+            if ((<any>checkele).checked == true) {
+              this.elementsArray.push((<any>event).target.closest('div .row').outerHTML);
+              } else {
+               this.elementsArray.splice(i, 1);
+              }
+              console.log(this.elementsArray);
+              //
+              // this.elementsArray.forEach(ele => {
+              //  console.log(ele);
+              // });
+         });
+       }
   }
 
   accordionfun() {
@@ -246,15 +264,26 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 
   /* open label starts */
    openformlabel(val) {
+    // console.log(this.elementsArray);
+    const elementsArr = this.elementsArray.toString();
+    const removeCommas = this.elementsArray.join('');
+    console.log(removeCommas);
+    // console.log('11 - ' + JSON.stringify(this.elementsArray) , '2i-' + this.elementsArray.toString());
    const checkboxelement =  document.getElementsByClassName('checkboxVal');
    const aryele = new Array();
        for ( let i = 0; i < checkboxelement.length; i++) {
         aryele [i] =  (<any>checkboxelement[i]).checked;
         }
         if (aryele.includes(true)) {
+
           this.accordionName = val ;
          const el = document.getElementById('hospFormData') ;
-         this.htmlContent = el.outerHTML;
+         if (this.hospSAervicesSelectall === true) {
+          this.htmlContent = el.outerHTML;
+         } else {
+          this.htmlContent = removeCommas;
+         }
+
          document.getElementById('formId').click();
         } else {
           alert('Please Select one of the field') ;
@@ -889,11 +918,28 @@ creatingElements(labelval , isedit_add) {
        const previous = document.getElementById('mainParent').parentNode.childNodes[3].childNodes[this.indexofcustomElement + 1];
       //  console.log(previous);
       previous.parentNode.replaceChild(divele1, previous);
-      this.changetoggles();
+      const checkboxelement =  document.getElementsByClassName('checkboxVal');
+       const aryele = new Array();
+       for ( let i = 0; i < checkboxelement.length; i++) {
+        aryele [i] =  (<any>checkboxelement[i]).checked;
+        }
+        if (aryele.includes(true)) {
+        } else{
+          this.changetoggles();
+        }
+
        } else {
 
         this.data1.nativeElement.appendChild(divele1);
-        this.changetoggles();
+        const checkboxelement =  document.getElementsByClassName('checkboxVal');
+       const aryele = new Array();
+       for ( let i = 0; i < checkboxelement.length; i++) {
+        aryele [i] =  (<any>checkboxelement[i]).checked;
+        }
+        if (aryele.includes(true)) {
+        } else {
+          this.changetoggles();
+        }
        }
 
 }
@@ -913,16 +959,18 @@ creatingElements(labelval , isedit_add) {
           checks[i].addEventListener('change', (event: Event) => {
             const checkele = checks[i];
             if ((<any>checkele).checked == true) {
-              this.elementsArray.push((<any>event).target.closest('div'));
+              this.elementsArray.push((<any>event).target.closest('div .row').outerHTML);
               } else {
                this.elementsArray.splice(i, 1);
               }
-              // console.log(this.elementsArray);
+              console.log(this.elementsArray);
+              //
               // this.elementsArray.forEach(ele => {
               //  console.log(ele);
               // });
          });
        }
+
     }
 
    changeCurrencyval(val) {
