@@ -10,6 +10,7 @@ import { HtmlParser } from '@angular/compiler';
 import { element } from 'protractor';
 import { RestcallsService } from './../../services/restcalls.service';
 import { DynamicFormsComponent } from './../dynamic-forms/dynamic-forms.component';
+import * as $ from 'jquery';
 declare const jQuery: any;
 @Component({
   selector: 'app-main-form',
@@ -282,12 +283,13 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   /* open label starts */
    openformlabel(val) {
     // console.log(this.elementsArray);
+    const checkboxelement =  document.getElementsByClassName('checkboxVal');
+    const aryele = new Array();
     const elementsArr = this.elementsArray.toString();
     const removeCommas = this.elementsArray.join('');
     console.log(removeCommas);
     // console.log('11 - ' + JSON.stringify(this.elementsArray) , '2i-' + this.elementsArray.toString());
-   const checkboxelement =  document.getElementsByClassName('checkboxVal');
-   const aryele = new Array();
+
        for ( let i = 0; i < checkboxelement.length; i++) {
         aryele [i] =  (<any>checkboxelement[i]).checked;
         }
@@ -522,95 +524,8 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     this.creatingElements(this.labelVal , val);
    }
 }
-     const children = document.getElementsByClassName('mylink');
-     for (let i = 0; i < children.length; i++) {
-     children[i].addEventListener('click', (event: Event) => {
-       const delobj = (<any>event).target.closest('div .form-group') ;
-       delobj.remove();
-    });
-  }
-
-  const edit = document.getElementsByClassName('editlink');
-
- // const leftPos = edit.getBoundingClientRect().left + window.scrollX;
-  for ( let i = 0; i < edit.length; i++) {
-  edit[i].addEventListener('click', (event: Event) => {
-    console.log(i);
-    this.indexofcustomElement = i ;
-   // const topPos = edit.offsetTop ;
-    const logo1: HTMLElement = document.getElementById('test') ;
-
-    this.editelement = true;
-    this.customSection = true ;
-    const editobjss = (<any>event).target.closest('div .form-group') ;
-    const editobj = (<any>event).target.closest('div .form-group .row') ;
-    const attr = editobj.parentNode.childNodes[0].childNodes[1].childNodes[0].childNodes ;
-    attr.forEach(ele => {
-    // console.log(ele.tagName);
-     if (ele.tagName == 'INPUT') {
-      if (ele.type == 'text') {
-       this.gettingFormElements('Text');
-       if (ele.required === true) {
-        this.requiredField = true ;
-       } else {
-        this.requiredField = false ;
-       }
-       this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
-      } else if (ele.type == 'number') {
-     //   console.log(this.typeofnumber);
-        if (ele.required === true) {
-          this.requiredField = true ;
-         } else {
-          this.requiredField = false ;
-         }
-         if (ele.step == 'any') {
-          this.gettingFormElements('Currency');
-         } else {
-          this.gettingFormElements('Number');
-        }
-
-
-        this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
-      } else if (ele.type == 'checkbox') {
-        this.gettingFormElements('multiple');
-        if (ele.required === true) {
-          this.requiredField = true ;
-         } else {
-          this.requiredField = false ;
-         }
-        this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
-      }  else if (ele.type == 'radio') {
-        this.gettingFormElements('multiple');
-        if (ele.required === true) {
-          this.requiredField = true ;
-         } else {
-          this.requiredField = false ;
-         }
-        this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
-      } else if (ele.type == 'date') {
-        this.gettingFormElements('Date');
-        if (ele.required === true) {
-          this.requiredField = true ;
-         } else {
-          this.requiredField = false ;
-         }
-        this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
-      }
-    } else if (ele.tagName == 'TEXTAREA') {
-      this.gettingFormElements('Text');
-      if (ele.required === true) {
-        this.requiredField = true ;
-       } else {
-        this.requiredField = false ;
-       }
-      this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
-      this.multilineText = true ;
-    }
-    });
-
-  //  console.log(editobj.parentNode.childNodes[0].childNodes[0].childNodes[0].label[0].innerHTML);
- });
-}
+     this.deleterowfunction();
+     this.editrowfunction();
 
  }
 
@@ -629,34 +544,34 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 
 
 
-datevalidationmin(data) {
-  this.selectmindate = data;
-  if ( this.customElement === 'Date') {
-    if (this.selecdate !== undefined && this.selecdate.length !== 0 && this.labelVal.length > 0
-      && this.selectmindate !== undefined  && this.selectmindate.length !== 0  ) {
-      this.isBtnDisableddiv = false;
-    } else {
-      this.isBtnDisableddiv = true;
-    }
-  }
-  }
+// datevalidationmin(data) {
+//   this.selectmindate = data;
+//   if ( this.customElement === 'Date') {
+//     if (this.selecdate !== undefined && this.selecdate.length !== 0 && this.labelVal.length > 0
+//       && this.selectmindate !== undefined  && this.selectmindate.length !== 0  ) {
+//       this.isBtnDisableddiv = false;
+//     } else {
+//       this.isBtnDisableddiv = true;
+//     }
+//   }
+//   }
 
    cancelofedit() {
     this.editelement = false;
     this.customSection = false ;
    }
 
-  datevalidationmax(data) {
-    this.selecdate = data;
-    if (this.customElement === 'Date') {
-    if (this.selecdate !== undefined && this.selecdate.length !== 0 && this.labelVal.length > 0
-       && this.selectmindate !== undefined  && this.selectmindate.length !== 0  ) {
-      this.isBtnDisableddiv = false;
-    } else {
-      this.isBtnDisableddiv = true;
-    }
-  }
-  }
+  // datevalidationmax(data) {
+  //   this.selecdate = data;
+  //   if (this.customElement === 'Date') {
+  //   if (this.selecdate !== undefined && this.selecdate.length !== 0 && this.labelVal.length > 0
+  //      && this.selectmindate !== undefined  && this.selectmindate.length !== 0  ) {
+  //     this.isBtnDisableddiv = false;
+  //   } else {
+  //     this.isBtnDisableddiv = true;
+  //   }
+  // }
+  // }
 
   selectcurrencyany(typeofcurrency) {
     if (this.customElement === 'Currency' && typeofcurrency === 'any' && this.labelVal.length > 0) {
@@ -677,7 +592,7 @@ datevalidationmin(data) {
     } else {
       this.isBtnDisableddiv = true;
     }
-  }
+   }
   }
 
 
@@ -697,7 +612,7 @@ datevalidationmin(data) {
     this.isBtnDisableddiv = true;
    }
   } else if ( this.customElement === 'Date') {
-    if (this.selecdate !== undefined && this.labelVal.length > 0 && this.selectmindate !== undefined  ) {
+    if (this.labelVal.length > 0  ) {
       this.isBtnDisableddiv = false;
     } else {
       this.isBtnDisableddiv = true;
@@ -710,18 +625,24 @@ datevalidationmin(data) {
     // console.log(val , 'ddddddddddddddd');
     const comp = this._cfr.resolveComponentFactory(DynamicFormsComponent);
     if (this.custonclonefunc === true) {
+      const apendiv = document.getElementById('staticdivs');
       const ele = document.getElementById('mainParenttag').lastElementChild ;
+      console.log(ele);
       const cln = ele.cloneNode(true);
-      this.data1.nativeElement.appendChild(cln) ;
+      apendiv.appendChild(cln) ;
     } else if (val == 'hosp') {
       const ele = document.getElementById('mainParent').lastElementChild ;
-      const cln = ele.cloneNode(true);
-      this.data1.nativeElement.appendChild(cln) ;
+      this.data1.nativeElement.appendChild(ele) ;
     } else if (val == 'pecf' ) {
       const ele = document.getElementById('mainParent').lastElementChild ;
+      // console.log(ele);
       const cln = ele.cloneNode(true);
       this.data1.nativeElement.appendChild(cln) ;
-      console.log(document.getElementById('mainParent').lastElementChild);
+      console.log(cln);
+     this.deleterowfunction();
+     this.editrowfunction();
+      // this.data1.nativeElement.removeChild(cln);
+      // console.log(document.getElementById('mainParent').lastElementChild);
     } else if (val == 'outreach' ) {
       const expComponent = this.container2.createComponent(comp);
       expComponent.instance._ref = expComponent;
@@ -962,6 +883,104 @@ creatingElements(labelval , isedit_add) {
 
 
     }
+
+    deleterowfunction() {
+      const children = document.getElementsByClassName('mylink');
+      for (let i = 0; i < children.length; i++) {
+      children[i].addEventListener('click', (event: Event) => {
+        console.log((<any>event).target);
+        const delobj = (<any>event).target.closest('div .form-group') ;
+       //  delobj.remove();
+       document.getElementById('mainParent').removeChild(delobj);
+       //  (<any>event).target.preventDefault();
+     });
+   }
+    }
+
+    editrowfunction() {
+      const edit = document.getElementsByClassName('editlink');
+
+ // const leftPos = edit.getBoundingClientRect().left + window.scrollX;
+  for ( let i = 0; i < edit.length; i++) {
+  edit[i].addEventListener('click', (event: Event) => {
+    console.log(i);
+    this.indexofcustomElement = i ;
+   // const topPos = edit.offsetTop ;
+    const logo1: HTMLElement = document.getElementById('test') ;
+
+    this.editelement = true;
+    this.customSection = true ;
+    const editobjss = (<any>event).target.closest('div .form-group') ;
+    const editobj = (<any>event).target.closest('div .form-group .row') ;
+    const attr = editobj.parentNode.childNodes[0].childNodes[1].childNodes[0].childNodes ;
+    attr.forEach(ele => {
+    // console.log(ele.tagName);
+     if (ele.tagName == 'INPUT') {
+      if (ele.type == 'text') {
+       this.gettingFormElements('Text');
+       if (ele.required === true) {
+        this.requiredField = true ;
+       } else {
+        this.requiredField = false ;
+       }
+       this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
+      } else if (ele.type == 'number') {
+     //   console.log(this.typeofnumber);
+        if (ele.required === true) {
+          this.requiredField = true ;
+         } else {
+          this.requiredField = false ;
+         }
+         if (ele.step == 'any') {
+          this.gettingFormElements('Currency');
+         } else {
+          this.gettingFormElements('Number');
+        }
+
+
+        this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
+      } else if (ele.type == 'checkbox') {
+        this.gettingFormElements('multiple');
+        if (ele.required === true) {
+          this.requiredField = true ;
+         } else {
+          this.requiredField = false ;
+         }
+        this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
+      }  else if (ele.type == 'radio') {
+        this.gettingFormElements('multiple');
+        if (ele.required === true) {
+          this.requiredField = true ;
+         } else {
+          this.requiredField = false ;
+         }
+        this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
+      } else if (ele.type == 'date') {
+        this.gettingFormElements('Date');
+        if (ele.required === true) {
+          this.requiredField = true ;
+         } else {
+          this.requiredField = false ;
+         }
+        this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
+      }
+    } else if (ele.tagName == 'TEXTAREA') {
+      this.gettingFormElements('Text');
+      if (ele.required === true) {
+        this.requiredField = true ;
+       } else {
+        this.requiredField = false ;
+       }
+      this.labelVal = editobj.parentNode.childNodes[0].childNodes[0].childNodes[1].innerHTML ;
+      this.multilineText = true ;
+    }
+    });
+
+  //  console.log(editobj.parentNode.childNodes[0].childNodes[0].childNodes[0].label[0].innerHTML);
+ });
+}
+    }
+
 
    changeCurrencyval(val) {
     const elem = document.getElementById('currencyId') ;
