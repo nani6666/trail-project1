@@ -1,0 +1,31 @@
+<div class="container" style="margin-top:50px;">
+
+<div class="row">
+<div class="col-sm-3"></div>
+<div class="col-sm-6">
+<div style="text-align:center;">
+<img  src="https://hasjob.co/_uploads/logos/36swf.png">
+</div>
+<div class="card border border-info">
+<div class="card-body">
+<h6 class="card-title">Login</h6>
+<div class="example-container">
+
+  <mat-form-field>
+    <input type="text" matInput placeholder="Username" [(ngModel)]="username" autocomplete="off" >
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="password" matInput placeholder="Password" [(ngModel)]="password" autocomplete="off">
+  </mat-form-field>
+ 
+</div>
+<div style="text-align:center;">
+<button class="btn btn-primary btn-sm" (click)="submitform()">Submit</button>
+</div>
+</div>
+</div>
+</div>
+<div class="col-sm-3"></div>
+</div>
+</div>

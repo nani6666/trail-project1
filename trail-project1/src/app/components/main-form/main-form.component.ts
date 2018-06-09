@@ -171,13 +171,16 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
   multiselect: any ;
   multibox: boolean ;
   htmlContent: any ;
+  checkboxessarrobj: any;
+  clonebtndisable:boolean;
  /* multi field properties  Ends */
 /* fields properties  Ends */
   constructor(private _fb: FormBuilder , private _cfr: ComponentFactoryResolver,
-       private renderer: Renderer2 , private serviceCall: RestcallsService ) { }
+       private renderer: Renderer2 , private serviceCall: RestcallsService ) {
+       }
        ngAfterViewInit() {
         const checks = document.getElementsByClassName('checkboxVal');
-        console.log(checks);
+        // console.log(checks);
         for (let i = 0; i < checks.length; i++) {
           checks[i].addEventListener('change', (event: Event) => {
             const checkele = checks[i];
@@ -195,6 +198,7 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
        }
       }
   ngOnInit() {
+    this.clonebtndisable = true;
     this.disablesavetempbtn =  false ;
     this.editelement = false ;
     this.customSectiontoggel = true;
@@ -282,11 +286,12 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
 
   /* open label starts */
    openformlabel(val) {
-    // console.log(this.elementsArray);
+      this.checkboxesssfun();
+   console.log(this.checkboxessarrobj);
     const checkboxelement =  document.getElementsByClassName('checkboxVal');
     const aryele = new Array();
-    const elementsArr = this.elementsArray.toString();
-    const removeCommas = this.elementsArray.join('');
+    const elementsArr = this.checkboxessarrobj.toString();
+    const removeCommas = this.checkboxessarrobj.join('');
     console.log(removeCommas);
     // console.log('11 - ' + JSON.stringify(this.elementsArray) , '2i-' + this.elementsArray.toString());
 
@@ -300,9 +305,9 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
          if (this.hospSAervicesSelectall === true) {
           this.htmlContent = el.outerHTML;
          } else {
-          this.htmlContent = removeCommas;
+          this.htmlContent =  removeCommas;
          }
-
+        
          document.getElementById('formId').click();
         } else {
           alert('Please Select one of the field') ;
@@ -497,6 +502,17 @@ export class MainFormComponent implements OnInit , AfterViewInit , OnDestroy {
     }
   }
 
+  checkboxesssfun() {
+  const checks = document.getElementsByClassName('checkboxVal');
+        console.log(checks);
+        for (let i = 0; i < checks.length; i++) {
+            const checkele = checks[i];
+            if ((<any>checkele).checked == true) {
+              this.checkboxessarrobj.push(checkele.closest('div .form-group').outerHTML);
+              }
+        }
+        console.log(this.checkboxessarrobj);
+}
 
  custommodal(val) {
    this.originaleditArray = [];
@@ -845,6 +861,7 @@ creatingElements(labelval , isedit_add) {
        const previous = document.getElementById('mainParent').parentNode.childNodes[3].childNodes[this.indexofcustomElement + 1];
       //  console.log(previous);
       previous.parentNode.replaceChild(divele1, previous);
+      this.clonebtndisable = false;
       const checkboxelement =  document.getElementsByClassName('checkboxVal');
        const aryele = new Array();
        for ( let i = 0; i < checkboxelement.length; i++) {
@@ -858,6 +875,7 @@ creatingElements(labelval , isedit_add) {
        } else {
 
         this.data1.nativeElement.appendChild(divele1);
+        this.clonebtndisable = false;
         const checkboxelement =  document.getElementsByClassName('checkboxVal');
        const aryele = new Array();
        for ( let i = 0; i < checkboxelement.length; i++) {
@@ -877,9 +895,12 @@ creatingElements(labelval , isedit_add) {
     }
 
     pecfdisable() {
+      const clickaddcustele = document.getElementById('addcussec');
       this.elementsArray = [];
+      this.checkboxessarrobj = [];
       this.customSectiontoggel = false;
       this.custonclonefunc = true;
+      
 
 
     }

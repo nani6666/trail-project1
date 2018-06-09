@@ -46,13 +46,15 @@ import {
 import { DynamicFormsComponent } from './components/dynamic-forms/dynamic-forms.component';
 import { GetTemplatesComponent } from './components/get-templates/get-templates.component';
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
+import { LoginComponent } from './components/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
     MainFormComponent,
     DynamicFormsComponent,
     GetTemplatesComponent,
-    SanitizeHtmlPipe
+    SanitizeHtmlPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

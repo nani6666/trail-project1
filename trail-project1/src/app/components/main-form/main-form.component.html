@@ -6,7 +6,7 @@
                   <div class="card-title custcardtitle">&nbsp; Custom Fields Designer &nbsp;
                       <span [ngClass]={disabled:customSectiontoggel}  style='cursor: pointer;' >
                       <span *ngIf="customSection === undefined || customSection === false" (click)='hidefunction()'><i class="fa fa-angle-double-down"></i></span>
-                      <span  *ngIf="customSection === true" (click)='hidefunction()'><i class="fa fa-angle-double-up"></i></span>
+                      <span  *ngIf="customSection === true" id="addcussec" (click)='hidefunction()'><i class="fa fa-angle-double-up"></i></span>
                       </span>
                     </div>
                   <div class="card container" style="background-color: #fff;" *ngIf="customSection">
@@ -181,6 +181,9 @@
                             </div>
                          </div>
                          <label class="control-label text-warning" style="padding-left:15px;"> <input class="hideele" type="checkbox" name="labelCheckbox" [(ngModel)]="hospSAervicesSelectall" (change)="changetoggles()"><span class="fieldlabel" ><strong>Select All</strong></span></label>
+                        
+                        <div id="hospFormData">
+                        <div class="form-group formdist"> 
                          <div class="row">
                            <div class="col-md-3">
                            </div>
@@ -207,7 +210,6 @@
                                 </div>
                            </div>
                        </div>
-                        <div id="hospFormData">
                          <section  [ngClass]={disabled:isselectedrowgenders1} >
                          <div class="row">
                            <div class="col-md-3" style="padding-top:25px;">
@@ -243,6 +245,8 @@
                             </div>
                          </div>
                         </section>
+                        </div>
+                        <div class="form-group formdist">
                         <section [ngClass]={disabled:isselectedrowgenders2}>
                             <div class="row">
                               <div class="col-md-3" style="padding-top:25px;">
@@ -278,6 +282,8 @@
                                </div>
                             </div>
                            </section>
+                           </div>
+                           <div class="form-group formdist">
                            <section [ngClass]={disabled:isselectedrowgenders3}>
                               <div class="row">
                                 <div class="col-md-3" style="padding-top:25px;">
@@ -313,6 +319,8 @@
                                  </div>
                               </div>
                              </section>
+                             </div>
+                             <div class="form-group formdist">
                              <section [ngClass]={disabled:isselectedrowgenders4}>
                          <div class="row">
                            <div class="col-md-3" style="padding-top:25px;">
@@ -348,6 +356,8 @@
                             </div>
                          </div>
                         </section>
+                        </div>
+                        <div class="form-group formdist">
                         <section id="mainParenttag"  [ngClass]={disabled:isselectedrowgenders5}>
                             <div class="row">
                               <div class="col-md-3" style="padding-top:25px;">
@@ -383,7 +393,9 @@
                                </div>
                             </div>
                            </section>
-                           <section style="padding-top:15px;">
+                           </div>
+                           <hr class="border border-default">
+                           <section style="margin-top: 2rem;">
                               <div #parent id="staticdivs">
 
 
@@ -395,7 +407,7 @@
                            </div>
                             <section>
                               <div style="padding-top:20px;text-align:center;">
-                                <button class="btn btn-sm btn-primary fieldlabel" (click)="addComponent('pecf')">Clone Row</button>
+                                <button class="btn btn-sm btn-primary fieldlabel" [disabled]="clonebtndisable" (click)="addComponent('pecf')">Clone Row</button>
                                 <button class="btn btn-sm btn-primary fieldlabel" (click)="addCustomField()">Add Custom Row</button>
                                 <button class="btn btn-sm btn-primary fieldlabel" [disabled]="disablesavetempbtn" (click)="openformlabel('pecf')">Save Templete</button>
                                 <button class="btn btn-sm btn-primary fieldlabel" >Reset</button>
